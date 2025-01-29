@@ -78,7 +78,7 @@ ________________________________________________________________________________
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - UNIQUE: Assegura que não haja valores duplicados em uma coluna ou combinação de colunas. Pode haver várias constraints UNIQUE em uma tabela, mas apenas uma Chave Primária por tabela. Uma constraint PRIMARY KEY automaticamente possui uma restrição UNIQUE definida. Exemplo: NomeProduto VARCHAR(50) NOT NULL UNIQUE
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- CHECK: Define um conjunto de valores válidos que podem ser inseridos em determinadas colunas. Se for definida em uma única coluna ela permitirá apenas determinados valores para a coluna. Usada para limitar os valores que podem ser colocados em uma coluna. Exemplo: PrecoProduto Money NOT NULL CHECK(PrecoProduto > 0)
+- CHECK: Define um conjunto de valores válidos que podem ser inseridos em determinadas colunas. Se for definida em uma única coluna ela permitirá apenas determinados valores para a coluna. Usada para limitar os valores que podem ser colocados em uma coluna. Exemplo: PrecoProduto MONEY NOT NULL CHECK(PrecoProduto > 0)
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - PRIMARY KEY:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
