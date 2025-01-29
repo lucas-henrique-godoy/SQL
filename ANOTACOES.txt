@@ -73,3 +73,11 @@ ________________________________________________________________________________
 - Usadas para controlar os dados que são inseridos, em nível de coluna ou de tabela.
 - Podem ser especificadas no momento de criação da tabela (CREATE) ou após a tabela ter sido criada (ALTER)
 
+* Constraints no SQL Server:
+- NOT NULL
+- UNIQUE
+- CHECK
+- PRIMARY KEY
+- FOREIGN KEY
+- DEFAULT
+
