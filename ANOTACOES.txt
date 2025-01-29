@@ -82,7 +82,80 @@ ________________________________________________________________________________
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - PRIMARY KEY: Uma chave primária identifica de forma única cada registro em uma tabela de banco de dados. A coluna não pode conter valores repetidos e nem valores NULL. Estabelece os relacionamentos entre tabelas. Cada tabela só pode ter uma única chave primária. Exemplo: CodProduto SMALLINT PRIMARY KEY
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- FOREIGN KEY:
+- FOREIGN KEY: Cria relacionamentos entre tabelas, combinada com chaves primárias (relacionamento pai-filho). Cada registro em uma coluna de chave estrangeira da tabela-filha deve possuir um registro correspondente na chave primária (tabela-pai). Não pode possuir valores NULL. Impõe integridade referencial às tabelas.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- DEFAULT:
+- DEFAULT: Fornece um valor padrão para uma coluna. O valor padrão é inserido em uma coluna caso nenhum outro valor seja especificado durante a inserção de um novo registro. Usada para fornecer um valor padrão para uma coluna quando nenhum valor é especificado. Exemplo: CodFornecedor SMALLINT DEFAULT 1520
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+				
+			* DEFRENÇAS ENTRE PRIMARY KEY e UNIQUE
++--------------------------+----------------------------------------------------------------+
+|       Primary Key        |                          Unique                                |
++-------------------------+-----------------------------------------------------------------+
+| Identifica cada linha de | Identifica valores únicos em uma coluna de uma tabela.         |
+| forma única em uma       |                                                                |
+| tabela.                  |                                                                |
++-------------------------+-----------------------------------------------------------------+
+| Não podem haver valores  | Pode aceitar um valor NULL na coluna.                          |
+| NULL.                    |                                                                |
++-------------------------+-----------------------------------------------------------------+
+| Uma tabela somente pode  | Uma tabela pode ter mais de uma restrição unique.              |
+| ter uma única chave      |                                                                |
+| primária.                |                                                                |
++------------------------- +----------------------------------------------------------------+
+| Um índice clusterizado   | Índices não-clusterizados são criados nas colunas.             |
+| é criado por padrão.     |                                                                |
++-------------------------+---------------------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
