@@ -76,7 +76,7 @@ ________________________________________________________________________________
 * Constraints no SQL Server:
 - NOT NULL: Por padrão, o SQL Server permite armazenamento de valores nulos em colunas. A constraint NOT NULL impede que uma coluna aceite valores NULL. Deste modo, não é possível inserir um registro (ou atualizar) sem que haja um valor neste campo. Exemplo: Validade DATE NOT NULL
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-- UNIQUE:
+- UNIQUE: Assegura que não haja valores duplicados em uma coluna ou combinação de colunas. Pode haver várias constraints UNIQUE em uma tabela, mas apenas uma Chave Primária por tabela. Uma constraint PRIMARY KEY automaticamente possui uma restrição UNIQUE definida.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - CHECK:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
