@@ -68,7 +68,7 @@ SELECT * FROM Clientes
 ORDER BY Nome DESC;
 _______________________________________________________________________________________________________________________________________________________________________
 
-* RESTRIÇÕES DE COLUNA CONSTRANT (CLÁUSULA CONSTRANT)
+* RESTRIÇÕES DE COLUNA CONSTRAINT (CLÁUSULA CONSTRAINT)
 - Restrições são regras pré-definidas impostas às colunas de uma tabela.
 - Usadas para controlar os dados que são inseridos, em nível de coluna ou de tabela.
 - Podem ser especificadas no momento de criação da tabela (CREATE) ou após a tabela ter sido criada (ALTER)
