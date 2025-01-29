@@ -1,2 +1,92 @@
 							CURSO DE SQL COM SQL SERVER BÓSON TREINAMENTOS
 
+O SQL (Structured Query Language) é a linguagem padrão usada para interagir com bancos de dados relacionais, e o SQL Server é um dos sistemas de gerenciamento de banco de dados mais populares da Microsoft.
+
+Passo 1: Criando uma Tabela
+A criação de uma tabela é a primeira coisa que você faz ao configurar um banco de dados. Vamos criar uma tabela simples para armazenar informações de clientes:
+
+sql
+Copiar
+CREATE TABLE Clientes (
+    ClienteID INT PRIMARY KEY,       -- Identificador único para cada cliente
+    Nome NVARCHAR(100),              -- Nome do cliente
+    Email NVARCHAR(100),             -- E-mail do cliente
+    DataNascimento DATE              -- Data de nascimento do cliente
+);
+Explicação:
+
+CREATE TABLE: cria uma nova tabela no banco de dados.
+INT: tipo de dado para números inteiros.
+NVARCHAR(100): tipo de dado para texto (strings) com até 100 caracteres.
+PRIMARY KEY: define que a coluna ClienteID será a chave primária, ou seja, cada valor nela deve ser único.
+Passo 2: Inserindo Dados
+Depois de criar a tabela, você pode inserir dados nela usando o comando INSERT INTO:
+
+sql
+Copiar
+INSERT INTO Clientes (ClienteID, Nome, Email, DataNascimento)
+VALUES (1, 'João Silva', 'joao.silva@email.com', '1990-05-15');
+Explicação:
+
+INSERT INTO insere dados na tabela.
+Os valores entre parênteses correspondem às colunas da tabela.
+Passo 3: Consultando Dados
+Agora, para consultar os dados que você inseriu na tabela, você usa o comando SELECT:
+
+sql
+Copiar
+SELECT * FROM Clientes;
+Explicação:
+
+SELECT *: seleciona todos os dados da tabela.
+FROM Clientes: indica de qual tabela você quer buscar os dados.
+Se você quiser consultar apenas alguns campos específicos, pode fazer assim:
+
+sql
+Copiar
+SELECT Nome, Email FROM Clientes;
+Passo 4: Atualizando Dados
+Para atualizar dados existentes, você usa o comando UPDATE:
+
+sql
+Copiar
+UPDATE Clientes
+SET Email = 'novo.email@email.com'
+WHERE ClienteID = 1;
+Explicação:
+
+UPDATE: modifica dados existentes.
+SET: define quais colunas e valores serão alterados.
+WHERE: especifica quais linhas devem ser alteradas (se você não usar o WHERE, todos os registros serão atualizados).
+Passo 5: Deletando Dados
+Para excluir registros da tabela, você usa o comando DELETE:
+
+sql
+Copiar
+DELETE FROM Clientes
+WHERE ClienteID = 1;
+Explicação:
+
+DELETE FROM: exclui dados de uma tabela.
+WHERE: especifica qual registro deve ser excluído. Sem o WHERE, todos os registros seriam excluídos.
+Passo 6: Filtrando Dados
+Você pode filtrar dados usando a cláusula WHERE. Por exemplo, se você quiser ver todos os clientes que nasceram após 1º de janeiro de 1990:
+
+sql
+Copiar
+SELECT * FROM Clientes
+WHERE DataNascimento > '1990-01-01';
+Passo 7: Ordenando Resultados
+Para ordenar os resultados de uma consulta, você pode usar a cláusula ORDER BY:
+
+sql
+Copiar
+SELECT * FROM Clientes
+ORDER BY Nome ASC;  -- Ordena pelo nome em ordem crescente (ASC)
+Se quiser ordenar em ordem decrescente (do Z ao A), pode usar DESC:
+
+sql
+Copiar
+SELECT * FROM Clientes
+ORDER BY Nome DESC;
+
