@@ -114,9 +114,12 @@ CREATE TABLE Produtos(
    CodFornecedor SMALLINT DEFAULT 1520,
    Validade DATE NOT NULL,
    PrecoProduto MONEY NOT NULL CHECK(PrecoProduto > 0),
-   CONSTRAINT fk_id_fornecedor FOREIGN KEY (CodFornecedor)
-   REFERENCES fornecedores (CodFornecedor) ON DELETE CASCADE
+   CONSTRAINT fk_id_fornecedor FOREIGN KEY (CodFornecedor) REFERENCES fornecedores (CodFornecedor) ON DELETE CASCADE
 );
+
+_______________________________________________________________________________________________________________________________________________________________________
+
+
 
 
 
