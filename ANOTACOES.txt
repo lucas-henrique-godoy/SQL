@@ -119,10 +119,32 @@ CREATE TABLE Produtos(
 
 _______________________________________________________________________________________________________________________________________________________________________
 
+* CRIAR TABELAS (CREATE TABLE): 
+- Sintaxe básica:
+CREATE TABLE NomeTabela(   
+   coluna1 tipo1 restrições,
+   coluna2 tipo2 restrições,
 
+   ...
 
+   colunaN tipo restrições,
+   restrições adicionais
+);
 
+OBS: Ao criar um banco de dados, devemos começar criando as tabelas que não têm campos dependentes de outras tabelas. Ou seja, crie primeiro as tabelas independentes, aquelas que não fazem referência a dados de outras tabelas.
+- Primeiro criamos as tabelas que não tem chave estrangeira.
+_______________________________________________________________________________________________________________________________________________________________________
 
+* TIPOS DE DADOS
+- char(n): String de caracteres e tamanho fixo n, máximo de 8000 caracteres.
+- varchar(n): String de caracteres de tamanho variáveln, máximo de 8000 caracteres.
+- tinyint: Números inteiros de 0 a 255.
+- smallint: Números inteiros de -32768 a 32767.
+- int: Números inteiros entre -2, 147, 483, 648 e 2, 147, 483, 647.
+- money: Dados monetários de -922.337.203.685.477,5808 até 922.337.203.685.477,5807.
+- real: Números de ponto flutuante de precisão dupla entre -3,4 x 10³⁸ e 3,4 x 10³⁸.
+- date: Data apenas. De 01/01/0001 a 31/12/9999.
+- time: Hora apenas. Precisão de até 100 nanossegundos.
 
 
 

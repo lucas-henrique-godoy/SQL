@@ -1,0 +1,10 @@
+CREATE DATABASE Biblioteca;
+
+CREATE TABLE Autor(
+IdAutor SMALLINT IDENTITY,
+NomeAutor VARCHAR(50) NOT NULL,
+SobreNomeAutor VARCHAR(60) NOT NULL,
+CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
+);
+
+sp_help Autor;
