@@ -210,6 +210,19 @@ REFERENCES tabela_referenciada(campo_referenciado)
 
 - ON UPDATE CASCADE (opcional): Define o que deve acontecer quando um valor na chave primária da tabela referenciada for atualizado. "CASCADE" significa que os valores correspondentes nas tabelas dependentes também serão atualizados automaticamente.
 
+_______________________________________________________________________________________________________________________________________________________________________
+O QUE É UMA TABELA ASSOCIATIVA?
+Uma tabela associativa (ou de relacionamento) é utilizada para estabelecer um relacionamento muitos-para-muitos entre duas outras tabelas. No caso, a tabela LivroAutor está relacionando os livros com seus autores, permitindo que um livro tenha vários autores e um autor possa escrever vários livros.
+
+No caso do seu código:
+
+-- Tabela associativa que armazena os relacionamentos entre livros e autores
+CREATE TABLE LivroAutor (
+    IdLivro SMALLINT NOT NULL,  -- Referência à tabela Livro
+    IdAutor SMALLINT NOT NULL,  -- Referência à tabela Autor
+    CONSTRAINT fk_id_livros FOREIGN KEY(IdLivro) REFERENCES Livro(IdLivro),
+    CONSTRAINT fk_id_Autor FOREIGN KEY(IdAutor) REFERENCES Autor(IdAutor)
+);
 
 
 

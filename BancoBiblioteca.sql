@@ -37,12 +37,17 @@ CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
 
 
---Tabela associativa
+--Tabela associativa que armazena ids
 CREATE TABLE LivroAutor(
-
+IdLivro SMALLINT NOT NULL,
+IdAutor SMALLINT NOT NULL,
+CONSTRAINT fk_id_livros FOREIGN KEY(IdLivro) REFERENCES Livro(IdLivro),
+CONSTRAINT fk_id_autores FOREIGN KEY(IdAutor) REFERENCES Autor(IdAutor),
+CONSTRAINT pk_livro_autor PRIMARY KEY(IdLivro, IdAutor) --Chave primária composta
 );
 
-
+--Ver todas as tabelas do banco
+SELECT name FROM Biblioteca.sys.tables;
 
 
 
