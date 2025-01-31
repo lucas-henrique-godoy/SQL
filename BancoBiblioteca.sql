@@ -65,7 +65,7 @@ ADD Edição SMALLINT;
 ALTER TABLE Livro
 ALTER COLUMN Edição Tinyint;
 
--- Adicionar chave primária(só funciona se a tabela não tiver uma chave primária)
+-- Adicionar chave primária(só funciona se a tabela não tiver uma chave primária já definida anteriormente)
 ALTER TABLE NomeTabela
 ADD PRIMARY KEY (Coluna);
 
