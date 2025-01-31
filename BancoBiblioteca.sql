@@ -81,7 +81,7 @@ ALTER TABLE NomeTabela
 DROP CONSTRAINT NomeConstraint;
 
 --------------------------------------------------------------------------------------------------
--- verificar o nome das constraints:
+-- Verificar o nome das constraints de uma tabela:
 sp_help Livro;
 
 --------------------------------------------------------------------------------------------------
@@ -89,3 +89,8 @@ sp_help Livro;
 -- Excluir uma coluna de uma tabela
 ALTER TABLE Livro
 DROP COLUMN Edição;
+
+--------------------------------------------------------------------------------------------------
+
+-- Excluir uma tabela: DROP TABLE
+DROP TABLE NomeTabela;
