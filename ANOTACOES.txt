@@ -187,6 +187,8 @@ Conclusão:
 Nomes Consistentes: Utilizar o mesmo nome para a chave primária e a chave estrangeira, como ClienteId em ambos os casos, facilita o entendimento de que há uma relação entre as tabelas.
 Tipos de Dados Compatíveis: É importante que as chaves primárias e estrangeiras tenham tipos de dados compatíveis (por exemplo, ambos INT ou ambos BIGINT) para garantir a integridade referencial e desempenho eficiente nas operações do banco de dados.
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SINTAXE PARA CRIAÇÃODE CHAVE ESTRANGEIRA:
 
 
 
