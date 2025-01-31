@@ -37,6 +37,13 @@ CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
 
 
+--Tabela associativa
+CREATE TABLE LivroAutor(
+
+);
+
+
+
 
 
 
