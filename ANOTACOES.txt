@@ -133,6 +133,7 @@ CREATE TABLE NomeTabela(
 
 OBS: Ao criar um banco de dados, devemos começar criando as tabelas que não têm campos dependentes de outras tabelas. Ou seja, crie primeiro as tabelas independentes, aquelas que não fazem referência a dados de outras tabelas.
 - Primeiro criamos as tabelas que não tem chave estrangeira.
+- Se possível sempre utilizar o menor tipo possível para economizar espaço no banco e em memória.
 _______________________________________________________________________________________________________________________________________________________________________
 
 * TIPOS DE DADOS
