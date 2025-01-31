@@ -224,6 +224,9 @@ CREATE TABLE LivroAutor (
     CONSTRAINT fk_id_Autor FOREIGN KEY(IdAutor) REFERENCES Autor(IdAutor)
 );
 
+_______________________________________________________________________________________________________________________________________________________________________
+
+GERENCIAR TABELAS - ALTER, DROP, RENAME: 
 
 
 
