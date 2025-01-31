@@ -190,7 +190,8 @@ Nomes Consistentes: Utilizar o mesmo nome para a chave primária e a chave estra
 Tipos de Dados Compatíveis: É importante que as chaves primárias e estrangeiras tenham tipos de dados compatíveis (por exemplo, ambos INT ou ambos BIGINT) para garantir a integridade referencial e desempenho eficiente nas operações do banco de dados.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-SINTAXE PARA CRIAÇÃODE CHAVE ESTRANGEIRA:
+
+*SINTAXE PARA CRIAÇÃODE CHAVE ESTRANGEIRA:
 Sintaxe geral
 Aqui está a estrutura básica para adicionar uma chave estrangeira em SQL:
 
@@ -226,7 +227,7 @@ CREATE TABLE LivroAutor (
 
 _______________________________________________________________________________________________________________________________________________________________________
 
-GERENCIAR TABELAS - ALTER, DROP, RENAME: 
+* GERENCIAR TABELAS - ALTER, DROP, RENAME: 
 
 
 
