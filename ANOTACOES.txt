@@ -227,10 +227,196 @@ CREATE TABLE LivroAutor (
 
 _______________________________________________________________________________________________________________________________________________________________________
 
-* GERENCIAR TABELAS - ALTER, DROP, RENAME: 
+* GERENCIAMENTO TABELAS - ALTER, DROP, RENAME: No SQL Server, o gerenciamento de tabelas envolve a utilização de comandos para modificar a estrutura das tabelas no banco de dados. Os comandos ALTER, DROP e RENAME são utilizados para realizar essas modificações. Vamos explicar cada um deles:
+
+1. ALTER TABLE
+O comando ALTER TABLE é usado para modificar a estrutura de uma tabela existente. Ele permite que você adicione, exclua ou altere colunas de uma tabela. Aqui estão alguns exemplos:
+
+Adicionar uma nova coluna:
+sql
+Copiar
+ALTER TABLE nome_da_tabela
+ADD nova_coluna tipo_de_dado;
+Exemplo:
+
+sql
+Copiar
+ALTER TABLE Funcionarios
+ADD DataDeNascimento DATE;
+Modificar uma coluna existente:
+sql
+Copiar
+ALTER TABLE nome_da_tabela
+ALTER COLUMN nome_da_coluna novo_tipo_de_dado;
+Exemplo:
+
+sql
+Copiar
+ALTER TABLE Funcionarios
+ALTER COLUMN Salario DECIMAL(10, 2);
+Excluir uma coluna:
+sql
+Copiar
+ALTER TABLE nome_da_tabela
+DROP COLUMN nome_da_coluna;
+Exemplo:
+
+sql
+Copiar
+ALTER TABLE Funcionarios
+DROP COLUMN DataDeNascimento;
+2. DROP TABLE
+O comando DROP TABLE é utilizado para excluir completamente uma tabela do banco de dados, junto com todos os dados nela contidos. Tenha muito cuidado ao usar esse comando, pois ele é irreversível.
+
+sql
+Copiar
+DROP TABLE nome_da_tabela;
+Exemplo:
+
+sql
+Copiar
+DROP TABLE Funcionarios;
+3. RENAME (ALTER TABLE para renomear)
+No SQL Server, o comando RENAME não é diretamente suportado. Para renomear uma tabela, você usa o comando sp_rename. Este procedimento armazenado é utilizado para alterar o nome de objetos no banco de dados, como tabelas, colunas, índices, etc.
+
+Para renomear uma tabela:
+sql
+Copiar
+EXEC sp_rename 'nome_antigo_da_tabela', 'novo_nome_da_tabela';
+Exemplo:
+
+sql
+Copiar
+EXEC sp_rename 'Funcionarios', 'Empregados';
+Para renomear uma coluna:
+sql
+Copiar
+EXEC sp_rename 'nome_da_tabela.nome_da_coluna', 'novo_nome_da_coluna', 'COLUMN';
+Exemplo:
+
+sql
+Copiar
+EXEC sp_rename 'Empregados.Salario', 'Rendimento', 'COLUMN';
+Resumo:
+ALTER TABLE: Modifica a estrutura da tabela, como adicionar, excluir ou alterar colunas.
+DROP TABLE: Exclui a tabela e seus dados permanentemente.
+RENAME: No SQL Server, usa-se sp_rename para renomear tabelas e colunas.
+
+_______________________________________________________________________________________________________________________________________________________________________
+
+Complementos sobre o código e os comandos:
+1. Adicionando uma chave primária
+Quando você usa o comando ALTER TABLE para adicionar uma chave primária à tabela, é importante observar que ela só pode ser adicionada se a tabela não tiver uma chave primária definida previamente.
+
+Exemplo de código:
+
+sql
+Copiar
+ALTER TABLE NomeTabela
+ADD PRIMARY KEY (Coluna);
+Isso cria uma chave primária na coluna especificada, garantindo que os valores nesta coluna sejam únicos e não nulos.
+
+2. Excluir uma constraint de uma coluna
+As constraints (restrições) em SQL são usadas para impor regras sobre os dados em uma tabela, como PRIMARY KEY, FOREIGN KEY, CHECK, UNIQUE, etc. Para remover uma constraint de uma tabela, você deve usar o comando DROP CONSTRAINT.
+
+Exemplo:
+
+sql
+Copiar
+ALTER TABLE NomeTabela
+DROP CONSTRAINT NomeConstraint;
+Isso remove a constraint especificada, que pode ser, por exemplo, uma chave primária ou uma chave estrangeira.
+
+3. Verificar o nome das constraints de uma tabela
+Você pode usar o procedimento armazenado sp_help para listar todas as propriedades de uma tabela, incluindo as constraints associadas a ela. Isso pode ser útil para saber quais constraints você pode querer alterar ou remover.
+
+Exemplo:
+
+sql
+Copiar
+sp_help Livro;
+Este comando retornará uma série de informações sobre a tabela Livro, incluindo as constraints que ela possui.
+
+4. Exclusão de coluna
+Ao excluir uma coluna, é importante lembrar que todos os dados daquela coluna serão apagados. O comando ALTER TABLE ... DROP COLUMN permite remover uma coluna específica de uma tabela.
+
+Exemplo:
+
+sql
+Copiar
+ALTER TABLE Livro
+DROP COLUMN Edição;
+Este comando remove a coluna Edição da tabela Livro.
+
+Resumo do código complementado:
+Adicionar uma nova coluna: Usa-se ALTER TABLE seguido de ADD para adicionar uma coluna a uma tabela existente.
+Alterar tipo de dado de uma coluna: Com o ALTER COLUMN, é possível modificar o tipo de dado de uma coluna existente.
+Adicionar uma chave primária: Você pode definir uma chave primária com ADD PRIMARY KEY, desde que a tabela não tenha uma chave primária existente.
+Remover uma constraint: Para excluir uma constraint, usa-se o comando DROP CONSTRAINT.
+Verificar informações sobre a tabela e constraints: A função sp_help fornece detalhes sobre as propriedades de uma tabela, incluindo suas constraints.
+Excluir uma coluna de uma tabela: Utiliza-se DROP COLUMN para remover uma coluna de uma tabela.
+Excluir uma tabela: Com o comando DROP TABLE, a tabela inteira é excluída permanentemente.
+Esses detalhes adicionais ajudam a fornecer uma visão mais completa do gerenciamento de tabelas no SQL Server, especialmente quando se trata de manipulação de constraints e chaves.
 
 
+Renomear objetos no SQL Server (usando sp_rename)
+No SQL Server, não existe um comando direto chamado RENAME como em alguns outros SGBDs (Sistema de Gerenciamento de Banco de Dados). Em vez disso, para renomear tabelas, colunas, índices, e outros objetos do banco de dados, usamos o procedimento armazenado sp_rename.
 
+Sintaxe básica:
+sql
+Copiar
+EXEC sp_rename 'nome_atual', 'novo_nome';
+Esse comando pode ser usado para renomear tabelas, colunas, e até índices.
+
+Exemplos práticos de uso de sp_rename:
+1. Renomear uma tabela
+Se você quiser alterar o nome de uma tabela, basta fornecer o nome atual e o novo nome desejado.
+
+Exemplo:
+
+sql
+Copiar
+EXEC sp_rename 'Livro', 'Livros';
+Isso renomeia a tabela Livro para Livros.
+
+2. Renomear uma coluna
+Para renomear uma coluna de uma tabela, a sintaxe é ligeiramente diferente. Você precisa especificar o nome da tabela, o nome da coluna que você quer renomear, e o novo nome da coluna.
+
+Exemplo:
+
+sql
+Copiar
+EXEC sp_rename 'Livros.Edição', 'Versao', 'COLUMN';
+Aqui, a coluna Edição da tabela Livros é renomeada para Versao.
+
+3. Renomear um índice
+Da mesma forma, você pode usar o sp_rename para alterar o nome de um índice.
+
+Exemplo:
+
+sql
+Copiar
+EXEC sp_rename 'Livros.Index_Edicao', 'Index_Versao', 'INDEX';
+Isso renomeia o índice Index_Edicao para Index_Versao na tabela Livros.
+
+Considerações importantes:
+Necessidade de permissões: Para usar o sp_rename, o usuário precisa ter permissões adequadas no banco de dados, como permissão de ALTER em tabelas ou objetos a serem renomeados.
+
+Impacto nas dependências: Renomear objetos, como tabelas ou colunas, pode afetar dependências (como views, stored procedures, triggers, etc.) que referenciam esses objetos. É importante revisar essas dependências e atualizá-las conforme necessário após renomear.
+
+Limitações do sp_rename:
+
+O sp_rename não pode ser utilizado para renomear objetos do tipo constraint diretamente. Para isso, é necessário excluir a constraint e criar uma nova.
+Não é possível renomear uma chave primária ou chave estrangeira diretamente; é necessário removê-las e criá-las novamente com o novo nome.
+Resumo:
+No SQL Server, o comando RENAME é substituído pelo procedimento armazenado sp_rename.
+sp_rename pode ser usado para renomear tabelas, colunas, índices e outros objetos.
+Ao usar sp_rename, sempre esteja atento às dependências do objeto renomeado para evitar problemas no banco de dados.
+Agora, o conjunto completo de operações sobre gerenciamento de tabelas fica assim:
+
+ALTER TABLE: Modifica a estrutura de tabelas, como adicionar ou excluir colunas, alterar tipos de dados, ou adicionar/remover constraints.
+DROP TABLE: Exclui completamente uma tabela e seus dados.
+RENAME (via sp_rename): Renomeia tabelas, colunas, índices e outros objetos no banco de dados.
 
 
 
