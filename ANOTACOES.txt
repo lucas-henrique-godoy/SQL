@@ -162,6 +162,7 @@ CREATE TABLE Clientes (
     Email VARCHAR(100)
 );
 
+
 2. Criação da Tabela Pedidos:
 CREATE TABLE Pedidos (
     PedidoId INT PRIMARY KEY,  -- Chave primária da tabela Pedidos
@@ -169,6 +170,7 @@ CREATE TABLE Pedidos (
     ClienteId INT,  -- Chave estrangeira que referencia o ClienteId de Clientes
     FOREIGN KEY (ClienteId) REFERENCES Clientes(ClienteId)
 );
+
 
 Explicação sobre os tipos de dados:
 Chave Primária (ClienteId em Clientes): A coluna ClienteId em Clientes é definida como INT, o que significa que ela pode armazenar valores inteiros.
@@ -189,6 +191,24 @@ Tipos de Dados Compatíveis: É importante que as chaves primárias e estrangeir
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SINTAXE PARA CRIAÇÃODE CHAVE ESTRANGEIRA:
+Sintaxe geral
+Aqui está a estrutura básica para adicionar uma chave estrangeira em SQL:
+
+CONSTRAINT nome_da_restricao FOREIGN KEY (campo_da_tabela_atual)
+REFERENCES tabela_referenciada(campo_referenciado)
+[ON DELETE CASCADE] [ON UPDATE CASCADE];
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------Explicando o exemplo:
+
+- CONSTRAINT nome_da_restricao: Define o nome da restrição (restrição de chave estrangeira).
+
+- FOREIGN KEY (campo_da_tabela_atual): Especifica o campo da tabela atual que se tornará a chave estrangeira.
+
+- REFERENCES tabela_referenciada(campo_referenciado): Indica qual é a tabela de referência (que já tem a chave primária) e o campo que é a chave primária nessa tabela.
+
+- ON DELETE CASCADE (opcional): Define o que deve acontecer quando um registro na tabela referenciada for excluído. "CASCADE" significa que todos os registros dependentes (da tabela atual) também serão excluídos automaticamente.
+
+- ON UPDATE CASCADE (opcional): Define o que deve acontecer quando um valor na chave primária da tabela referenciada for atualizado. "CASCADE" significa que os valores correspondentes nas tabelas dependentes também serão atualizados automaticamente.
 
 
 
