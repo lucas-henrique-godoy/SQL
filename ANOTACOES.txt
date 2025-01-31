@@ -137,7 +137,7 @@ ________________________________________________________________________________
 
 * TIPOS DE DADOS
 - char(n): String de caracteres e tamanho fixo n, máximo de 8000 caracteres.
-- varchar(n): String de caracteres de tamanho variáveln, máximo de 8000 caracteres.
+- varchar(n): String de caracteres de tamanho variável n, máximo de 8000 caracteres.
 - tinyint: Números inteiros de 0 a 255.
 - smallint: Números inteiros de -32768 a 32767.
 - int: Números inteiros entre -2, 147, 483, 648 e 2, 147, 483, 647.
