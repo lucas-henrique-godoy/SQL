@@ -7,4 +7,5 @@ SobreNomeAutor VARCHAR(60) NOT NULL,
 CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
 );
 
+--Procedimento armazenadoque trás informações sobre a tabela.
 sp_help Autor;
