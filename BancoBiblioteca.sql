@@ -57,8 +57,16 @@ SELECT name FROM Biblioteca.sys.tables;
 -- ALTER TABLE NomeTabela;
 -- ADD / ALTER / DROP Objeto;
 
---ADICIONANDO COLUNAS
+-- Adicionar uma nova coluna a uma tabela existente.
 ALTER TABLE Livro
 ADD Edição SMALLINT;
+
+-- Alterar o tipo de dado de uma coluna:
+ALTER TABLE Livro
+ALTER COLUMN Edição Tinyint;
+
+-- Adicionar chave primária(só funciona se a tabela não tiver uma chave primária)
+ALTER TABLE NomeTabela
+ADD PRIMARY KEY (Coluna);
 
 
