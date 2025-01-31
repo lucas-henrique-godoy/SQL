@@ -49,7 +49,16 @@ CONSTRAINT pk_livro_autor PRIMARY KEY(IdLivro, IdAutor) --Chave primária compost
 --Ver todas as tabelas do banco
 SELECT name FROM Biblioteca.sys.tables;
 
+--------------------------------------------------------------------------------------------------
 
+-- Gerenciamento de Tabelas
+-- ALTER, DROP, RENAME
 
+-- ALTER TABLE NomeTabela;
+-- ADD / ALTER / DROP Objeto;
+
+--ADICIONANDO COLUNAS
+ALTER TABLE Livro
+ADD Edição SMALLINT;
 
 
