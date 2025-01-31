@@ -131,7 +131,7 @@ CREATE TABLE NomeTabela(
    restrições adicionais
 );
 
-OBS: Ao criar um banco de dados, devemos começar criando as tabelas que não têm campos dependentes de outras tabelas. Ou seja, crie primeiro as tabelas independentes, aquelas que não fazem referência a dados de outras tabelas.
+***OBS: Ao criar um banco de dados, devemos começar criando as tabelas que não têm campos dependentes de outras tabelas. Ou seja, crie primeiro as tabelas independentes, aquelas que não fazem referência a dados de outras tabelas.
 - Primeiro criamos as tabelas que não tem chave estrangeira.
 - Se possível sempre utilizar o menor tipo possível para economizar espaço no banco e em memória.
 _______________________________________________________________________________________________________________________________________________________________________
@@ -147,43 +147,45 @@ ________________________________________________________________________________
 - date: Data apenas. De 01/01/0001 a 31/12/9999.
 - time: Hora apenas. Precisão de até 100 nanossegundos.
 
+_______________________________________________________________________________________________________________________________________________________________________
 
+OBS: Ao criar chaves estrangeiras, uma boa prática para facilitar o entendimento do relacionamento entre as tabelas no banco de dados é utilizar nomes de chaves estrangeiras que correspondam aos nomes dos IDs das tabelas relacionadas. Embora isso não seja uma obrigatoriedade, adotar essa convenção ajuda a tornar o esquema mais claro, pois torna explícito que a chave estrangeira faz referência à chave primária de outra tabela.
+Além disso, os tipos de dados das chaves estrangeiras devem ser os mesmos ou compatíveis com os tipos de dados das chaves primárias das tabelas que possuem relacionamento. Isso garante a integridade referencial e melhora a performance do banco de dados.
 
+Exemplo:
+Vamos supor que temos duas tabelas: Clientes e Pedidos. Cada pedido deve estar associado a um cliente, então criamos uma chave estrangeira na tabela Pedidos que faz referência à chave primária da tabela Clientes.
 
-CREATE DATABASE Biblioteca;
-
-CREATE TABLE Autor(
-IdAutor SMALLINT IDENTITY,
-NomeAutor VARCHAR(50) NOT NULL,
-SobreNomeAutor VARCHAR(60) NOT NULL,
-CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
+1. Criação da Tabela Clientes:
+CREATE TABLE Clientes (
+    ClienteId INT PRIMARY KEY,  -- Chave primária da tabela Clientes
+    Nome VARCHAR(100),
+    Email VARCHAR(100)
 );
 
---Procedimento armazenadoque trás informações sobre a tabela.
-sp_help Autor;
-
-CREATE TABLE Editora(
-IdEditora SMALLINT PRIMARY KEY IDENTITY,
-NomeEditora VARCHAR(50) NOT NULL
+2. Criação da Tabela Pedidos:
+CREATE TABLE Pedidos (
+    PedidoId INT PRIMARY KEY,  -- Chave primária da tabela Pedidos
+    DataPedido DATE,
+    ClienteId INT,  -- Chave estrangeira que referencia o ClienteId de Clientes
+    FOREIGN KEY (ClienteId) REFERENCES Clientes(ClienteId)
 );
 
+Explicação sobre os tipos de dados:
+Chave Primária (ClienteId em Clientes): A coluna ClienteId em Clientes é definida como INT, o que significa que ela pode armazenar valores inteiros.
+Chave Estrangeira (ClienteId em Pedidos): A chave estrangeira ClienteId na tabela Pedidos também deve ser do tipo INT para garantir que ela seja compatível com a chave primária da tabela Clientes.
+Ao utilizar o mesmo tipo de dados para a chave primária e a chave estrangeira, o banco de dados pode garantir que os valores armazenados em Pedidos.ClienteId correspondam corretamente aos valores em Clientes.ClienteId, assegurando a integridade referencial. Isso significa que um valor em Pedidos.ClienteId só pode ser inserido se já existir um correspondente valor em Clientes.ClienteId.
 
-CREATE TABLE Assunto(
-IdAssunto TINYINT PRIMARY KEY IDENTIY,
+Importância de Usar Tipos de Dados Compatíveis:
+Integridade Referencial: Quando os tipos de dados são os mesmos, o banco de dados pode garantir que os valores nas chaves estrangeiras sempre correspondam aos valores das chaves primárias. Caso contrário, você poderia inserir um valor incompatível, violando o relacionamento.
 
+Desempenho: O banco de dados pode otimizar buscas e comparações de valores quando as colunas de relacionamento têm tipos de dados compatíveis. Isso melhora a performance em consultas e operações de junção (JOIN).
 
+Exemplo de erro se os tipos de dados não forem compatíveis:
+Se, por exemplo, a chave primária ClienteId fosse definida como BIGINT na tabela Clientes, mas a chave estrangeira na tabela Pedidos fosse definida como INT, o banco de dados geraria um erro de incompatibilidade de tipos quando tentasse associar as duas tabelas. Para corrigir, seria necessário ajustar o tipo de dados da chave estrangeira para BIGINT.
 
-);
-
-
-
-
-
-
-
-
-
-
+Conclusão:
+Nomes Consistentes: Utilizar o mesmo nome para a chave primária e a chave estrangeira, como ClienteId em ambos os casos, facilita o entendimento de que há uma relação entre as tabelas.
+Tipos de Dados Compatíveis: É importante que as chaves primárias e estrangeiras tenham tipos de dados compatíveis (por exemplo, ambos INT ou ambos BIGINT) para garantir a integridade referencial e desempenho eficiente nas operações do banco de dados.
 
 
 
