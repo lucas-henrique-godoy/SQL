@@ -233,48 +233,35 @@ ________________________________________________________________________________
 O comando ALTER TABLE é usado para modificar a estrutura de uma tabela existente. Ele permite que você adicione, exclua ou altere colunas de uma tabela. Aqui estão alguns exemplos:
 
 Adicionar uma nova coluna:
-sql
-Copiar
+
 ALTER TABLE nome_da_tabela
 ADD nova_coluna tipo_de_dado;
-Exemplo:
 
-sql
-Copiar
+Exemplo:
 ALTER TABLE Funcionarios
 ADD DataDeNascimento DATE;
+
 Modificar uma coluna existente:
-sql
-Copiar
 ALTER TABLE nome_da_tabela
 ALTER COLUMN nome_da_coluna novo_tipo_de_dado;
-Exemplo:
 
-sql
-Copiar
+Exemplo:
 ALTER TABLE Funcionarios
 ALTER COLUMN Salario DECIMAL(10, 2);
+
 Excluir uma coluna:
-sql
-Copiar
 ALTER TABLE nome_da_tabela
 DROP COLUMN nome_da_coluna;
-Exemplo:
 
-sql
-Copiar
+Exemplo:
 ALTER TABLE Funcionarios
 DROP COLUMN DataDeNascimento;
+
 2. DROP TABLE
 O comando DROP TABLE é utilizado para excluir completamente uma tabela do banco de dados, junto com todos os dados nela contidos. Tenha muito cuidado ao usar esse comando, pois ele é irreversível.
-
-sql
-Copiar
 DROP TABLE nome_da_tabela;
-Exemplo:
 
-sql
-Copiar
+Exemplo:
 DROP TABLE Funcionarios;
 3. RENAME (ALTER TABLE para renomear)
 No SQL Server, o comando RENAME não é diretamente suportado. Para renomear uma tabela, você usa o comando sp_rename. Este procedimento armazenado é utilizado para alterar o nome de objetos no banco de dados, como tabelas, colunas, índices, etc.
