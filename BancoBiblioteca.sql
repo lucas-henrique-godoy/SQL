@@ -27,6 +27,22 @@ IdAssunto TINYINT PRIMARY KEY IDENTITY,
 NomeAssunto VARCHAR(25) NOT NULL
 );
 
+-- Inserir dados na tabela Assunto
+INSERT INTO Assunto (NomeAssunto)
+VALUES
+    ('Ficção Científica'),
+    ('Botânica'),
+    ('Eletrônica'),
+    ('Matemática'),
+    ('Aventura'),
+    ('Romance'),
+    ('Finanças'),
+    ('Gastronomia'),
+    ('Terror'),
+    ('Administração'),
+    ('Informática'),
+    ('Suspense');
+
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Livro(
 IdLivro SMALLINT NOT NULL PRIMARY KEY IDENTITY(100,1),
