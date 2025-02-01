@@ -390,7 +390,9 @@ DROP TABLE: Exclui completamente uma tabela e seus dados.
 RENAME (via sp_rename): Renomeia tabelas, colunas, índices e outros objetos no banco de dados.
 _______________________________________________________________________________________________________________________________________________________________________
 
-
+* CADASTRAR DADOS - INSERT INTO(Inserir Dados): Inserir um registro(linha) em uma tabela.
+Sintaxe:
+INSERT INTO tabela(coluna1, coluna2, ...) VALUES(valor1, valor2, ...);
 
 
 
