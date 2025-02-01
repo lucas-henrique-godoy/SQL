@@ -14,12 +14,14 @@ SobreNomeAutor VARCHAR(60) NOT NULL,
 CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
 );
 
+--------------------------------------------------------------------------------------------------
 
 CREATE TABLE Editora(
 IdEditora SMALLINT PRIMARY KEY IDENTITY,
 NomeEditora VARCHAR(50) NOT NULL
 );
 
+--------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(
 IdAssunto TINYINT PRIMARY KEY IDENTITY,
 NomeAssunto VARCHAR(25) NOT NULL
@@ -103,5 +105,7 @@ DROP TABLE NomeTabela;
 -- Renomear uma tabela: sp_rename
 --  sp_rename 'nome atual', 'novo nome';
 sp_rename 'tbl_livros', 'Livro';
+--------------------------------------------------------------------------------------------------
+
 
 
