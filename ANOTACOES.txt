@@ -388,6 +388,9 @@ Agora, o conjunto completo de operações sobre gerenciamento de tabelas fica as
 ALTER TABLE: Modifica a estrutura de tabelas, como adicionar ou excluir colunas, alterar tipos de dados, ou adicionar/remover constraints.
 DROP TABLE: Exclui completamente uma tabela e seus dados.
 RENAME (via sp_rename): Renomeia tabelas, colunas, índices e outros objetos no banco de dados.
+_______________________________________________________________________________________________________________________________________________________________________
+
+
 
 
 
