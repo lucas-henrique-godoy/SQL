@@ -93,9 +93,15 @@ sp_help Livro;
 ALTER TABLE Livro
 DROP COLUMN Edição;
 
-
+--------------------------------------------------------------------------------------------------
 
 -- Excluir uma tabela: DROP TABLE
 DROP TABLE NomeTabela;
 
 --------------------------------------------------------------------------------------------------
+
+-- Renomear uma tabela: sp_rename
+--  sp_rename 'nome atual', 'novo nome';
+sp_rename 'tbl_livros', 'Livro';
+
+
