@@ -43,6 +43,9 @@ VALUES
     ('Informática'),
     ('Suspense');
 
+-- Verificação
+SELECT * FROM Assunto;
+
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Livro(
 IdLivro SMALLINT NOT NULL PRIMARY KEY IDENTITY(100,1),
