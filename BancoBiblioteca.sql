@@ -79,7 +79,7 @@ ADD PRIMARY KEY (Coluna);
 
 --------------------------------------------------------------------------------------------------
 
--- Excluir uma constraint de uma coluna(pode ser uma chave primária por exemplo)
+-- Excluir uma constraint de uma coluna - (pode ser uma chave primária por exemplo)
 ALTER TABLE NomeTabela
 DROP CONSTRAINT NomeConstraint;
 
