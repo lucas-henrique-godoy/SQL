@@ -21,6 +21,15 @@ IdEditora SMALLINT PRIMARY KEY IDENTITY,
 NomeEditora VARCHAR(50) NOT NULL
 );
 
+-- Inserir dados na tabela Editora
+INSERT INTO Editora (NomeEditora)
+VALUES
+	('Prentice Hall'),
+	('O´Reilly');
+
+-- Verificação
+SELECT * FROM Editora;
+
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(
 IdAssunto TINYINT PRIMARY KEY IDENTITY,
