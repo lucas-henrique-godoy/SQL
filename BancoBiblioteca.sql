@@ -27,13 +27,21 @@ VALUES
 	('Prentice Hall'),
 	('O´Reilly');
 
--- Verificação
-SELECT * FROM Editora;
-
 -- Mai editoras
 INSERT INTO Editora(NomeEditora)
 VALUES
-	
+	('Aleph'), ('Microsoft Press'),
+	('Wiley'), ('HarperCollins'),
+	('Érica'), ('Novatec'),
+	('McGraw-Hill'), ('Apress'),
+	('Francisco Alves'), ('Sybex'),
+	('Globo'), ('Comapanhia das Letras'),
+	('Morro Branco'), ('Penguin Books'), ('Martin Claret'),
+	('Record'), ('Springer'), ('Melhoramentos'),
+	('Oxford'), ('Taschen'),('Ediouro'), ('Bookman');
+
+-- Verificação
+SELECT * FROM Editora;
 
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(

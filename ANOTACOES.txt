@@ -393,6 +393,9 @@ ________________________________________________________________________________
 * CADASTRAR DADOS - INSERT INTO(Inserir Dados): Inserir um registro(linha) em uma tabela.
 Sintaxe:
 INSERT INTO tabela(coluna1, coluna2, ...) VALUES(valor1, valor2, ...);
+_______________________________________________________________________________________________________________________________________________________________________
+
+**OBS: Na hora de inserir os dados nas tabelas, deve-se primeiramente inserir os dados nas tabelas que não dependem de nenhuma outra, ou seja que não tenha chave estrangeira.
 
 
 
