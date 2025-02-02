@@ -30,6 +30,11 @@ VALUES
 -- Verificação
 SELECT * FROM Editora;
 
+-- Mai editoras
+INSERT INTO Editora(NomeEditora)
+VALUES
+	
+
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(
 IdAssunto TINYINT PRIMARY KEY IDENTITY,
