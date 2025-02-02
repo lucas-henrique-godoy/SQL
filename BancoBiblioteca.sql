@@ -14,6 +14,27 @@ SobreNomeAutor VARCHAR(60) NOT NULL,
 CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
 );
 
+-- Inserir dados na tabela Autor
+INSERT INTO Autor(NomeAutor, SobreNomeAutor)
+VALUES
+	('Umberto', 'Eco'), ('Daniel', 'Barret'), ('Gerald', 'Carter'),
+	('Mark', 'Sobell'), ('William', 'Stanek'), ('Christine', 'Bresnahan'),
+	('William', 'Gibson'), ('James', 'Joyce'), ('John', 'Emsley'),
+	('José', 'Saramago'), ('Richard', 'Siverman'), ('Robert', 'Byrnes'),
+	('Jay', 'Ts'), ('Robert', 'Eckstein'), ('Paul', 'Horowitz'),
+	('Winfield', 'Hill'), ('Joel', 'Murach'), ('Paul', 'Scherz'),
+	('Simon', 'Monk'), ('George', 'Orwell'), ('Ítalo', 'Calvino'),
+	('Machado', 'de Assis'), ('Oliver', 'Sacks'), ('Ray', 'Bradbury'),
+	('Walter', 'Isaacson'), ('Benjamin', 'Graham'), ('Júlio', 'Verne'),
+	('Marcelo', 'Gleiser'), ('Harri', 'Lorenzi'), ('Humphrey', 'Carpenter'),
+	('Isaac', 'Asimov'), ('Aldous', 'Huxley'), ('Arthur', 'Conan Doyle'),
+	('Blaise', 'Pascal'), ('Jostein', 'Gaarder'), ('Stephen', 'Hawking'),
+	('Stephen', 'Jay Gould'), ('Neil', 'De Grasse Tysn'), ('Charles', 'Darwin'),
+	('Alan', 'Turing'), ('Arthur', 'C. Clarke');
+
+-- Verificaçao
+SELECT * FROM Autor;
+
 --------------------------------------------------------------------------------------------------
 
 CREATE TABLE Editora(
@@ -84,6 +105,13 @@ CONSTRAINT fk_id_assunto FOREIGN KEY(IdAssunto)
 	REFERENCES Assunto(IdAssunto)ON DELETE CASCADE,
 CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
+
+-- Inserir dados na tabela Assunto
+INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdAssunto, IdEditora)
+VALUES ('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24);
+
+-- Verificação
+SELECT * FROM Livro;
 
 --------------------------------------------------------------------------------------------------
 
