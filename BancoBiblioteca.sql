@@ -108,7 +108,10 @@ CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 
 -- Inserir dados na tabela Assunto
 INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdAssunto, IdEditora)
-VALUES ('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24);
+VALUES 
+	('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24),
+	('Vinte mil Léguas Submarinas', '9788582850022', '20140916', 24.50, 448, 1, 16), 
+	('O investidor Inteligente', '9788595080805', '20160125', 79.90, 450, 7, 6);
 
 -- Verificação
 SELECT * FROM Livro;
