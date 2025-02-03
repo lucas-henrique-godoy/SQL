@@ -116,6 +116,9 @@ VALUES
 -- Verificação
 SELECT * FROM Livro;
 
+-- Inserir em lote (bulk) a partir de arquivo CSV
+
+
 --------------------------------------------------------------------------------------------------
 
 --Tabela associativa que armazena ids
