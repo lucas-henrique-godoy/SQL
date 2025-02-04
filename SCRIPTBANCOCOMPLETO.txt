@@ -142,6 +142,37 @@ CONSTRAINT fk_id_autores FOREIGN KEY(IdAutor) REFERENCES Autor(IdAutor),
 CONSTRAINT pk_livro_autor PRIMARY KEY(IdLivro, IdAutor) --Chave primária composta
 );
 
+
+-- Inserir dados na tabela LivroAutor
+INSERT INTO LivroAutor(IdLivro, IdAutor)
+VALUES
+(100,15),
+(100,16),
+(101,27),
+(102,26),
+(103,41),
+(104,24),
+(105,32),
+(106,20),
+(107,27),
+(108,1),
+(109,22),
+(110,10),
+(111,21),
+(112,5),
+(113,10),
+(114,8),
+(115,18),
+(115,19),
+(116,31),
+(117,22);
+
+-- Verificação
+SELECT * FROM LivroAutor;
+
+
+
+
 --------------------------------------------------------------------------------------------------
 --Ver todas as tabelas do banco
 SELECT name FROM Biblioteca.sys.tables;
