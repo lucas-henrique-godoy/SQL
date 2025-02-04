@@ -110,7 +110,7 @@ CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
 
 -- Inserir dados na tabela Livro
-INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdAssunto, IdEditora)
+INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora , IdAssunto)
 VALUES 
 	('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24),
 	('Vinte mil Léguas Submarinas', '9788582850022', '20140916', 24.50, 448, 1, 16), --Júlio Verne
@@ -120,7 +120,15 @@ VALUES
 SELECT * FROM Livro;
 
 -- Inserir em lote (bulk) a partir de arquivo CSV
-
+INSERT INTO Livro (NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora, IdAssunto)
+SELECT
+	NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora, IdAssunto
+FROM OPENROWSET(
+	 BULK 'C:\Users\lucasgodoy\Desktop\SQL\Livros.CSV',
+	 FORMATFILE = 'C:\Users\lucasgodoy\Desktop\SQL\Formato.xml',
+	 CODEPAGE = '65001', -- UTF-8
+	 FIRSTROW = 2
+) AS LivrosCSV;
 
 
 --------------------------------------------------------------------------------------------------
