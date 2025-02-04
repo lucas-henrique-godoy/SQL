@@ -106,7 +106,7 @@ CONSTRAINT fk_id_assunto FOREIGN KEY(IdAssunto)
 CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
 
--- Inserir dados na tabela Assunto
+-- Inserir dados na tabela Livro
 INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdAssunto, IdEditora)
 VALUES 
 	('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24),
