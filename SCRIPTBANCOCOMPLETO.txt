@@ -14,16 +14,83 @@ SobreNomeAutor VARCHAR(60) NOT NULL,
 CONSTRAINT pk_id_autor PRIMARY KEY(IdAutor)
 );
 
+-- Inserir dados na tabela Autor
+INSERT INTO Autor(NomeAutor, SobreNomeAutor)
+VALUES
+	('Umberto', 'Eco'), ('Daniel', 'Barret'), ('Gerald', 'Carter'),
+	('Mark', 'Sobell'), ('William', 'Stanek'), ('Christine', 'Bresnahan'),
+	('William', 'Gibson'), ('James', 'Joyce'), ('John', 'Emsley'),
+	('José', 'Saramago'), ('Richard', 'Siverman'), ('Robert', 'Byrnes'),
+	('Jay', 'Ts'), ('Robert', 'Eckstein'), ('Paul', 'Horowitz'),
+	('Winfield', 'Hill'), ('Joel', 'Murach'), ('Paul', 'Scherz'),
+	('Simon', 'Monk'), ('George', 'Orwell'), ('Ítalo', 'Calvino'),
+	('Machado', 'de Assis'), ('Oliver', 'Sacks'), ('Ray', 'Bradbury'),
+	('Walter', 'Isaacson'), ('Benjamin', 'Graham'), ('Júlio', 'Verne'),
+	('Marcelo', 'Gleiser'), ('Harri', 'Lorenzi'), ('Humphrey', 'Carpenter'),
+	('Isaac', 'Asimov'), ('Aldous', 'Huxley'), ('Arthur', 'Conan Doyle'),
+	('Blaise', 'Pascal'), ('Jostein', 'Gaarder'), ('Stephen', 'Hawking'),
+	('Stephen', 'Jay Gould'), ('Neil', 'De Grasse Tysn'), ('Charles', 'Darwin'),
+	('Alan', 'Turing'), ('Arthur', 'C. Clarke');
+
+-- Verificaçao
+SELECT * FROM Autor;
+
+--------------------------------------------------------------------------------------------------
 
 CREATE TABLE Editora(
 IdEditora SMALLINT PRIMARY KEY IDENTITY,
 NomeEditora VARCHAR(50) NOT NULL
 );
 
+-- Inserir dados na tabela Editora
+INSERT INTO Editora (NomeEditora)
+VALUES
+	('Prentice Hall'),
+	('O´Reilly');
+
+-- Mai editoras
+INSERT INTO Editora(NomeEditora)
+VALUES
+	('Aleph'), ('Microsoft Press'),
+	('Wiley'), ('HarperCollins'),
+	('Érica'), ('Novatec'),
+	('McGraw-Hill'), ('Apress'),
+	('Francisco Alves'), ('Sybex'),
+	('Globo'), ('Comapanhia das Letras'),
+	('Morro Branco'), ('Penguin Books'), ('Martin Claret'),
+	('Record'), ('Springer'), ('Melhoramentos'),
+	('Oxford'), ('Taschen'),('Ediouro'), ('Bookman');
+
+-- Verificação
+SELECT * FROM Editora;
+
+
+
+
+--------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(
 IdAssunto TINYINT PRIMARY KEY IDENTITY,
 NomeAssunto VARCHAR(25) NOT NULL
 );
+
+-- Inserir dados na tabela Assunto
+INSERT INTO Assunto (NomeAssunto)
+VALUES
+    ('Ficção Científica'),
+    ('Botânica'),
+    ('Eletrônica'),
+    ('Matemática'),
+    ('Aventura'),
+    ('Romance'),
+    ('Finanças'),
+    ('Gastronomia'),
+    ('Terror'),
+    ('Administração'),
+    ('Informática'),
+    ('Suspense');
+
+-- Verificação
+SELECT * FROM Assunto;
 
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Livro(
@@ -41,6 +108,28 @@ CONSTRAINT fk_id_assunto FOREIGN KEY(IdAssunto)
 	REFERENCES Assunto(IdAssunto)ON DELETE CASCADE,
 CONSTRAINT verifica_preco CHECK(PreçoLivro >= 0)
 );
+
+-- Inserir dados na tabela Livro
+INSERT INTO Livro(NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora , IdAssunto)
+VALUES 
+	('A arte da Eletrônica', '9788582604342', '20170308', 300.74, 1160, 3, 24),
+	('Vinte mil Léguas Submarinas', '9788582850022', '20140916', 24.50, 448, 1, 16), --Júlio Verne
+	('O investidor Inteligente', '9788595080805', '20160125', 79.90, 450, 7, 6); --Benjamin Graham
+
+-- Verificação
+SELECT * FROM Livro;
+
+-- Inserir em lote (bulk) a partir de arquivo CSV
+INSERT INTO Livro (NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora, IdAssunto)
+SELECT
+	NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora, IdAssunto
+FROM OPENROWSET(
+	 BULK 'C:\Users\lucasgodoy\Desktop\SQL\Livros.CSV',
+	 FORMATFILE = 'C:\Users\lucasgodoy\Desktop\SQL\Formato.xml',
+	 CODEPAGE = '65001', -- UTF-8
+	 FIRSTROW = 2
+) AS LivrosCSV;
+
 
 --------------------------------------------------------------------------------------------------
 
@@ -103,5 +192,7 @@ DROP TABLE NomeTabela;
 -- Renomear uma tabela: sp_rename
 --  sp_rename 'nome atual', 'novo nome';
 sp_rename 'tbl_livros', 'Livro';
+--------------------------------------------------------------------------------------------------
+
 
 
