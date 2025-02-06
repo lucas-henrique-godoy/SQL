@@ -199,8 +199,12 @@ FROM Livro;
 -- SELECT INTO: Criar uma tabela com dados de outra
 /*
 SELECT coluna(s)
+INTO nova_tabela
 FROM tabela_atual;
 */
+SELECT NomeLivro, ISBN13
+INTO LivroISBN
+FROM Livro;
 
 --------------------------------------------------------------------------------------------------
 --Ver todas as tabelas do banco
