@@ -188,6 +188,10 @@ SELECT NomeLivro FROM Livro;
 
 SELECT SobrenomeAutor FROM Autor;
 
+SELECT * FROM Autor;
+
+SELECT NomeLivro, PreçoLivro
+FROM Livro;
 
 
 --------------------------------------------------------------------------------------------------
