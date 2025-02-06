@@ -184,13 +184,13 @@ ORDER BY NomeLivro;
 Sintaxe:
 SELECT coluna(s) FROM tabela;
 */
-SELECT NomeLivro FROM Livro;
+SELECT NomeLivro FROM Livro; -- Uma coluna
 
-SELECT SobrenomeAutor FROM Autor;
+SELECT SobrenomeAutor FROM Autor; -- Uma coluna
 
-SELECT * FROM Autor;
+SELECT * FROM Autor; -- Todas as colunas
 
-SELECT NomeLivro, PreçoLivro
+SELECT NomeLivro, PreçoLivro -- 2 Colunas
 FROM Livro;
 
 
