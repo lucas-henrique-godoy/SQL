@@ -175,12 +175,18 @@ INNER JOIN LivroAutor
 INNER JOIN Autor
 	ON Autor.IdAutor = LivroAutor.IdAutor
 ORDER BY NomeLivro;
+
 --------------------------------------------------------------------------------------------------
+
 -- Consultas Simples com SELECT
 
 /*
 Sintaxe:
 SELECT coluna(s) FROM tabela;
+*/
+SELECT NomeLivro FROM Livro;
+
+SELECT SobrenomeAutor FROM Autor;
 
 
 
