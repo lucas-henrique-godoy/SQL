@@ -170,6 +170,15 @@ VALUES
 -- Verificação
 SELECT * FROM LivroAutor;
 
+-- Verificação com INNER JOIN
+SELECT NomeLivro, NomeAutor, SobrenomeAutor
+FROM Livro
+INNER JOIN LivroAutor
+	ON Livro.IdLivro = LivroAutor.IdLivro
+INNER JOIN Autor
+	ON Autor.IdAutor = LivroAutor.IdAutor
+ORDER BY NomeLivro;
+
 
 
 
