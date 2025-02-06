@@ -193,6 +193,9 @@ SELECT * FROM Autor; -- Todas as colunas
 SELECT NomeLivro, ISBN13, PreçoLivro -- 3 Colunas
 FROM Livro;
 
+SELECT DISTINCT IdEditora
+FROM Livro;
+
 
 --------------------------------------------------------------------------------------------------
 --Ver todas as tabelas do banco
