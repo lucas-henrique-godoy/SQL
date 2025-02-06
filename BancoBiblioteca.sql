@@ -196,6 +196,7 @@ FROM Livro;
 SELECT DISTINCT IdEditora
 FROM Livro;
 
+
 -- SELECT INTO: Criar uma tabela com dados de outra
 /*
 SELECT coluna(s)
@@ -205,6 +206,10 @@ FROM tabela_atual;
 SELECT NomeLivro, ISBN13
 INTO LivroISBN
 FROM Livro;
+
+SELECT * FROM LivroISBN;
+
+DROP TABLE LivroISBN;
 
 --------------------------------------------------------------------------------------------------
 --Ver todas as tabelas do banco
