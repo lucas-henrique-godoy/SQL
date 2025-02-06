@@ -190,7 +190,7 @@ SELECT SobrenomeAutor FROM Autor; -- Uma coluna
 
 SELECT * FROM Autor; -- Todas as colunas
 
-SELECT NomeLivro, PreçoLivro, ISBN13 -- 3 Colunas
+SELECT NomeLivro, ISBN13, PreçoLivro -- 3 Colunas
 FROM Livro;
 
 
