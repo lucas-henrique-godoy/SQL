@@ -176,9 +176,6 @@ INNER JOIN Autor
 	ON Autor.IdAutor = LivroAutor.IdAutor
 ORDER BY NomeLivro;
 
-
-
-
 --------------------------------------------------------------------------------------------------
 --Ver todas as tabelas do banco
 SELECT name FROM Biblioteca.sys.tables;
