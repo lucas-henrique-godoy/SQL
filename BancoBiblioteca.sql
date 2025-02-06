@@ -64,9 +64,6 @@ VALUES
 -- Verificação
 SELECT * FROM Editora;
 
-
-
-
 --------------------------------------------------------------------------------------------------
 CREATE TABLE Assunto(
 IdAssunto TINYINT PRIMARY KEY IDENTITY,
