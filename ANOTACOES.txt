@@ -468,7 +468,71 @@ Não pode ser usada se a tabela de destino já existir. Se você precisar inseri
 Com esses dois comandos, você pode realizar consultas simples e também criar novas tabelas de maneira prática com base nos dados que já existem no seu banco de dados!
 _______________________________________________________________________________________________________________________________________________________________________
 
-* ORDENAÇÃO COM ORDER BY: 
+* ORDENAÇÃO DE RESULTADOS EM CONSULTAS SQL - Cláusula ORDER BY:
+A cláusula ORDER BY no SQL Server é usada para ordenar os resultados de uma consulta SQL. Ela organiza os dados retornados em uma ordem crescente ou decrescente com base em uma ou mais colunas. O comportamento da cláusula ORDER BY pode ser ajustado conforme a necessidade de exibir os dados de forma ordenada de acordo com as regras estabelecidas.
+
+Sintaxe Básica:
+SELECT coluna1, coluna2, ...
+FROM tabela
+ORDER BY coluna1 [ASC|DESC], coluna2 [ASC|DESC], ...;
+
+- coluna1, coluna2, ...: São os nomes das colunas que você deseja selecionar.
+- tabela: É a tabela de onde os dados serão recuperados.
+- ORDER BY: A palavra-chave que indica que os resultados devem ser ordenados.
+- coluna1, coluna2, ...: São as colunas pelas quais você deseja ordenar os resultados.
+- ASC (opcional): Ordena os dados em ordem crescente (valor padrão).
+- DESC (opcional): Ordena os dados em ordem decrescente.
+
+Como funciona:
+Ordem Crescente (ASC): Quando você usa ASC ou omite o tipo de ordenação (pois o padrão é crescente), os dados serão ordenados da menor para a maior (ex: números de menor para maior, datas mais antigas para mais recentes, textos em ordem alfabética crescente).
+
+Exemplo:
+SELECT nome, idade
+FROM pessoas
+ORDER BY idade ASC;  //Isso ordenará as pessoas pela idade de forma crescente.
+
+
+
+Ordem Decrescente (DESC): Quando você usa DESC, os dados serão ordenados da maior para a menor (ex: números de maior para menor, datas mais recentes para mais antigas, textos em ordem alfabética inversa).
+
+Exemplo:
+SELECT nome, idade
+FROM pessoas
+ORDER BY idade DESC;  //Isso ordenará as pessoas pela idade de forma decrescente.
+
+
+Exemplos práticos:
+Ordenando por uma coluna:
+
+- Se você quiser ordenar os resultados por uma única coluna, por exemplo, pelo nome em ordem alfabética crescente:
+SELECT nome, salario
+FROM funcionarios
+ORDER BY nome;
+
+Ordenando por múltiplas colunas: Caso você queira ordenar por várias colunas, a ordem será feita primeiro pela coluna 1 e, em seguida, pela coluna 2 (se houver empates na coluna 1).
+
+Exemplo:
+SELECT nome, idade, salario
+FROM pessoas
+ORDER BY idade DESC, salario ASC;
+
+Neste caso, as pessoas serão ordenadas por idade de forma decrescente. Se houver empates na idade, os salários serão usados para ordenar de forma crescente.
+
+Combinando tipos de ordenação: Você também pode misturar ASC e DESC para diferentes colunas:
+SELECT produto, preco, data_lancamento
+FROM produtos
+ORDER BY preco DESC, data_lancamento ASC;
+
+Neste exemplo, os produtos são ordenados pelo preço em ordem decrescente e, em caso de empate no preço, a ordenação será feita pela data de lançamento em ordem crescente.
+
+Observações:
+ORDER BY sempre deve ser a última cláusula na consulta SQL.
+Se você não especificar o tipo de ordenação (ASC ou DESC), o SQL Server considerará ASC como padrão.
+Você pode ordenar por qualquer expressão ou função (como YEAR(data_lancamento)) ou até mesmo por índices calculados nas colunas.
+
+Importância do ORDER BY:
+Ordenar resultados ajuda a facilitar a análise e a leitura dos dados.
+É útil em relatórios onde a ordem dos dados é crucial, como listas de produtos, salários, classificações, etc.
 
 
 
