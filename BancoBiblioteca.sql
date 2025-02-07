@@ -300,5 +300,22 @@ DROP TABLE LivrosFiccao; -- Tabela já excluída
 -- ORDENAÇÃO DE RESULTADOS EM CONSULTAS SQL:
 -- Cláusula ORDER BY
 
+/* Sintaxe
+SELECT coluna
+FROM tabela
+ORDERBY coluna_a_ordenar [ASC | DESC]
+*/
+
+--EXEMPLOS
+SELECT * FROM Livro
+ORDER BY NomeLivro;
+--------------------------------------------------------------------------------------------------
+SELECT NomeLivro, IdEditora
+FROM Livro
+ORDER BY IdEditora;
+--------------------------------------------------------------------------------------------------
+SELECT PreçoLivro
+FROM Livro
+ORDER BY PreçoLivro DESC;
 
 
