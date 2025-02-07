@@ -314,8 +314,16 @@ SELECT NomeLivro, IdEditora
 FROM Livro
 ORDER BY IdEditora;
 --------------------------------------------------------------------------------------------------
-SELECT PreçoLivro
+SELECT NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro DESC;
+--------------------------------------------------------------------------------------------------
+SELECT NomeLivro, PreçoLivro, IdEditora
+FROM Livro
+ORDER BY IdEditora, PreçoLivro ASC;
+--------------------------------------------------------------------------------------------------
 
+SELECT NomeLivro, PreçoLivro, IdEditora
+FROM Livro
+ORDER BY IdEditora ASC, PreçoLivro DESC;
 
