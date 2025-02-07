@@ -121,8 +121,8 @@ INSERT INTO Livro (NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEdit
 SELECT
 	NomeLivro, ISBN13, DataPub, PreçoLivro, NumeroPaginas, IdEditora, IdAssunto
 FROM OPENROWSET(
-	 BULK 'C:\Users\lucasgodoy\Desktop\SQL\Livros.CSV',
-	 FORMATFILE = 'C:\Users\lucasgodoy\Desktop\SQL\Formato.xml',
+	 BULK 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Livros.CSV',
+	 FORMATFILE = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Formato.xml',
 	 CODEPAGE = '65001', -- UTF-8
 	 FIRSTROW = 2
 ) AS LivrosCSV;
