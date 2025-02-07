@@ -543,62 +543,52 @@ A principal função da cláusula TOP é controlar o volume de dados retornado p
 Sintaxe Básica:
 SELECT TOP (n) coluna1, coluna2, ...
 FROM tabela;
-n: O número de registros a serem retornados. Pode ser um valor fixo ou uma porcentagem.
-coluna1, coluna2, ...: São as colunas que você deseja selecionar.
-tabela: A tabela de onde você deseja recuperar os dados.
+
+- n: O número de registros a serem retornados. Pode ser um valor fixo ou uma porcentagem.
+- coluna1, coluna2, ...: São as colunas que você deseja selecionar.
+- tabela: A tabela de onde você deseja recuperar os dados.
+
 Exemplos de uso:
-Retornar os primeiros N registros:
-
-Se você quiser recuperar os 10 primeiros livros da tabela Livro, pode usar a seguinte consulta:
-
-sql
-Copiar
+1- Retornar os primeiros N registros: Se você quiser recuperar os 10 primeiros livros da tabela Livro, pode usar a seguinte consulta:
 SELECT TOP 10 NomeLivro, PreçoLivro
 FROM Livro;
+
 Este comando retornará os 10 primeiros livros da tabela Livro. A ordem dos registros pode ser aleatória, a menos que você use a cláusula ORDER BY para especificar uma ordem.
-Limitar os resultados com base em uma condição ordenada:
 
-Caso você queira os 5 livros mais caros (por exemplo), pode usar a cláusula ORDER BY para ordenar os dados antes de aplicar o TOP:
-
-sql
-Copiar
+2- Limitar os resultados com base em uma condição ordenada: Caso você queira os 5 livros mais caros (por exemplo), pode usar a cláusula ORDER BY para ordenar os dados antes de aplicar o TOP:
 SELECT TOP 5 NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro DESC;
+
 Isso retornará os 5 livros com os maiores preços, ordenados de forma decrescente.
-Usando uma porcentagem para limitar os resultados:
 
-Se você quiser recuperar 10% dos livros mais baratos, pode usar a cláusula PERCENT:
 
-sql
-Copiar
+3- Usando uma porcentagem para limitar os resultados: Se você quiser recuperar 10% dos livros mais baratos, pode usar a cláusula PERCENT:
 SELECT TOP 10 PERCENT NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro ASC;
+
 Isso retornará 10% dos livros mais baratos da tabela Livro, ordenados de forma crescente pelo preço.
-Usando TOP com outras cláusulas:
 
-O TOP pode ser combinado com outras cláusulas para refinar ainda mais os resultados. Por exemplo, para encontrar os 10 livros mais baratos de uma determinada editora:
-
-sql
-Copiar
+4- Usando TOP com outras cláusulas: O TOP pode ser combinado com outras cláusulas para refinar ainda mais os resultados. Por exemplo, para encontrar os 10 livros mais baratos de uma determinada editora:
 SELECT TOP 10 NomeLivro, PreçoLivro
 FROM Livro
 WHERE IdEditora = 2
 ORDER BY PreçoLivro ASC;
+
 Este comando retorna os 10 livros mais baratos da editora com IdEditora = 2, ordenados pelo preço.
+
 Como o TOP funciona:
-Sem ORDER BY: Quando você não usa ORDER BY, a consulta retorna os primeiros registros que o SQL Server encontrar. Isso pode ser imprevisível, já que o banco de dados pode retornar os registros em qualquer ordem.
-Com ORDER BY: Quando você usa ORDER BY, a consulta irá ordenar os dados antes de aplicar a restrição do TOP, garantindo que os registros retornados estejam na ordem especificada.
+- Sem ORDER BY: Quando você não usa ORDER BY, a consulta retorna os primeiros registros que o SQL Server encontrar. Isso pode ser imprevisível, já que o banco de dados pode retornar os registros em qualquer ordem.
+- Com ORDER BY: Quando você usa ORDER BY, a consulta irá ordenar os dados antes de aplicar a restrição do TOP, garantindo que os registros retornados estejam na ordem especificada.
+
 Observações:
-A cláusula TOP pode ser usada com números absolutos ou porcentagens.
-O TOP é útil para consultas de desempenho, especialmente quando se trabalha com grandes volumes de dados, já que você pode evitar o processamento de grandes quantidades de informações.
-Importante: Sem o uso de ORDER BY, o SQL Server pode retornar resultados não previsíveis, pois o banco de dados não garante uma ordem específica sem essa cláusula.
+- A cláusula TOP pode ser usada com números absolutos ou porcentagens.
+- O TOP é útil para consultas de desempenho, especialmente quando se trabalha com grandes volumes de dados, já que você pode evitar o processamento de grandes quantidades de informações.
+
+- Importante: Sem o uso de ORDER BY, o SQL Server pode retornar resultados não previsíveis, pois o banco de dados não garante uma ordem específica sem essa cláusula.
 Exemplo de uma aplicação prática:
 Imagine que você tenha uma tabela de produtos com milhares de registros e deseja encontrar os 5 produtos mais vendidos. Você pode usar a consulta:
-
-sql
-Copiar
 SELECT TOP 5 NomeProduto, QuantidadeVendida
 FROM Produtos
 ORDER BY QuantidadeVendida DESC;
