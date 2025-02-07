@@ -346,4 +346,25 @@ ORDER BY IdEditora ASC, PreçoLivro DESC;
 -- Ordena os resultados pela coluna "IdEditora" em ordem crescente, e para os livros com o mesmo "IdEditora", ordena pelo "PreçoLivro" de forma decrescente (do maior para o menor)
 --___________________________________________________________________________________________________________________________________________________________________________________
 
---RESTRIÇÃO DE RESUTADOS: SELECT TOP
+--RESTRIÇÃO DE RESUlTADOS: SELECT TOP
+/* Sintaxe
+SELECT TOP (número |PERCENT) colunas
+FROM tabela
+ORDER BY 
+*/
+
+-- EXEMPLOS
+
+SELECT TOP(2) NomeLivro
+FROM Livro
+ORDER BY NomeLivro;
+--------------------------------------------------------------------------------------------------
+
+SELECT TOP (15) PERCENT NomeLivro
+FROM Livro
+ORDER BY NomeLivro;
+--------------------------------------------------------------------------------------------------
+
+SELECT TOP (3) NomeLivro
+FROM Livro
+ORDER BY NomeLivro DESC;
