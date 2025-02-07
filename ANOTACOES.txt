@@ -466,6 +466,9 @@ Considerações importantes sobre o SELECT INTO:
 A nova tabela criada com o SELECT INTO terá a mesma estrutura (colunas e tipos de dados) dos dados selecionados, mas não herda as constraints (como chaves primárias ou índices).
 Não pode ser usada se a tabela de destino já existir. Se você precisar inserir dados em uma tabela existente, deve usar o comando INSERT INTO.
 Com esses dois comandos, você pode realizar consultas simples e também criar novas tabelas de maneira prática com base nos dados que já existem no seu banco de dados!
+_______________________________________________________________________________________________________________________________________________________________________
+
+* ORDENAÇÃO COM ORDER BY: 
 
 
 
