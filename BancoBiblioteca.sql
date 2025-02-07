@@ -295,4 +295,8 @@ WHERE IdAssunto = 1;
 SELECT * FROM LivrosFiccao;
 
 DROP TABLE LivrosFiccao; -- Tabela já excluída
+--------------------------------------------------------------------------------------------------
+
+-- ORDENAÇÃO DE RESULTADOS EM CONSULTAS SQL:
+-- Cláusula ORDER BY
 
