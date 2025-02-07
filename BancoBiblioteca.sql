@@ -368,3 +368,8 @@ ORDER BY NomeLivro;
 SELECT TOP (3) NomeLivro
 FROM Livro
 ORDER BY NomeLivro DESC;
+--------------------------------------------------------------------------------------------------
+
+SELECT TOP (4) NomeLivro, PreçoLivro
+FROM Livro
+ORDER BY PreçoLivro DESC;
