@@ -400,6 +400,73 @@ ________________________________________________________________________________
 
 * CONSULTAS SIMPLES SELECT FROM: 
 
+Consulta SELECT e SELECT INTO no SQL Server
+
+1. Comando SELECT
+O comando SELECT é utilizado para recuperar dados de uma ou mais tabelas no banco de dados. Ele permite especificar as colunas a serem recuperadas, a tabela de origem dos dados e aplicar filtros para refinar os resultados.
+
+Sintaxe básica do SELECT:
+SELECT coluna1, coluna2, ...
+FROM tabela
+WHERE condição;
+
+- SELECT: Especifica as colunas a serem retornadas.
+- FROM: Define a tabela de onde os dados serão extraídos.
+- WHERE (opcional): Aplica um filtro para limitar os resultados com base em uma condição.
+
+Exemplos de uso do SELECT:
+Selecionar todas as colunas de uma tabela:
+SELECT * FROM clientes;
+Retorna todos os dados da tabela clientes.
+
+Selecionar colunas específicas:
+SELECT nome, idade FROM clientes;
+Retorna as colunas nome e idade da tabela clientes.
+
+Usar filtro com WHERE:
+SELECT nome, idade FROM clientes WHERE idade > 18;
+Retorna os nomes e idades dos clientes com mais de 18 anos.
+
+2. Comando SELECT INTO
+O SELECT INTO é usado para criar uma nova tabela e inserir nela os dados retornados por uma consulta SELECT. Isso é útil quando você quer criar uma cópia de dados ou criar uma tabela com base nos resultados de uma consulta, sem precisar criar a tabela manualmente.
+
+Sintaxe básica do SELECT INTO:
+SELECT coluna1, coluna2, ...
+INTO nova_tabela
+FROM tabela_existente
+WHERE condição;
+
+- SELECT: Especifica as colunas a serem selecionadas.
+- INTO: Define a criação da nova tabela onde os dados serão inseridos.
+- nova_tabela: Nome da nova tabela que será criada automaticamente.
+- FROM: A tabela de onde os dados serão retirados.
+- WHERE (opcional): Aplica uma condição para filtrar os dados a serem copiados.
+
+Exemplos de uso do SELECT INTO:
+Criar uma nova tabela e copiar dados: Se você quiser criar uma tabela novos_clientes com os clientes acima de 18 anos, pode usar o seguinte comando:
+SELECT nome, idade, cidade
+INTO novos_clientes
+FROM clientes
+WHERE idade > 18;
+
+Isso cria a tabela novos_clientes com as colunas nome, idade e cidade, contendo apenas os dados dos clientes com idade superior a 18.
+
+Criar uma tabela de backup: Para criar uma tabela de backup com todos os dados de uma tabela clientes, você pode fazer:
+SELECT *
+INTO backup_clientes
+FROM clientes;
+
+Isso cria a tabela backup_clientes com todos os dados da tabela clientes.
+
+Diferenças chave entre SELECT e SELECT INTO:
+
+SELECT: Apenas recupera dados de uma tabela existente, sem criar uma nova tabela.
+SELECT INTO: Cria uma nova tabela (caso não exista) e insere nela os dados retornados pela consulta SELECT.
+Considerações importantes sobre o SELECT INTO:
+A nova tabela criada com o SELECT INTO terá a mesma estrutura (colunas e tipos de dados) dos dados selecionados, mas não herda as constraints (como chaves primárias ou índices).
+Não pode ser usada se a tabela de destino já existir. Se você precisar inserir dados em uma tabela existente, deve usar o comando INSERT INTO.
+Com esses dois comandos, você pode realizar consultas simples e também criar novas tabelas de maneira prática com base nos dados que já existem no seu banco de dados!
+
 
 
 
