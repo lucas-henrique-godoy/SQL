@@ -300,3 +300,5 @@ DROP TABLE LivrosFiccao; -- Tabela já excluída
 -- ORDENAÇÃO DE RESULTADOS EM CONSULTAS SQL:
 -- Cláusula ORDER BY
 
+
+
