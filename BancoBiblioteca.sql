@@ -392,3 +392,14 @@ SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
 FROM Livro
 ORDER BY IdAssunto DESC;
 -- Retorna os 3 livros mais altos no ID do assunto, mas inclui livros com o mesmo ID do 3º livro (empates)
+--__________________________________________________________________________________________________________________
+
+-- FILTRAR  RESULTADOS DE CONSULTAS COM WHERE
+/*
+Sintaxe
+SELECT colunas
+FROM tabela
+WHERE coluna [operador] valor;
+*/
+
+

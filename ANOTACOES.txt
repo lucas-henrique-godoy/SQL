@@ -665,6 +665,9 @@ WITH TIES deve ser acompanhado de uma cláusula ORDER BY, pois o emparelhamento 
 Resumo:
 SELECT TOP n: Limita a consulta aos n primeiros registros.
 WITH TIES: Inclui todos os registros que tenham o mesmo valor da última linha retornada (quando houver empates), mesmo que isso faça o número total de registros ser maior que o especificado.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* CONSULTAS: FILTROS- CLÁUSULA WHERE: 
 
 
 
