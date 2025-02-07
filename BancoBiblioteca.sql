@@ -355,27 +355,40 @@ ORDER BY
 
 -- EXEMPLOS
 
+-- Exemplo 1: Selecionando os 2 primeiros livros, ordenados pelo nome de forma crescente
 SELECT TOP(2) NomeLivro
 FROM Livro
-ORDER BY NomeLivro;
+ORDER BY NomeLivro; 
+-- Retorna os 2 primeiros livros (pelo nome), ordenados em ordem alfabética crescente
+
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 2: Selecionando os primeiros 15% dos livros, ordenados pelo nome de forma crescente
 SELECT TOP (15) PERCENT NomeLivro
 FROM Livro
-ORDER BY NomeLivro;
+ORDER BY NomeLivro; 
+-- Retorna os 15% dos livros (em relação ao total), ordenados de forma crescente pelo nome
+
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 3: Selecionando os 3 primeiros livros, ordenados pelo nome de forma decrescente
 SELECT TOP (3) NomeLivro
 FROM Livro
 ORDER BY NomeLivro DESC;
+-- Retorna os 3 primeiros livros, ordenados em ordem alfabética **decrescente**
+
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 4: Selecionando os 4 primeiros livros e seus preços, ordenados pelo preço de forma decrescente
 SELECT TOP (4) NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro DESC;
+-- Retorna os 4 livros com os maiores preços (ordenados de forma decrescente)
+
 --------------------------------------------------------------------------------------------------
 
---WITH TIES
+-- Exemplo 5: Selecionando os 3 primeiros livros com empates, ordenados pelo ID do assunto de forma decrescente
 SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
 FROM Livro
 ORDER BY IdAssunto DESC;
+-- Retorna os 3 livros mais altos no ID do assunto, mas inclui livros com o mesmo ID do 3º livro (empates)
