@@ -373,3 +373,9 @@ ORDER BY NomeLivro DESC;
 SELECT TOP (4) NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro DESC;
+--------------------------------------------------------------------------------------------------
+
+--WITH TIES
+SELECT TOP (3) WITH TIES NomeLivro, IdAssunto
+FROM Livro
+ORDER BY IdAssunto DESC;
