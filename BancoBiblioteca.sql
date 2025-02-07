@@ -294,5 +294,5 @@ WHERE IdAssunto = 1;
 --Verificação
 SELECT * FROM LivrosFiccao;
 
-DROP TABLE LivrosFiccao;
+DROP TABLE LivrosFiccao; -- Tabela já excluída
 
