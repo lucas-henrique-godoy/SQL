@@ -344,5 +344,6 @@ SELECT NomeLivro, PreçoLivro, IdEditora
 FROM Livro
 ORDER BY IdEditora ASC, PreçoLivro DESC; 
 -- Ordena os resultados pela coluna "IdEditora" em ordem crescente, e para os livros com o mesmo "IdEditora", ordena pelo "PreçoLivro" de forma decrescente (do maior para o menor)
+--___________________________________________________________________________________________________________________________________________________________________________________
 
-
+--RESTRIÇÃO DE RESUTADOS: SELECT TOP
