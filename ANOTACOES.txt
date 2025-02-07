@@ -593,6 +593,78 @@ SELECT TOP 5 NomeProduto, QuantidadeVendida
 FROM Produtos
 ORDER BY QuantidadeVendida DESC;
 Isso traria os 5 produtos com as maiores quantidades vendidas.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* WITH TIES: A cláusula WITH TIES é usada em conjunto com a cláusula TOP no SQL Server para garantir que, quando houver empates no valor da coluna ordenada, os registros empatados também sejam incluídos na consulta, mesmo que isso faça com que o número total de registros retornados seja maior do que o especificado pelo TOP.
+
+Em outras palavras, WITH TIES permite que a consulta retorne mais registros do que o número indicado no TOP, caso haja empates na ordenação.
+
+Sintaxe com WITH TIES:
+sql
+Copiar
+SELECT TOP (n) WITH TIES coluna1, coluna2, ...
+FROM tabela
+ORDER BY colunaOrdenada;
+n: O número de registros que você deseja recuperar, mas com a possibilidade de retornar mais registros se houver empates.
+WITH TIES: Indica que você quer incluir todos os registros empatados com o valor da última linha incluída.
+colunaOrdenada: A coluna pela qual os dados serão ordenados.
+Como funciona:
+Sem o WITH TIES, se você solicitar, por exemplo, os 10 primeiros registros ordenados por uma coluna (como preço ou data), e houver empates na 10ª posição, o SQL Server retornará somente 10 registros, excluindo os empatados.
+
+Com WITH TIES, se a 10ª linha tiver um empate em algum valor (por exemplo, o mesmo preço ou data), todos os registros empatados com esse valor também serão retornados, mesmo que isso resulte em mais do que os 10 registros originais solicitados.
+
+Exemplos de uso do WITH TIES:
+Retornando os 5 livros mais baratos, incluindo empates:
+
+Suponha que você queira pegar os 5 livros mais baratos da tabela Livro, mas se o preço do 5º livro for igual a outros, você também quer que esses livros empatados apareçam na consulta:
+
+sql
+Copiar
+SELECT TOP 5 WITH TIES NomeLivro, PreçoLivro
+FROM Livro
+ORDER BY PreçoLivro ASC;
+Se houver mais de 5 livros com o mesmo preço que o 5º livro mais barato, todos esses livros empatados serão incluídos na consulta.
+Portanto, se houver, por exemplo, 8 livros com o mesmo preço na 5ª posição, a consulta retornará 8 livros ao invés de 5.
+Exemplo com empates em ordenação decrescente:
+
+Se você quiser pegar os 3 livros mais caros da tabela Livro, mas também incluir todos os livros que tenham o mesmo preço que o 3º livro mais caro:
+
+sql
+Copiar
+SELECT TOP 3 WITH TIES NomeLivro, PreçoLivro
+FROM Livro
+ORDER BY PreçoLivro DESC;
+Nesse caso, os livros mais caros são ordenados de forma decrescente, e caso haja empates na 3ª posição (por exemplo, vários livros com o mesmo preço), todos esses livros empatados também serão retornados.
+Diferença entre TOP e TOP WITH TIES:
+TOP: Limita exatamente o número de registros especificado. Exemplo: SELECT TOP 5 ... retornará exatamente 5 registros.
+TOP WITH TIES: Retorna mais registros se houver empates na última posição especificada. Exemplo: SELECT TOP 5 WITH TIES ... pode retornar mais de 5 registros se houver empates na 5ª posição.
+Exemplos de uso prático:
+Suponha que você tenha a tabela Vendas com as colunas Produto e QuantidadeVendida e deseja listar os 10 produtos mais vendidos, incluindo os produtos que tenham o mesmo número de vendas que o 10º mais vendido.
+
+Usando TOP sem WITH TIES:
+
+sql
+Copiar
+SELECT TOP 10 Produto, QuantidadeVendida
+FROM Vendas
+ORDER BY QuantidadeVendida DESC;
+Esse código retornará apenas 10 produtos, com as maiores quantidades vendidas. Se houver mais produtos com a mesma quantidade de vendas que o 10º, eles não serão retornados.
+
+Usando TOP WITH TIES:
+
+sql
+Copiar
+SELECT TOP 10 WITH TIES Produto, QuantidadeVendida
+FROM Vendas
+ORDER BY QuantidadeVendida DESC;
+Nesse caso, o código retornará todos os produtos com as maiores quantidades vendidas, incluindo aqueles que tiverem a mesma quantidade de vendas que o 10º produto, possivelmente resultando em mais de 10 registros.
+
+Observações importantes:
+O uso de WITH TIES é especialmente útil quando você precisa garantir que todos os registros com valores empatados sejam incluídos, como em relatórios de rankings, vendas ou qualquer situação em que empates sejam relevantes.
+WITH TIES deve ser acompanhado de uma cláusula ORDER BY, pois o emparelhamento e ordenação dos registros depende da ordenação.
+Resumo:
+SELECT TOP n: Limita a consulta aos n primeiros registros.
+WITH TIES: Inclui todos os registros que tenham o mesmo valor da última linha retornada (quando houver empates), mesmo que isso faça o número total de registros ser maior que o especificado.
 
 
 
