@@ -307,23 +307,42 @@ ORDERBY coluna_a_ordenar [ASC | DESC]
 */
 
 --EXEMPLOS
+
+-- Exemplo 1: Selecionando todos os livros e ordenando pelo nome do livro em ordem alfabética crescente
 SELECT * FROM Livro
-ORDER BY NomeLivro;
---------------------------------------------------------------------------------------------------
-SELECT NomeLivro, IdEditora
-FROM Livro
-ORDER BY IdEditora;
---------------------------------------------------------------------------------------------------
-SELECT NomeLivro, PreçoLivro
-FROM Livro
-ORDER BY PreçoLivro DESC;
---------------------------------------------------------------------------------------------------
-SELECT NomeLivro, PreçoLivro, IdEditora
-FROM Livro
-ORDER BY IdEditora, PreçoLivro ASC;
+ORDER BY NomeLivro; 
+-- Ordena todos os registros da tabela "Livro" pela coluna "NomeLivro" de forma crescente (ordem alfabética por padrão)
+
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 2: Selecionando apenas o nome do livro e o ID da editora, e ordenando pelos IDs das editoras em ordem crescente
+SELECT NomeLivro, IdEditora
+FROM Livro
+ORDER BY IdEditora; 
+-- Ordena os resultados pela coluna "IdEditora" de forma crescente, mostrando apenas o nome do livro e o ID da editora
+
+--------------------------------------------------------------------------------------------------
+
+-- Exemplo 3: Selecionando nome do livro e preço, e ordenando pelos preços em ordem decrescente (do maior para o menor)
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+ORDER BY PreçoLivro DESC; 
+-- Ordena os livros pelo "PreçoLivro" de forma decrescente (do maior preço para o menor)
+
+--------------------------------------------------------------------------------------------------
+
+-- Exemplo 4: Selecionando nome do livro, preço e ID da editora, ordenando primeiro pelo ID da editora em ordem crescente e depois pelo preço em ordem crescente
 SELECT NomeLivro, PreçoLivro, IdEditora
 FROM Livro
-ORDER BY IdEditora ASC, PreçoLivro DESC;
+ORDER BY IdEditora, PreçoLivro ASC; 
+-- Ordena os resultados pela coluna "IdEditora" em ordem crescente, e para os livros com o mesmo "IdEditora", ordena pelo "PreçoLivro" também de forma crescente
+
+--------------------------------------------------------------------------------------------------
+
+-- Exemplo 5: Selecionando nome do livro, preço e ID da editora, ordenando primeiro pelo ID da editora em ordem crescente e depois pelo preço em ordem decrescente
+SELECT NomeLivro, PreçoLivro, IdEditora
+FROM Livro
+ORDER BY IdEditora ASC, PreçoLivro DESC; 
+-- Ordena os resultados pela coluna "IdEditora" em ordem crescente, e para os livros com o mesmo "IdEditora", ordena pelo "PreçoLivro" de forma decrescente (do maior para o menor)
+
 
