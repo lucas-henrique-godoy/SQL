@@ -264,7 +264,7 @@ sp_rename 'tbl_livros', 'Livro';
 --------------------------------------------------------------------------------------------------
 
 
--- Exercícios
+-- EXERCÍCIOS:
 -- 1 - Retornar os nomes dos livros, preços e datas de publicação:
 SELECT NomeLivro, PreçoLivro, DataPub
 FROM Livro;
