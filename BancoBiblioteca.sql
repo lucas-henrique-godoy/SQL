@@ -453,11 +453,11 @@ ORDER BY NomeLivro;
 /*SINTAXE
 DELETE FROM tabela
 WHERE coluna = valor;
-/*
+*/
 
 /*Exemplos mostrando o comportamento do comando e como ele funciona em
 colunas com identity.
-/*
+*/
 
 --Deletando um assunto:
 DELETE FROM Assunto
@@ -469,6 +469,7 @@ VALUES ('Policial');
 
 --Verificação:
 SELECT * FROM Assunto;
+--_________________________________________________________________________________________________________________________
 
 
 
