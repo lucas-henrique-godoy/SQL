@@ -453,14 +453,22 @@ ORDER BY NomeLivro;
 /*SINTAXE
 DELETE FROM tabela
 WHERE coluna = valor;
-*/
-SELECT * FROM Assunto;
+/*
+
+--Exemplos mostrando o comportamento do comando e como ele funciona em
+--colunas com identity.
+
+
+--Deletando um assunto
 
 DELETE FROM Assunto
-WHERE IdAssunto = 8;
+WHERE NomeAssunto = 'Policial';
 
+--Inserindo um assunto
 INSERT INTO Assunto (NomeAssunto)
 VALUES ('Policial');
+
+SELECT * FROM Assunto;
 
 
 
