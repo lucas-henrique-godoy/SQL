@@ -476,7 +476,26 @@ SELECT * FROM Assunto;
 TRUNCATE TABLE nome_tabela;
 */
 
+--Criar tabela de teste paa testar o truncate
+CREATE TABLE Teste (
+  IdTeste SMALLINT PRIMARY KEY IDENTITY,
+  ValorTeste SMALLINT NOT NULL
+ );
 
+--Rotina para inserir dados na tabela
+DECLARE @Contador INT = 1
 
+WHILE @Contador <= 100
+BEGIN
+   INSERT INTO Teste (ValorTeste) VALUES (@Contador * 3)
+   SET @Contador = @Contador + 1
+END
 
+SELECT * FROM Teste;
+
+--LIMPAR A TABELA
+TRUNCATE TABLE Teste;
+
+--VERIFICAR O VALOR ATUAL DE IDENTITY
+SELECT IDENT_CURRENT('Teste');
 

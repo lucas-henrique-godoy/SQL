@@ -447,7 +447,55 @@ WHERE IdEditora = (
 )
 ORDER BY NomeLivro; 
 -- A subconsulta dentro do `WHERE` encontra o ID da editora 'Aleph' e retorna os livros dessa editora, ordenados por nome.
+--_________________________________________________________________________________________________________________________
 
+--EXCLUSÃO DE REGISTROS (LINHAS): DELETE FROM
+/*SINTAXE
+DELETE FROM tabela
+WHERE coluna = valor;
+*/
 
+/*Exemplos mostrando o comportamento do comando e como ele funciona em
+colunas com identity.
+*/
 
+--Deletando um assunto:
+DELETE FROM Assunto
+WHERE NomeAssunto = 'Policial';
+
+--Inserindo um assunto:
+INSERT INTO Assunto (NomeAssunto)
+VALUES ('Policial');
+
+--Verificação:
+SELECT * FROM Assunto;
+--_________________________________________________________________________________________________________________________
+
+-- TRUNCATE TABLE: LIMPAR UMA TABELA
+/*SINTAXE
+TRUNCATE TABLE nome_tabela;
+*/
+
+--Criar tabela de teste paa testar o truncate
+CREATE TABLE Teste (
+  IdTeste SMALLINT PRIMARY KEY IDENTITY,
+  ValorTeste SMALLINT NOT NULL
+ );
+
+--Rotina para inserir dados na tabela
+DECLARE @Contador INT = 1
+
+WHILE @Contador <= 100
+BEGIN
+   INSERT INTO Teste (ValorTeste) VALUES (@Contador * 3)
+   SET @Contador = @Contador + 1
+END
+
+SELECT * FROM Teste;
+
+--LIMPAR A TABELA
+TRUNCATE TABLE Teste;
+
+--VERIFICAR O VALOR ATUAL DE IDENTITY
+SELECT IDENT_CURRENT('Teste');
 
