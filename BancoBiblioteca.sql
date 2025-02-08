@@ -449,18 +449,17 @@ ORDER BY NomeLivro;
 -- A subconsulta dentro do `WHERE` encontra o ID da editora 'Aleph' e retorna os livros dessa editora, ordenados por nome.
 --_________________________________________________________________________________________________________________________
 
--- EXCLUSÃO DE REGISTROS (LINHAS): DELETE FROM
+--EXCLUSÃO DE REGISTROS (LINHAS): DELETE FROM
 /*SINTAXE
 DELETE FROM tabela
 WHERE coluna = valor;
 /*
 
---Exemplos mostrando o comportamento do comando e como ele funciona em
---colunas com identity.
+/*Exemplos mostrando o comportamento do comando e como ele funciona em
+colunas com identity.
+/*
 
-
---Deletando um assunto
-
+--Deletando um assunto:
 DELETE FROM Assunto
 WHERE NomeAssunto = 'Policial';
 
@@ -468,6 +467,7 @@ WHERE NomeAssunto = 'Policial';
 INSERT INTO Assunto (NomeAssunto)
 VALUES ('Policial');
 
+--Verificação
 SELECT * FROM Assunto;
 
 
