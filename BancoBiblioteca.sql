@@ -403,6 +403,8 @@ WHERE coluna [operador] valor;
 [ORDER BY]
 */
 
+--EXEMPLOS
+
 SELECT  NomeLivro, DataPub
 FROM Livro
 WHERE IdEditora = 3;
