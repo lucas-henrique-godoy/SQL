@@ -861,6 +861,38 @@ Em resumo, o comando DELETE FROM no SQL Server exclui registros da tabela, mas n
 OBS 1: Nunca execute o comando DELETE FROM sem uma cláusula WHERE, pois, caso contrário, todos os dados da tabela serão excluídos (ou seja, todos os registros serão apagados, sem exceção)e ainda por cima sem zeraro identity. Certifique-se de usar a cláusula WHERE para especificar quais registros devem ser removidos.
 
 OBS 2: O comando DELETE FROM não altera o valor do identity (a coluna com incremento automático de valores). Isso significa que, se a tabela contiver uma coluna com identity, os valores dessa coluna continuarão a partir do último número gerado e não serão resetados para o valor inicial. Portanto, se perceber que os valores dessa coluna começam a "pular" (ex: 1, 2, 3, 10, 11...), não se preocupe, isso é normal. No entanto, caso deseje resetar o valor do identity (fazendo ele começar novamente do valor inicial), é possível fazer isso, se necessário.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* LIMPAR A TABELA - TRUNCATE TABLE: No SQL Server, o comando TRUNCATE TABLE é utilizado para remover todos os dados de uma tabela de forma eficiente. Ao contrário de um DELETE, que exclui os registros linha por linha, o TRUNCATE é uma operação mais rápida, pois limpa a tabela de maneira mais direta, sem registrar individualmente cada remoção.
+
+Sintaxe do TRUNCATE TABLE:
+TRUNCATE TABLE nome_da_tabela;
+
+Características do TRUNCATE TABLE:
+Remoção de dados: Apaga todas as linhas da tabela.
+Não gera log para cada linha: O TRUNCATE gera menos informações no log de transações em comparação com o DELETE. Ele apenas registra a remoção da página de dados.
+Não ativa gatilhos (triggers): Gatilhos de DELETE não são acionados ao usar o TRUNCATE.
+Libera espaço: Libera o espaço de armazenamento de dados da tabela, diferente do DELETE, que pode deixar o espaço ocupado.
+Não pode ser revertido quando não dentro de uma transação: O TRUNCATE é uma operação irreversível, a menos que esteja dentro de uma transação e seja feito um ROLLBACK.
+
+Sobre o IDENTITY:
+Quando uma tabela contém uma coluna do tipo IDENTITY (uma coluna que gera números automaticamente para cada nova linha inserida), o comportamento do TRUNCATE TABLE é específico:
+
+Reinicia o valor do IDENTITY: Ao usar o comando TRUNCATE, o contador de IDENTITY é resetado para o valor inicial. Por exemplo, se uma coluna IDENTITY começa com o valor 1, após um TRUNCATE, o próximo valor a ser gerado será novamente 1.
+
+Diferente do DELETE: O comando DELETE não altera o valor da sequência de IDENTITY; o próximo valor gerado será o próximo número da sequência, não sendo reiniciado.
+Exemplo:
+TRUNCATE TABLE Clientes;
+Esse comando remove todos os registros da tabela Clientes e, se a tabela tiver uma coluna IDENTITY, o contador dessa coluna será reiniciado.
+
+Observação sobre TRUNCATE e IDENTITY:
+Ao usar o TRUNCATE TABLE, é importante ter em mente que, se você precisar preservar o valor atual da sequência IDENTITY, não deve utilizar esse comando. Nesse caso, o comando DELETE pode ser uma escolha mais apropriada, embora ele tenha um desempenho inferior, pois não reseta o contador de IDENTITY.
+
+Se precisar truncar a tabela e não quiser que o contador de IDENTITY seja reiniciado, é possível usar o comando DBCC CHECKIDENT para ajustar o valor do IDENTITY após a operação. Por exemplo:
+DBCC CHECKIDENT ('Clientes', RESEED, 100);
+Isso fará com que o contador da coluna IDENTITY comece a partir do valor 100 na próxima inserção, sem ser afetado pelo TRUNCATE.
+
+Se quiser vericiar o valor atual de identit usar: SELECT IDENT_CURRENT('nome_da_tabela');
 
 
 

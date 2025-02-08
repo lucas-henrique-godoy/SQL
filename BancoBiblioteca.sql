@@ -471,6 +471,11 @@ VALUES ('Policial');
 SELECT * FROM Assunto;
 --_________________________________________________________________________________________________________________________
 
+-- TRUNCATE TABLE: LIMPAR UMA TABELA
+/*SINTAXE
+TRUNCATE TABLE nome_tabela;
+*/
+
 
 
 
