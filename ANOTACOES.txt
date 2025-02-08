@@ -858,7 +858,7 @@ Isso fará com que o próximo valor gerado para a coluna IDENTITY seja 1 (ou qua
 
 Em resumo, o comando DELETE FROM no SQL Server exclui registros da tabela, mas não interfere diretamente no comportamento da coluna IDENTITY. Para "resetar" ou ajustar a sequência do IDENTITY, você precisaria de comandos adicionais como DBCC CHECKIDENT.    
 
-
+*OBS: Ou seja, o comando não altera o valor de identity, então se a tabela possuir identity(geração automática  de valores) em alguma coluna da tabela, o delete from não zera o identity, ele vai continuar de onde parou(continua a partir do próximo valor). Quando  usarmos esse comando e percebermos que os valores começarem a pular em colunas que possuem o autoincremento, não quer dizer que esta errado, é normal, pois esse é o funcionamento da declaração. É possível resetar e arrumar, se for o caso essa ordem do identity.
 
 
 
