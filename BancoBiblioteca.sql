@@ -405,30 +405,39 @@ WHERE coluna [operador] valor;
 
 --EXEMPLOS
 
-SELECT  NomeLivro, DataPub
+-- Exemplo 1: Seleciona os nomes e datas de publicação dos livros da editora com IdEditora igual a 3
+SELECT NomeLivro, DataPub
 FROM Livro
-WHERE IdEditora = 3;
+WHERE IdEditora = 3; 
+-- Filtra os livros cuja editora tem o ID igual a 3 e retorna o nome e data de publicação.
 
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 2: Seleciona os IDs e nomes dos autores cujo sobrenome é 'Verne'
 SELECT IdAutor, NomeAutor
 FROM Autor
-WHERE SobreNomeAutor = 'Verne';
+WHERE SobreNomeAutor = 'Verne'; 
+-- Filtra os autores cujo sobrenome é 'Verne' e retorna o ID e nome dos autores.
+
 --------------------------------------------------------------------------------------------------
 
+-- Exemplo 3: Seleciona os nomes e preços dos livros cujo preço é maior que 100.00, ordenando os resultados por preço crescente
 SELECT NomeLivro, PreçoLivro
 FROM Livro
-WHERE Preçolivro > 100.00
-ORDER BY PreçoLivro;
+WHERE PreçoLivro > 100.00
+ORDER BY PreçoLivro; 
+-- Filtra os livros cujo preço é superior a 100.00 e os ordena de forma crescente pelo preço.
+
 --------------------------------------------------------------------------------------------------
+
 /*
 CLÁUSULA WHERE: SUBCONSULTAS
-PROBLEMA: Como retornar noms de livros e atas de publicação dos livros publicados pela editora Aleph,
-sem saber o ID da editora? Os nomesdas editoras nao estão na tabela de livros. O que fazer?
-SOLUÇÃO: concatenar SELECTs com subconsulta.
+PROBLEMA: Como retornar nomes de livros e datas de publicação dos livros publicados pela editora Aleph,
+sem saber o ID da editora? Os nomes das editoras não estão na tabela de livros. O que fazer?
+SOLUÇÃO: Utilizar subconsulta para encontrar o ID da editora Aleph e retornar os livros associados a esse ID.
 */
 
---SUBCONSULTA:
+-- Exemplo de subconsulta:
 SELECT NomeLivro, DataPub
 FROM Livro
 WHERE IdEditora = (
@@ -436,7 +445,9 @@ WHERE IdEditora = (
 	 FROM Editora	
 	 WHERE NomeEditora = 'Aleph'
 )
-ORDER BY NomeLivro;
+ORDER BY NomeLivro; 
+-- A subconsulta dentro do `WHERE` encontra o ID da editora 'Aleph' e retorna os livros dessa editora, ordenados por nome.
+
 
 
 

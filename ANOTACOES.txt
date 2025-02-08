@@ -667,7 +667,167 @@ SELECT TOP n: Limita a consulta aos n primeiros registros.
 WITH TIES: Inclui todos os registros que tenham o mesmo valor da última linha retornada (quando houver empates), mesmo que isso faça o número total de registros ser maior que o especificado.
 _______________________________________________________________________________________________________________________________________________________________________
 
-* CONSULTAS: FILTROS- CLÁUSULA WHERE: 
+* CONSULTAS: FILTROS- CLÁUSULA WHERE: A cláusula WHERE é usada em consultas SQL para filtrar registros que atendem a uma condição específica. Ela permite que você selecione apenas as linhas que atendem a um critério determinado, ajudando a refinar os resultados da consulta.
+
+Sintaxe básica da cláusula WHERE:
+sql
+Copiar
+SELECT coluna1, coluna2, ...
+FROM tabela
+WHERE condição;
+Componentes principais:
+coluna1, coluna2, ...: São as colunas que você deseja selecionar.
+tabela: A tabela de onde os dados serão extraídos.
+condição: A condição que deve ser atendida pelos registros para que sejam retornados na consulta.
+Exemplo básico:
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro > 100.00;
+Neste exemplo, estamos selecionando NomeLivro e PreçoLivro da tabela Livro, mas apenas os livros cujo preço é maior que 100.00.
+Como funciona a cláusula WHERE:
+A WHERE permite especificar condições de filtragem com base em operadores e valores. As condições podem ser simples ou complexas, utilizando uma variedade de operadores.
+
+Principais operadores usados na cláusula WHERE:
+Operadores de comparação:
+
+= (igual)
+!= ou <> (diferente)
+> (maior que)
+< (menor que)
+>= (maior ou igual a)
+<= (menor ou igual a)
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro >= 50.00;
+Operadores lógicos:
+
+AND: Usado para combinar várias condições. Todos os critérios precisam ser verdadeiros.
+OR: Usado para combinar várias condições. Pelo menos uma das condições precisa ser verdadeira.
+NOT: Negação de uma condição.
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro > 50.00 AND PreçoLivro < 100.00;
+Ou:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro < 50.00 OR PreçoLivro > 200.00;
+Operadores de correspondência:
+
+LIKE: Usado para comparar strings, permitindo o uso de wildcards (caracteres curinga). O % representa qualquer sequência de caracteres, e o _ representa um único caractere.
+
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE NomeLivro LIKE 'A%';
+Isso retornará todos os livros cujo nome começa com a letra "A".
+
+BETWEEN: Usado para filtrar valores dentro de um intervalo especificado.
+
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro BETWEEN 50.00 AND 100.00;
+IN: Usado para especificar uma lista de valores possíveis.
+
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE IdAssunto IN (1, 2, 3);
+Operadores de valor nulo:
+
+IS NULL: Usado para verificar se um campo tem valor nulo.
+
+IS NOT NULL: Usado para verificar se um campo não é nulo.
+
+Exemplo:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE PreçoLivro IS NOT NULL;
+Exemplos adicionais:
+Filtrando por um valor específico:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE IdLivro = 1;
+Retorna o livro cujo IdLivro é igual a 1.
+
+Filtrando por valor maior que:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro > 200.00;
+Retorna os livros cujo PreçoLivro é maior que 200.00.
+
+Filtrando por múltiplas condições com AND:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro > 100.00 AND IdAssunto = 2;
+Retorna os livros que custam mais de 100.00 e têm o IdAssunto igual a 2.
+
+Filtrando por valores dentro de um intervalo com BETWEEN:
+
+sql
+Copiar
+SELECT NomeLivro, PreçoLivro
+FROM Livro
+WHERE PreçoLivro BETWEEN 50.00 AND 150.00;
+Retorna livros cujo preço está entre 50.00 e 150.00.
+
+Filtrando por padrão de string com LIKE:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE NomeLivro LIKE '%Python%';
+Retorna livros cujo nome contém a palavra "Python".
+
+Filtrando por valores específicos com IN:
+
+sql
+Copiar
+SELECT NomeLivro
+FROM Livro
+WHERE IdAssunto IN (1, 3, 5);
+Retorna livros cujos IdAssunto são 1, 3 ou 5.
+
+Considerações importantes sobre a cláusula WHERE:
+Case Sensitivity: Em algumas bases de dados, as comparações podem ser case-sensitive (sensíveis a maiúsculas e minúsculas). Isso depende da configuração do banco de dados. No SQL Server, por exemplo, comparações de strings podem ser sensíveis a maiúsculas/minúsculas, dependendo da collation do banco.
+Nulos: Ao trabalhar com valores nulos, lembre-se de usar IS NULL ou IS NOT NULL, porque comparações como = NULL não funcionam corretamente.
+Resumo:
+A cláusula WHERE é uma das partes mais importantes em consultas SQL. Ela permite filtrar registros com base em condições específicas, utilizando operadores de comparação, lógicos, correspondência, e valor nulo. Ela é essencial para refinar a seleção de dados e retornar apenas os registros relevantes para a consulta.
 
 
 
