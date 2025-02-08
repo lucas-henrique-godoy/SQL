@@ -418,7 +418,23 @@ SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE Preçolivro > 100.00
 ORDER BY PreçoLivro;
+--------------------------------------------------------------------------------------------------
+/*
+CLÁUSULA WHERE: SUBCONSULTAS
+PROBLEMA: Como retornar noms de livros e atas de publicação dos livros publicados pela editora Aleph,
+sem saber o ID da editora? Os nomesdas editoras nao estão na tabela de livros. O que fazer?
+SOLUÇÃO: concatenar SELECTs com subconsulta.
+*/
 
+--SUBCONSULTA:
+SELECT NomeLivro, DataPub
+FROM Livro
+WHERE IdEditora = (
+     SELECT IdEditora
+	 FROM Editora	
+	 WHERE NomeEditora = 'Aleph'
+)
+ORDER BY NomeLivro;
 
 
 
