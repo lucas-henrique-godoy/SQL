@@ -828,6 +828,43 @@ Case Sensitivity: Em algumas bases de dados, as comparações podem ser case-sen
 Nulos: Ao trabalhar com valores nulos, lembre-se de usar IS NULL ou IS NOT NULL, porque comparações como = NULL não funcionam corretamente.
 Resumo:
 A cláusula WHERE é uma das partes mais importantes em consultas SQL. Ela permite filtrar registros com base em condições específicas, utilizando operadores de comparação, lógicos, correspondência, e valor nulo. Ela é essencial para refinar a seleção de dados e retornar apenas os registros relevantes para a consulta.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* EXCLUIR LINHAS - DELETE FROM: O comando DELETE FROM no SQL Server é utilizado para excluir registros (linhas) de uma tabela específica. O comportamento básico desse comando é o seguinte:
+
+Sintaxe Básica:
+sql
+Copiar
+Editar
+DELETE FROM nome_da_tabela WHERE condição;
+nome_da_tabela: o nome da tabela da qual você deseja excluir as linhas.
+condição: uma cláusula WHERE opcional, que especifica quais registros serão excluídos. Se a condição for omitida, todas as linhas da tabela serão excluídas.
+Exemplo:
+sql
+Copiar
+Editar
+DELETE FROM Funcionarios WHERE Cargo = 'Estagiário';
+Esse comando excluirá todos os registros da tabela Funcionarios onde o campo Cargo for igual a 'Estagiário'.
+
+Comportamento com Tabelas com IDENTITY:
+Se a tabela tem uma coluna com a propriedade IDENTITY, que gera valores únicos automaticamente (normalmente usada para campos como ID), o comportamento do comando DELETE FROM não afeta diretamente a sequência de valores gerados por essa coluna. Ou seja, ao excluir uma linha, o valor gerado pelo IDENTITY não será reatribuído ou "reutilizado" por novas inserções. A sequência do campo IDENTITY continua a incrementar normalmente.
+
+Exemplo:
+Se a tabela Funcionarios tem um campo ID configurado como IDENTITY e você exclui um registro:
+
+Suponha que você tenha inserido 5 registros com os IDs: 1, 2, 3, 4 e 5.
+Ao executar DELETE FROM Funcionarios WHERE ID = 3;, o registro com o ID = 3 será excluído, mas o próximo registro inserido terá um ID gerado como 6, não reutilizando o valor 3.
+Esse comportamento é importante para garantir a integridade dos dados e o uso correto de valores exclusivos na coluna IDENTITY.
+
+Observação Importante:
+Restauração do Auto Incremento: Caso você queira redefinir o valor do IDENTITY após excluir registros (por exemplo, para reiniciar a numeração ou reatribuir os valores dos IDs), você pode usar o comando DBCC CHECKIDENT. Um exemplo de como fazer isso:
+sql
+Copiar
+Editar
+DBCC CHECKIDENT ('Funcionarios', RESEED, 0);
+Isso fará com que o próximo valor gerado para a coluna IDENTITY seja 1 (ou qualquer valor definido no RESEED).
+
+Em resumo, o comando DELETE FROM no SQL Server exclui registros da tabela, mas não interfere diretamente no comportamento da coluna IDENTITY. Para "resetar" ou ajustar a sequência do IDENTITY, você precisaria de comandos adicionais como DBCC CHECKIDENT.    
 
 
 
