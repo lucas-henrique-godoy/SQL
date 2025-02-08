@@ -447,7 +447,20 @@ WHERE IdEditora = (
 )
 ORDER BY NomeLivro; 
 -- A subconsulta dentro do `WHERE` encontra o ID da editora 'Aleph' e retorna os livros dessa editora, ordenados por nome.
+--_________________________________________________________________________________________________________________________
 
+-- EXCLUSÃO DE REGISTROS (LINHAS): DELETE FROM
+/*SINTAXE
+DELETE FROM tabela
+WHERE coluna = valor;
+*/
+SELECT * FROM Assunto;
+
+DELETE FROM Assunto
+WHERE IdAssunto = 8;
+
+INSERT INTO Assunto (NomeAssunto)
+VALUES ('Policial');
 
 
 
