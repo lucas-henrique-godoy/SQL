@@ -463,12 +463,14 @@ colunas com identity.
 DELETE FROM Assunto
 WHERE NomeAssunto = 'Policial';
 
---Inserindo um assunto
+--Inserindo um assunto:
 INSERT INTO Assunto (NomeAssunto)
 VALUES ('Policial');
 
---Verificação
+--Verificação:
 SELECT * FROM Assunto;
+
+
 
 
 
