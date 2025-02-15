@@ -895,7 +895,55 @@ Isso fará com que o contador da coluna IDENTITY comece a partir do valor 100 na
 Se quiser verificar o valor atual de identity usar: SELECT IDENT_CURRENT('nome_da_tabela');
 _______________________________________________________________________________________________________________________________________________________________________
 
-* ALTERAR REGISTROS - UPDATE
+* ALTERAR REGISTROS - UPDATE: O comando UPDATE no SQL Server é utilizado para alterar registros em uma tabela existente. Ele permite modificar um ou mais valores de uma ou mais colunas de registros que atendem a uma condição específica.
+
+Sintaxe básica:
+UPDATE nome_da_tabela
+SET nome_da_coluna1 = novo_valor1,
+    nome_da_coluna2 = novo_valor2,
+    ...
+WHERE condição;
+
+Componentes principais:
+- nome_da_tabela: Nome da tabela onde os dados serão atualizados.
+- SET: Define as colunas a serem modificadas e seus novos valores.
+- WHERE: Especifica quais registros serão atualizados. Sem o WHERE, todos os registros na tabela serão alterados.
+
+Exemplo simples:
+Vamos supor que temos uma tabela chamada Funcionarios com as colunas id, nome, cargo e salario.
+1- Atualizando o salário de um funcionário com base no seu id:
+
+UPDATE Funcionarios
+SET salario = 5000
+WHERE id = 1;
+
+Neste exemplo, o salário do funcionário com id igual a 1 será alterado para 5000.
+
+2-Atualizando múltiplas colunas de um registro:
+UPDATE Funcionarios
+SET nome = 'João Silva',
+    cargo = 'Gerente',
+    salario = 6000
+WHERE id = 2;
+
+Aqui, o nome, cargo e salário do funcionário com id igual a 2 são alterados.
+
+Dicas importantes:
+Cuidado com o WHERE: Se você esquecer de usar a cláusula WHERE, todos os registros da tabela serão atualizados, o que pode ser indesejado.
+Transações: Se você estiver atualizando muitos dados ou realizando operações críticas, é uma boa prática usar transações para garantir que as alterações sejam feitas de forma consistente. Exemplo:
+
+BEGIN TRANSACTION;
+
+UPDATE Funcionarios
+SET salario = 7000
+WHERE cargo = 'Analista';
+
+COMMIT; -- Ou ROLLBACK em caso de erro
+
+Assim, se algo der errado, você pode usar ROLLBACK para desfazer as alterações.
+
+Conclusão:
+O UPDATE é uma ferramenta poderosa para alterar dados no SQL Server, mas é essencial usar com cuidado, especialmente ao definir a condição no WHERE, para evitar atualizações indesejadas.
 
 
 
