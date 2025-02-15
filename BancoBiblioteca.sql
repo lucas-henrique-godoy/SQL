@@ -498,4 +498,18 @@ TRUNCATE TABLE Teste;
 
 --VERIFICAR O VALOR ATUAL DE IDENTITY
 SELECT IDENT_CURRENT('Teste');
+--_________________________________________________________________________________________________________________________
+
+-- ATUALIZAR REGISTROS: CLÁUSULA UPDATE
+/* SINTAXE
+UPDATE tabela
+SET coluna = novo_valor
+WHERE coluna = filtro;
+*/
+
+SELECT IdLivro, NomeLivro FROM Livro;
+
+UPDATE Livro
+SET NomeLivro = 'Eu, Robô'
+WHERE IdLivro = 116;
 
