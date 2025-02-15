@@ -946,7 +946,45 @@ Conclusão:
 O UPDATE é uma ferramenta poderosa para alterar dados no SQL Server, mas é essencial usar com cuidado, especialmente ao definir a condição no WHERE, para evitar atualizações indesejadas.
 _______________________________________________________________________________________________________________________________________________________________________
 
-* 
+* NOMES ALTERNATIVOS - AS: No SQL Server, o AS é usado para dar nomes alternativos (ou aliases) a tabelas e colunas em uma consulta. Isso ajuda a tornar as consultas mais legíveis, especialmente quando trabalhamos com tabelas grandes, joins complexos ou quando queremos renomear as colunas no resultado.
+
+Usos comuns do AS:
+1-Alias para colunas: Quando você seleciona dados de uma tabela, pode usar o AS para fornecer um nome alternativo para a coluna no resultado da consulta. Isso é útil para tornar os resultados mais claros ou para renomear uma coluna com um nome mais amigável.
+
+Exemplo 1 - Alias para uma coluna:
+SELECT nome AS NomeFuncionario, salario AS SalarioMensal
+FROM Funcionarios;
+
+Explicação:
+Aqui, a coluna nome da tabela Funcionarios é renomeada como NomeFuncionario no resultado da consulta, e a coluna salario é renomeada como SalarioMensal. Isso melhora a legibilidade do resultado.
+
+2- Alias para tabelas: Quando você está trabalhando com várias tabelas, pode usar AS para atribuir nomes alternativos às tabelas. Isso facilita o trabalho em consultas complexas e torna o código mais limpo.
+
+Exemplo 2 - Alias para uma tabela:
+SELECT f.nome, f.salario
+FROM Funcionarios AS f
+WHERE f.salario > 3000;
+
+Explicação:
+Neste exemplo, a tabela Funcionarios é renomeada como f durante a consulta. Isso significa que em vez de escrever Funcionarios.nome ou Funcionarios.salario, podemos apenas usar f.nome e f.salario, o que torna o código mais curto e mais fácil de ler, especialmente quando estamos fazendo joins com várias tabelas.
+
+3-Alias em joins: Quando fazemos joins entre várias tabelas, os aliases são muito úteis para diferenciar as tabelas que estão sendo combinadas.
+
+Exemplo 3 - Alias em join:
+SELECT e.nome AS NomeFuncionario, d.nome AS NomeDepartamento
+FROM Funcionarios AS e
+INNER JOIN Departamentos AS d
+ON e.departamento_id = d.id;
+
+Explicação:
+Neste exemplo, usamos aliases para as tabelas Funcionarios (renomeada para e) e Departamentos (renomeada para d). A consulta seleciona o nome do funcionário e o nome do departamento em que ele trabalha. Os aliases ajudam a distinguir rapidamente as tabelas e suas respectivas colunas.
+
+Pontos Importantes:
+- AS é opcional: Você pode omitir a palavra AS e usar apenas o espaço em branco para atribuir um alias. Por exemplo, SELECT nome NomeFuncionario também funcionaria, mas o uso de AS torna o código mais legível.
+- AS é apenas um alias: Não altera o nome real da tabela ou coluna no banco de dados; é apenas para fins de apresentação dentro da consulta.
+
+Conclusão:
+O uso do AS no SQL Server ajuda a tornar as consultas mais legíveis e flexíveis, permitindo renomear temporariamente colunas e tabelas para melhor compreensão do que está sendo consultado, especialmente em consultas complexas com múltiplas tabelas.
 
 
 
