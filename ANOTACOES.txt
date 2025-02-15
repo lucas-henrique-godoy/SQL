@@ -892,7 +892,10 @@ Se precisar truncar a tabela e não quiser que o contador de IDENTITY seja reini
 DBCC CHECKIDENT ('Clientes', RESEED, 100);
 Isso fará com que o contador da coluna IDENTITY comece a partir do valor 100 na próxima inserção, sem ser afetado pelo TRUNCATE.
 
-Se quiser vericiar o valor atual de identit usar: SELECT IDENT_CURRENT('nome_da_tabela');
+Se quiser verificar o valor atual de identity usar: SELECT IDENT_CURRENT('nome_da_tabela');
+_______________________________________________________________________________________________________________________________________________________________________
+
+* ALTERAR REGISTROS - UPDATE
 
 
 
