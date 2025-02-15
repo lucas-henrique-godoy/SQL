@@ -946,7 +946,7 @@ Conclusão:
 O UPDATE é uma ferramenta poderosa para alterar dados no SQL Server, mas é essencial usar com cuidado, especialmente ao definir a condição no WHERE, para evitar atualizações indesejadas.
 _______________________________________________________________________________________________________________________________________________________________________
 
-* NOMES ALTERNATIVOS - AS: No SQL Server, o AS é usado para dar nomes alternativos (ou aliases) a tabelas e colunas em uma consulta. Isso ajuda a tornar as consultas mais legíveis, especialmente quando trabalhamos com tabelas grandes, joins complexos ou quando queremos renomear as colunas no resultado.
+* NOMES ALTERNATIVOS - AS: No SQL Server, o AS é usado para dar nomes alternativos e temporáreos (ou aliases) a tabelas e colunas em uma consulta. Isso ajuda a tornar as consultas mais legíveis, especialmente quando trabalhamos com tabelas grandes, joins complexos ou quando queremos renomear as colunas no resultado.
 
 Usos comuns do AS:
 1-Alias para colunas: Quando você seleciona dados de uma tabela, pode usar o AS para fornecer um nome alternativo para a coluna no resultado da consulta. Isso é útil para tornar os resultados mais claros ou para renomear uma coluna com um nome mais amigável.
