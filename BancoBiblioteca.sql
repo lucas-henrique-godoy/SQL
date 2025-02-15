@@ -507,9 +507,42 @@ SET coluna = novo_valor
 WHERE coluna = filtro;
 */
 
-SELECT IdLivro, NomeLivro FROM Livro;
+-- Exemplo 1: Seleciona dados da tabela Livro
+SELECT IdLivro, NomeLivro, PreçoLivro, NumeroPaginas 
+FROM Livro;  -- Seleciona as colunas IdLivro, NomeLivro, PreçoLivro e NumeroPaginas da tabela Livro
 
+
+-- Exemplo 2: Atualiza o nome de um livro com IdLivro igual a 116
 UPDATE Livro
-SET NomeLivro = 'Eu, Robô'
-WHERE IdLivro = 116;
+SET NomeLivro = 'Eu, Robô'  -- Altera o nome do livro para 'Eu, Robô'
+WHERE IdLivro = 116;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 116 seja atualizado
+
+
+-- Exemplo 3: Atualiza o preço de um livro com IdLivro igual a 105
+UPDATE Livro
+SET PreçoLivro = 60.00  -- Altera o preço do livro para 60.00
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 4: Aumenta o preço de um livro com IdLivro igual a 105 em 10%
+UPDATE Livro
+SET PreçoLivro = PreçoLivro * 1.1  -- O preço do livro será multiplicado por 1.1 (aumentando em 10%)
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 5: Reduz o preço de um livro com IdLivro igual a 105 em 20%
+UPDATE Livro
+SET PreçoLivro = PreçoLivro * 0.8  -- O preço do livro será multiplicado por 0.8 (diminuindo em 20%)
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 6: Atualiza o preço e o número de páginas de um livro com IdLivro igual a 105
+UPDATE Livro
+SET PreçoLivro = 60.00,  -- Altera o preço do livro para 60.00
+    NumeroPaginas = 320  -- Altera o número de páginas do livro para 320
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+--_________________________________________________________________________________________________________________________
+
+-- NOMES ALTERNATIVOS: AS
+
 
