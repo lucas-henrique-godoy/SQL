@@ -543,6 +543,13 @@ SET PreçoLivro = 60.00,  -- Altera o preço do livro para 60.00
 WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
 --_________________________________________________________________________________________________________________________
 
--- NOMES ALTERNATIVOS: AS
+-- NOMES ALTERNATIVOS: AS (alias)
+/* SINTAXE
+SELECT coluna1 AS nome_alternativo1
+FROM tabela AS nome_alternativo_tabela
+*/
+
+SELECT NomeLivro AS Livros
+FROM Livro;
 
 
