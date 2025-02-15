@@ -944,6 +944,9 @@ Assim, se algo der errado, você pode usar ROLLBACK para desfazer as alteraçõe
 
 Conclusão:
 O UPDATE é uma ferramenta poderosa para alterar dados no SQL Server, mas é essencial usar com cuidado, especialmente ao definir a condição no WHERE, para evitar atualizações indesejadas.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* 
 
 
 
