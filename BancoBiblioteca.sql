@@ -548,14 +548,29 @@ WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro
 SELECT coluna1 [AS] nome_alternativo1
 FROM tabela [AS] nome_alternativo_tabela
 */
-
 /*
 a palavra as é opcional, mas é recomendada pelo professor a ser usada
 OBS elas dentro dos colchetes somente para mostrar a sua opcionalidade,
 mas na sintaxe os colchetes não são usados.
 */
 
-SELECT NomeLivro AS Livros
+-- Seleciona o campo "NomeLivro" da tabela "Livro" e o renomeia como "Livros"
+SELECT NomeLivro AS Livros 
 FROM Livro;
+
+-- Seleciona o campo "NomeLivro" da tabela "Livro" e o renomeia como "Livros", sem usar a palavra-chave "AS"
+SELECT NomeLivro  Livros 
+FROM Livro;
+
+-- Seleciona "NomeAutor" e "SobreNomeAutor" da tabela "Autor", renomeando para "Nome" e "Sobrenome" respectivamente
+SELECT NomeAutor AS Nome, A.SobreNomeAutor AS Sobrenome 
+FROM Autor AS A;
+
+-- Seleciona os 3 livros mais caros e seus preços, ordenando pelo preço de forma decrescente
+SELECT TOP(3) NomeLivro AS 'Livros mais caros', PreçoLivro AS 'Preço do Livro' 
+FROM Livro AS L 
+ORDER BY 'Preço do Livro' DESC;
+
+
 
 
