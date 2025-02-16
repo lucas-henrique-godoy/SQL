@@ -987,7 +987,7 @@ Conclusão:
 O uso do AS no SQL Server ajuda a tornar as consultas mais legíveis e flexíveis, permitindo renomear temporariamente colunas e tabelas para melhor compreensão do que está sendo consultado, especialmente em consultas complexas com múltiplas tabelas.
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-
+* 
 
 
 
