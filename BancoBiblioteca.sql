@@ -618,4 +618,17 @@ WHERE PreçoLivro >= 20.00
 AND DataPub BETWEEN '20050620' AND '20100620'
 OR DataPub BETWEEN '20160101' AND '20200101'
 ORDER BY DataPub DESC;
+--______________________________________________________________________________________________________________________
 
+/*
+COMBINAR CONSULTAS COM OPERADOR UNION
+SINTAXE:
+SELECT colunas FOM tabela1
+UNION
+SELECT clunas FROM tabela2
+*/
+
+--EXEMPLO 01
+SELECT NomeAutor Nome, 'Autor' AS Tipo FROM Autor
+UNION 
+SELECT NomeEditora Nome, 'Editora' AS Tipo FROM Editora;
