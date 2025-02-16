@@ -579,14 +579,18 @@ OR
 NOT
 */
 
+-- Seleciona todos os livros com IdLivro entre 102 e 108 (excluindo 102 e 108)
 SELECT * FROM Livro
 WHERE IdLivro > 102 AND IdLivro < 108;
 
+-- Seleciona todos os livros onde IdLivro é maior que 110 ou IdEditora é menor que 4
 SELECT * FROM Livro
 WHERE IdLivro > 110 OR IdEditora < 4;
 
+-- Seleciona todos os livros onde IdLivro é maior que 110 ou IdEditora não é menor que 4 (ou seja, IdEditora é 4 ou maior)
 SELECT * FROM Livro
 WHERE IdLivro > 110 OR NOT IdEditora < 4;
+
 
 
 -- BETWEEN: SELEÇÃO DE INTERVALOS
@@ -597,17 +601,21 @@ FROM tabela
 WHERE coluna BETWEEN valor1 AND valor2;
 */
 
+-- Seleciona todos os livros publicados entre 7 de maio de 2004 e 7 de maio de 2014
 SELECT * FROM Livro
 WHERE DataPub BETWEEN '20040507' AND '20140507';
 
-
+-- Seleciona os livros com preço entre 50.00 e 100.00, renomeando as colunas para 'Livro' e 'Preço'
 SELECT NomeLivro AS Livro, PreçoLivro AS Preço
 FROM Livro
 WHERE PreçoLivro BETWEEN 50.00 AND 100.00;
 
+-- Seleciona os livros com preço maior ou igual a 20.00, e publicados entre 20 de junho de 2005 e 20 de junho de 2010,
+-- ou publicados entre 1º de janeiro de 2016 e 1º de janeiro de 2020, ordenados por DataPub em ordem decrescente
 SELECT NomeLivro, DataPub, PreçoLivro
 FROM Livro
 WHERE PreçoLivro >= 20.00 
 AND DataPub BETWEEN '20050620' AND '20100620'
 OR DataPub BETWEEN '20160101' AND '20200101'
 ORDER BY DataPub DESC;
+
