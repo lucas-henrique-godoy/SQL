@@ -571,6 +571,43 @@ SELECT TOP(3) NomeLivro AS 'Livros mais caros', PreçoLivro AS 'Preço do Livro'
 FROM Livro AS L 
 ORDER BY 'Preço do Livro' DESC;
 
+--___________________________________________________________________________________________________________________
+
+-- FILTROS COMBINADOS: OPERADORES LÓGICOS AND, OR, NOT
+/* AND
+OR
+NOT
+*/
+
+SELECT * FROM Livro
+WHERE IdLivro > 102 AND IdLivro < 108;
+
+SELECT * FROM Livro
+WHERE IdLivro > 110 OR IdEditora < 4;
+
+SELECT * FROM Livro
+WHERE IdLivro > 110 OR NOT IdEditora < 4;
 
 
+-- BETWEEN: SELEÇÃO DE INTERVALOS
+/*
+SINTAXE:
+SELECT colunas
+FROM tabela
+WHERE coluna BETWEEN valor1 AND valor2;
+*/
 
+SELECT * FROM Livro
+WHERE DataPub BETWEEN '20040507' AND '20140507';
+
+
+SELECT NomeLivro AS Livro, PreçoLivro AS Preço
+FROM Livro
+WHERE PreçoLivro BETWEEN 50.00 AND 100.00;
+
+SELECT NomeLivro, DataPub, PreçoLivro
+FROM Livro
+WHERE PreçoLivro >= 20.00 
+AND DataPub BETWEEN '20050620' AND '20100620'
+OR DataPub BETWEEN '20160101' AND '20200101'
+ORDER BY DataPub DESC;
