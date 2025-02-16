@@ -987,7 +987,46 @@ Conclusão:
 O uso do AS no SQL Server ajuda a tornar as consultas mais legíveis e flexíveis, permitindo renomear temporariamente colunas e tabelas para melhor compreensão do que está sendo consultado, especialmente em consultas complexas com múltiplas tabelas.
 ____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
-* 
+* AND, OR, NOT e BETWEEN: No SQL Server, os operadores AND, OR, NOT e BETWEEN são usados para combinar condições nas cláusulas WHERE, facilitando a filtragem de dados conforme várias condições. Vou explicar cada um deles:
+
+1. AND
+O operador AND é usado para combinar várias condições. Todas as condições separadas por AND devem ser verdadeiras para que a linha seja retornada nos resultados.
+
+Exemplo:
+SELECT * FROM Clientes
+WHERE Cidade = 'São Paulo' AND Idade > 30;
+Nesse caso, a consulta retorna apenas os clientes que estão em São Paulo e têm idade maior que 30.
+
+2. OR
+O operador OR é usado para combinar várias condições, mas apenas uma delas precisa ser verdadeira para que a linha seja retornada nos resultados.
+
+Exemplo:
+SELECT * FROM Clientes
+WHERE Cidade = 'São Paulo' OR Cidade = 'Rio de Janeiro';
+Aqui, a consulta retorna todos os clientes que estão em São Paulo ou no Rio de Janeiro.
+
+3. NOT
+O operador NOT é usado para negar uma condição. Ele retorna verdadeiro se a condição fornecida for falsa.
+
+Exemplo:
+SELECT * FROM Clientes
+WHERE NOT Cidade = 'São Paulo';
+A consulta retornará todos os clientes que não estão em São Paulo.
+
+4. BETWEEN
+O operador BETWEEN é utilizado para filtrar um intervalo de valores. Ele inclui os limites superior e inferior. Pode ser usado com números, datas ou textos.
+
+Exemplo:
+SELECT * FROM Produtos
+WHERE Preco BETWEEN 100 AND 500;
+Essa consulta retorna todos os produtos cujo preço está entre 100 e 500 (inclusive).
+
+Resumo:
+AND: Todas as condições devem ser verdadeiras.
+OR: Pelo menos uma das condições deve ser verdadeira.
+NOT: Inverte a condição (verdadeira vira falsa, e vice-versa).
+BETWEEN: Filtra um intervalo de valores, incluindo os limites.
+Esses operadores ajudam a tornar as consultas SQL mais flexíveis e precisas, permitindo criar filtros complexos.
 
 
 
