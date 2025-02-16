@@ -1027,6 +1027,9 @@ OR: Pelo menos uma das condições deve ser verdadeira.
 NOT: Inverte a condição (verdadeira vira falsa, e vice-versa).
 BETWEEN: Filtra um intervalo de valores, incluindo os limites.
 Esses operadores ajudam a tornar as consultas SQL mais flexíveis e precisas, permitindo criar filtros complexos.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* COMBINAR CONSULTAS- UNION:
 
 
 
