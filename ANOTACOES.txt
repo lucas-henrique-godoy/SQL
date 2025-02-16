@@ -861,7 +861,7 @@ Em resumo, o comando DELETE FROM no SQL Server exclui registros da tabela, mas n
 OBS 1: Nunca execute o comando DELETE FROM sem uma cláusula WHERE, pois, caso contrário, todos os dados da tabela serão excluídos (ou seja, todos os registros serão apagados, sem exceção)e ainda por cima sem zeraro identity. Certifique-se de usar a cláusula WHERE para especificar quais registros devem ser removidos.
 
 OBS 2: O comando DELETE FROM não altera o valor do identity (a coluna com incremento automático de valores). Isso significa que, se a tabela contiver uma coluna com identity, os valores dessa coluna continuarão a partir do último número gerado e não serão resetados para o valor inicial. Portanto, se perceber que os valores dessa coluna começam a "pular" (ex: 1, 2, 3, 10, 11...), não se preocupe, isso é normal. No entanto, caso deseje resetar o valor do identity (fazendo ele começar novamente do valor inicial), é possível fazer isso, se necessário.
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
 
 * LIMPAR A TABELA - TRUNCATE TABLE: No SQL Server, o comando TRUNCATE TABLE é utilizado para remover todos os dados de uma tabela de forma eficiente. Ao contrário de um DELETE, que exclui os registros linha por linha, o TRUNCATE é uma operação mais rápida, pois limpa a tabela de maneira mais direta, sem registrar individualmente cada remoção.
 
@@ -893,7 +893,7 @@ DBCC CHECKIDENT ('Clientes', RESEED, 100);
 Isso fará com que o contador da coluna IDENTITY comece a partir do valor 100 na próxima inserção, sem ser afetado pelo TRUNCATE.
 
 Se quiser verificar o valor atual de identity usar: SELECT IDENT_CURRENT('nome_da_tabela');
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
 
 * ALTERAR REGISTROS - UPDATE: O comando UPDATE no SQL Server é utilizado para alterar registros em uma tabela existente. Ele permite modificar um ou mais valores de uma ou mais colunas de registros que atendem a uma condição específica.
 
@@ -944,7 +944,7 @@ Assim, se algo der errado, você pode usar ROLLBACK para desfazer as alteraçõe
 
 Conclusão:
 O UPDATE é uma ferramenta poderosa para alterar dados no SQL Server, mas é essencial usar com cuidado, especialmente ao definir a condição no WHERE, para evitar atualizações indesejadas.
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
 
 * NOMES ALTERNATIVOS - AS: No SQL Server, o AS é usado para dar nomes alternativos e temporáreos (ou aliases) a tabelas e colunas em uma consulta. Isso ajuda a tornar as consultas mais legíveis, especialmente quando trabalhamos com tabelas grandes, joins complexos ou quando queremos renomear as colunas no resultado.
 
@@ -985,7 +985,7 @@ Pontos Importantes:
 
 Conclusão:
 O uso do AS no SQL Server ajuda a tornar as consultas mais legíveis e flexíveis, permitindo renomear temporariamente colunas e tabelas para melhor compreensão do que está sendo consultado, especialmente em consultas complexas com múltiplas tabelas.
-____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
 
 * AND, OR, NOT e BETWEEN: No SQL Server, os operadores AND, OR, NOT e BETWEEN são usados para combinar condições nas cláusulas WHERE, facilitando a filtragem de dados conforme várias condições. Vou explicar cada um deles:
 
