@@ -627,7 +627,7 @@ SINTAXE:
 
 SELECT colunas FROM tabela1
 UNION
-SELECT colunas FROM tabela2
+SELECT colunas FROM tabela2...
 */
 
 --EXEMPLO 01
