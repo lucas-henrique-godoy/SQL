@@ -649,3 +649,28 @@ UNION
 SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto
 UNION
 SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
+--____________________________________________________________________________________________________________
+
+-- FUNÇÕES DE AGREGAÇÃO
+/*
+MIN, AX, AVG, SUM, COUNT
+*/
+
+SELECT COUNT(*) Total 
+FROM Autor;
+
+SELECT MAX(PreçoLivro) 'Mais Caro'
+FROM Livro;
+
+SELECT MIN(NumeroPaginas)
+FROM Livro;
+
+SELECT AVG(PreçoLivro) 'Preço Médio'
+FROM Livro;
+
+SELECT SUM(PreçoLivro) 'Valor Total'
+FROM Livro;
+
+SELECT COUNT(*) Total
+FROM Livro
+WHERE IdAssunto = 1;

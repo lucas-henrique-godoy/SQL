@@ -1135,7 +1135,10 @@ Exemplo: 'Autor' AS Tipo cria uma coluna chamada Tipo com o valor 'Autor' para t
 Dicas para lembrar:
 UNION serve para combinar dados de duas consultas, mas remove duplicatas.
 AS é usado para dar um apelido para colunas ou tabelas. Você pode usar AS para renomear uma coluna.
-Quando você usa um valor fixo em uma consulta, como 'Autor' AS Tipo, você está criando uma coluna temporária com um valor que será o mesmo para todas as linhas.	
+Quando você usa um valor fixo em uma consulta, como 'Autor' AS Tipo, você está criando uma coluna temporária com um valor que será o mesmo para todas as linhas.
+_______________________________________________________________________________________________________________________________________________________________________
+
+* CONSULTAS - FUNÇÕES DE AREGAÇÃO: 	
 
 
 
