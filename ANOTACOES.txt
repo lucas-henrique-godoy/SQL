@@ -1029,7 +1029,7 @@ BETWEEN: Filtra um intervalo de valores, incluindo os limites.
 Esses operadores ajudam a tornar as consultas SQL mais flexíveis e precisas, permitindo criar filtros complexos.
 _______________________________________________________________________________________________________________________________________________________________________
 
-* COMBINAR CONSULTAS- UNION:
+* COMBINAR CONSULTAS - UNION:
 
 
 
