@@ -622,10 +622,12 @@ ORDER BY DataPub DESC;
 
 /*
 COMBINAR CONSULTAS COM OPERADOR UNION
+
 SINTAXE:
-SELECT colunas FOM tabela1
+
+SELECT colunas FROM tabela1
 UNION
-SELECT clunas FROM tabela2
+SELECT colunas FROM tabela2
 */
 
 --EXEMPLO 01
