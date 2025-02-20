@@ -688,3 +688,22 @@ WHERE PreçoLivro = (
 	FROM Livro
 	);
 
+--___________________________________________________________________________________________________________
+
+--CLÁUSULA LIKE (e NOT LIKE)
+
+/*
+Sintaxe:
+
+SELECT colunas
+FROM tabela
+WHERE coluna LIKE padrão;
+*/
+
+/*
+METACARACTERES:
+% - qualquer cadeia de 0 ou mais caracteres
+_ - qualquer caractereúnico
+[] caracteres únicos no intervalo ou conjunto especificado
+[^] caracteres únicos NÃO no intervalo ou conjunto especificado
+*/
