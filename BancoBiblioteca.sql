@@ -674,3 +674,9 @@ FROM Livro;
 SELECT COUNT(*) Total
 FROM Livro
 WHERE IdAssunto = 1;
+
+SELECT SUM(PreçoLivro) / COUNT(*) AS 'Preço Médio'
+FROM Livro;
+
+SELECT SUM(PreçoLivro) / COUNT(*) AS 'Preço Médio'
+FROM Livro;
