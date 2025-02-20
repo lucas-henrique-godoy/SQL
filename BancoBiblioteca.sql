@@ -729,4 +729,39 @@ WHERE NomeAutor NOT LIKE 'S%';
 SELECT * FROM Livro
 WHERE NomeLivro LIKE '[aeiou]%';
 
+--EXEMPLO 06
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '%[aeiou]';
+
+--EXEMPLO 07
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[0-9]%';
+
+--EXEMPLO 08
+SELECT NomeLivro FROM Livro
+WHERE NomeLivro LIKE 'A%o';
+
+
+--EXEMPLO 09
+SELECT NomeAutor, SobrenomeAutor
+FROM Autor
+WHERE NomeAutor LIKE 'R%' AND SobreNomeAutor LIKE 'B%';
+
+--EXEMPLO 10
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '%[aeiou]_';
+
+--EXEMPLO 11
+SELECT NomeEditora FROM Editora
+WHERE NomeEditora LIKE '[o-t]%';
+
+--EXEMPLO 12
+SELECT NomeAutor, SobrenomeAutor
+FROM Autor
+WHERE NomeAutor LIKE 'J___';
+
+--EXEMPLO 13
+SELECT * FROM Livro
+WHERE NomeLivro NOT LIKE '[aeiou0-9]%';
+
 
