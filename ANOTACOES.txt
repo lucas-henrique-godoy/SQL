@@ -1030,6 +1030,112 @@ Esses operadores ajudam a tornar as consultas SQL mais flexíveis e precisas, pe
 _______________________________________________________________________________________________________________________________________________________________________
 
 * COMBINAR CONSULTAS - UNION:
+1. O operador UNION no SQL Server
+O operador UNION é utilizado para combinar os resultados de duas ou mais consultas SELECT. Ele vai juntar as linhas das consultas e remover duplicatas (ou seja, ele retorna apenas os registros distintos).
+
+Requisitos para usar o UNION:
+O número de colunas nas consultas deve ser o mesmo.
+As colunas correspondentes em cada consulta devem ter tipos de dados compatíveis.
+O UNION retorna apenas valores únicos (sem duplicatas). Se quiser incluir duplicatas, pode usar o UNION ALL.
+Exemplo simples de uso do UNION:
+Imagina que você tem duas tabelas, uma com autores e outra com editoras, e deseja juntar as duas em um único resultado, com uma coluna para os nomes e outra para identificar se é autor ou editora.
+
+Tabela Autor (com caracteres de teclado):
+diff
+Copiar
++-------------+
+| NomeAutor   |
++-------------+
+| João Silva  |
+| Maria Lima  |
++-------------+
+Tabela Editora (com caracteres de teclado):
+diff
+Copiar
++-------------+
+| NomeEditora |
++-------------+
+| Editora A   |
+| Editora B   |
++-------------+
+Consulta com UNION:
+sql
+Copiar
+SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor
+UNION 
+SELECT NomeEditora AS Nome, 'Editora' AS Tipo FROM Editora;
+Explicação:
+
+A primeira consulta seleciona os autores, atribuindo o valor 'Autor' à coluna Tipo.
+A segunda consulta seleciona as editoras, atribuindo o valor 'Editora' à coluna Tipo.
+O UNION junta os resultados dessas duas consultas, e o SQL automaticamente remove duplicatas.
+Resultado:
+diff
+Copiar
++------------+---------+
+| Nome       | Tipo    |
++------------+---------+
+| João Silva | Autor   |
+| Maria Lima | Autor   |
+| Editora A  | Editora |
+| Editora B  | Editora |
++------------+---------+
+2. Uso do AS para apelido de colunas
+O AS serve para dar um apelido para as colunas ou tabelas. Quando você utiliza AS, o SQL cria um nome temporário para a coluna que você está selecionando.
+
+Exemplo de uso do AS para dar apelido a uma coluna:
+sql
+Copiar
+SELECT NomeAutor AS Nome FROM Autor;
+Explicação:
+
+A coluna NomeAutor da tabela Autor está sendo renomeada para Nome no resultado da consulta. Esse nome Nome é um apelido temporário para a coluna NomeAutor.
+Resultado:
+diff
+Copiar
++------------+
+| Nome       |
++------------+
+| João Silva |
+| Maria Lima |
++------------+
+3. Valor fixo em uma coluna (sem vínculo com as tabelas)
+Você também pode criar uma coluna virtual com valores fixos, como fizemos no exemplo com 'Autor' AS Tipo. Nesse caso, não estamos pegando valores das tabelas, mas criando um valor fixo para ser exibido na coluna.
+
+Exemplo de valor fixo em uma coluna:
+sql
+Copiar
+SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor;
+Explicação:
+
+'Autor' é um valor fixo, que será atribuído a todas as linhas na coluna Tipo.
+O AS Tipo cria uma coluna chamada Tipo e todos os registros dessa coluna terão o valor 'Autor'.
+Resultado:
+diff
+Copiar
++------------+---------+
+| Nome       | Tipo    |
++------------+---------+
+| João Silva | Autor   |
+| Maria Lima | Autor   |
++------------+---------+
+Resumo:
+Operador UNION:
+
+Combina os resultados de várias consultas.
+Remove duplicatas automaticamente.
+Uso de AS para apelido de coluna:
+
+Dá um nome temporário (apelido) para as colunas ou tabelas.
+Exemplo: NomeAutor AS Nome renomeia NomeAutor para Nome.
+Valor fixo em uma coluna:
+
+Cria uma coluna virtual com um valor fixo em todas as linhas.
+Exemplo: 'Autor' AS Tipo cria uma coluna chamada Tipo com o valor 'Autor' para todas as linhas.
+Dicas para lembrar:
+UNION serve para combinar dados de duas consultas, mas remove duplicatas.
+AS é usado para dar um apelido para colunas ou tabelas. Você pode usar AS para renomear uma coluna.
+Quando você usa um valor fixo em uma consulta, como 'Autor' AS Tipo, você está criando uma coluna temporária com um valor que será o mesmo para todas as linhas.
 
 
 

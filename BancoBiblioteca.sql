@@ -634,3 +634,9 @@ SELECT colunas FROM tabela2...
 SELECT NomeAutor Nome, 'Autor' AS Tipo FROM Autor
 UNION 
 SELECT NomeEditora Nome, 'Editora' AS Tipo FROM Editora;
+
+
+-- EXEMPLO 02
+SELECT NomeLivro AS Nome, 'Livro' AS  Tipo FROM Livro
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto;
