@@ -1138,7 +1138,104 @@ AS é usado para dar um apelido para colunas ou tabelas. Você pode usar AS para
 Quando você usa um valor fixo em uma consulta, como 'Autor' AS Tipo, você está criando uma coluna temporária com um valor que será o mesmo para todas as linhas.
 _______________________________________________________________________________________________________________________________________________________________________
 
-* CONSULTAS - FUNÇÕES DE AREGAÇÃO: 	
+* CONSULTAS - FUNÇÕES DE AGREGAÇÃO: As funções de agregação no SQL Server são usadas para realizar cálculos e resumos de dados em grupos de registros. Elas operam sobre um conjunto de linhas e retornam um único valor, como soma, média, contagem, entre outros. Essas funções são comumente utilizadas com a cláusula GROUP BY, mas também podem ser usadas sem ela.
+
+Aqui estão as principais funções de agregação no SQL Server:
+
+COUNT()
+
+Conta o número de linhas em um conjunto de resultados ou o número de valores não nulos em uma coluna específica.
+
+Exemplo:
+
+sql
+Copiar
+SELECT COUNT(*) FROM vendas;
+Conta o número total de registros na tabela vendas.
+
+sql
+Copiar
+SELECT COUNT(preco) FROM vendas;
+Conta o número de registros na coluna preco, desconsiderando valores nulos.
+
+SUM()
+
+Retorna a soma dos valores de uma coluna numérica.
+Exemplo:
+sql
+Copiar
+SELECT SUM(preco) FROM vendas;
+Soma os valores da coluna preco de todos os registros na tabela vendas.
+AVG()
+
+Retorna a média (valor médio) dos valores de uma coluna numérica.
+Exemplo:
+sql
+Copiar
+SELECT AVG(preco) FROM vendas;
+Calcula a média dos preços na tabela vendas.
+MIN()
+
+Retorna o valor mínimo de uma coluna.
+Exemplo:
+sql
+Copiar
+SELECT MIN(preco) FROM vendas;
+Retorna o menor valor na coluna preco da tabela vendas.
+MAX()
+
+Retorna o valor máximo de uma coluna.
+Exemplo:
+sql
+Copiar
+SELECT MAX(preco) FROM vendas;
+Retorna o maior valor na coluna preco da tabela vendas.
+GROUP_CONCAT() (Não é nativa no SQL Server, mas em alguns casos pode ser implementada com STRING_AGG() no SQL Server 2017 ou superior)
+
+Concatena os valores de uma coluna em um único valor, separados por um delimitador.
+Exemplo (SQL Server 2017+):
+sql
+Copiar
+SELECT STRING_AGG(nome, ', ') AS nomes 
+FROM clientes;
+Retorna uma lista de todos os nomes na tabela clientes, separados por vírgula.
+Exemplos com GROUP BY
+O uso de funções de agregação é comum em conjunto com a cláusula GROUP BY, que agrupa as linhas com base em uma ou mais colunas e permite aplicar as funções de agregação a cada grupo.
+
+Exemplo de uso de GROUP BY com funções de agregação:
+
+sql
+Copiar
+SELECT categoria, COUNT(*) AS total_vendas
+FROM vendas
+GROUP BY categoria;
+Aqui, o SQL conta o número de vendas para cada categoria na tabela vendas.
+
+Outro exemplo, somando os preços de vendas por categoria:
+
+sql
+Copiar
+SELECT categoria, SUM(preco) AS total_vendas
+FROM vendas
+GROUP BY categoria;
+Considerações:
+As funções de agregação ignoram valores NULL, exceto quando explicitamente tratado, como no caso de COUNT(*), que conta todas as linhas, incluindo aquelas com valores NULL em qualquer coluna.
+O uso de funções de agregação pode ser combinado com outras cláusulas como HAVING, que filtra os resultados agregados (ao contrário da cláusula WHERE, que filtra antes da agregação).
+Exemplo de filtro após agregação:
+
+sql
+Copiar
+SELECT categoria, SUM(preco) AS total_vendas
+FROM vendas
+GROUP BY categoria
+HAVING SUM(preco) > 1000;
+Neste exemplo, a consulta retorna apenas as categorias com vendas totais superiores a 1000.
+
+Essas funções de agregação são essenciais para análise de dados e relatórios no SQL Server.
+
+
+
+ 	
 
 
 
