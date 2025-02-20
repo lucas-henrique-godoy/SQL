@@ -764,4 +764,32 @@ WHERE NomeAutor LIKE 'J___';
 SELECT * FROM Livro
 WHERE NomeLivro NOT LIKE '[aeiou0-9]%';
 
+--___________________________________________________________________________________________________________
+
+/*
+BACKUP E RESTAURAÇÃO DE BANCOS DE DADOS:
+
+Sintaxe:
+
+*BACKUP:
+BACKUP DATABASE nome_banco
+TO DISK = 'X:\CAMINHO\nome_banco.bak'
+[WITH FORMAT]; 
+GO
+
+--------------------------------------------------------
+
+* RESTAURAÇÃO:
+RESTORE DATABASE nome_banco
+FROM DISK = 'X:\CAMINHO\nome_banco.bak'
+[WITH REPLACE]; 
+GO
+
+**OBS: Os itens dentro dos colchetes das sintaxes são opcionais
+*/
+
+BACKUP DATABASE Biblioteca
+TO DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Biblioteca.bak'; 
+GO
+
 
