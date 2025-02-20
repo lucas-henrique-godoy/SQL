@@ -640,3 +640,12 @@ SELECT NomeEditora Nome, 'Editora' AS Tipo FROM Editora;
 SELECT NomeLivro AS Nome, 'Livro' AS  Tipo FROM Livro
 UNION
 SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto;
+
+--EXEMPLO 03
+SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor
+UNION
+SELECT NomeEditora AS Nome, 'Editora' AS Tipo From Editora
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto
+UNION
+SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
