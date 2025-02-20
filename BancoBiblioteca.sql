@@ -718,5 +718,15 @@ SELECT * FROM Livro
 WHERE NomeLivro LIKE '[FD]%';
 
 --EXEMPLO 03
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[^F^D]%';
+
+--EXEMPLO 04
 SELECT *  FROM Autor
 WHERE NomeAutor NOT LIKE 'S%';
+
+--EXEMPLO 05
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[aeiou]%';
+
+
