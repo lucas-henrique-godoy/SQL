@@ -680,3 +680,11 @@ FROM Livro;
 
 SELECT SUM(PreçoLivro) / COUNT(*) AS 'Preço Médio'
 FROM Livro;
+
+SELECT NomeLivro,PreçoLivro
+FROM Livro
+WHERE PreçoLivro = (
+	SELECT MAX(PreçoLivro)
+	FROM Livro
+	);
+
