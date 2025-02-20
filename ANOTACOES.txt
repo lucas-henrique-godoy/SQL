@@ -1232,7 +1232,208 @@ HAVING SUM(preco) > 1000;
 Neste exemplo, a consulta retorna apenas as categorias com vendas totais superiores a 1000.
 
 Essas funções de agregação são essenciais para análise de dados e relatórios no SQL Server.
+_______________________________________________________________________________________________________________________________________________________________________
 
+CLÁUSULA LIKE: No SQL Server, a cláusula LIKE é utilizada para buscar um padrão específico dentro de uma coluna de texto. Ela é frequentemente utilizada em consultas que exigem pesquisa de strings que atendem a um padrão específico, e pode ser acompanhada de metacaracteres para definir como a busca será realizada.
+
+Sintaxe do LIKE
+sql
+Copiar
+SELECT coluna
+FROM tabela
+WHERE coluna LIKE 'padrão';
+Metacaracteres no LIKE
+% – Corresponde a qualquer sequência de caracteres (inclusive uma sequência vazia).
+
+Exemplo: LIKE 'A%' irá corresponder a qualquer valor que comece com a letra "A".
+Exemplo de consulta:
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE 'A%';
+Isso retornaria todos os nomes que começam com "A".
+_ – Corresponde a exatamente um caractere qualquer.
+
+Exemplo: LIKE 'A__' irá corresponder a qualquer string de três caracteres que comece com "A".
+Exemplo de consulta:
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE 'A__';
+Isso retornaria nomes com exatamente três caracteres, começando com "A".
+[] – Corresponde a um único caractere dentro de um intervalo ou conjunto especificado.
+
+Exemplo: LIKE '[A-C]%' corresponderá a qualquer valor que comece com "A", "B", ou "C".
+Exemplo de consulta:
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE '[A-C]%';
+Isso retornaria nomes que começam com "A", "B" ou "C".
+[^] – Corresponde a qualquer caractere que não esteja dentro de um intervalo ou conjunto especificado.
+
+Exemplo: LIKE '[^A-C]%' corresponderá a qualquer valor que não comece com "A", "B" ou "C".
+Exemplo de consulta:
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE '[^A-C]%';
+Isso retornaria nomes que não começam com "A", "B" ou "C".
+Exemplos práticos:
+Encontrar nomes que começam com "Jo":
+
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE 'Jo%';
+Encontrar todos os empregados cujo nome tenha "ana" em qualquer parte do nome:
+
+sql
+Copiar
+SELECT nome
+FROM empregados
+WHERE nome LIKE '%ana%';
+Encontrar códigos de produto que têm exatamente 6 caracteres e começam com "P":
+
+sql
+Copiar
+SELECT codigo_produto
+FROM produtos
+WHERE codigo_produto LIKE 'P_____' ;
+Buscar produtos cujo código não começa com "A" ou "B":
+
+sql
+Copiar
+SELECT nome_produto
+FROM produtos
+WHERE nome_produto LIKE '[^A-B]%';
+A cláusula LIKE é muito útil em consultas quando você precisa de flexibilidade para buscar padrões de texto específicos no SQL Server!
+_______________________________________________________________________________________________________________________________________________________________________
+
+* BACKUP E RESTAURAÇÃO DE BANCOS DE DADOS: No SQL Server, backup e restauração são processos essenciais para garantir a segurança e a integridade dos dados. O backup é usado para criar uma cópia de segurança de um banco de dados, enquanto a restauração é o processo de recuperar um banco de dados a partir de um backup realizado anteriormente.
+
+1. Backup de Banco de Dados
+O backup cria uma cópia do banco de dados em um ponto no tempo. Isso pode ser usado para recuperação em caso de falha, corrupção de dados ou outro desastre. O SQL Server oferece diferentes tipos de backup:
+
+Tipos de Backup
+Backup Completo (Full Backup):
+
+Cópia completa de todo o banco de dados, incluindo todos os dados, objetos e transações logadas até o momento do backup.
+Sintaxe:
+sql
+Copiar
+BACKUP DATABASE nome_do_banco
+TO DISK = 'C:\caminho\para\backup.bak';
+Este é o tipo de backup mais comum e é necessário para uma recuperação completa do banco de dados.
+Backup Diferencial (Differential Backup):
+
+Faz um backup apenas das páginas de dados que foram alteradas desde o último backup completo.
+Isso reduz o tamanho do backup e o tempo necessário para realizá-lo.
+Sintaxe:
+sql
+Copiar
+BACKUP DATABASE nome_do_banco
+TO DISK = 'C:\caminho\para\backup_diferencial.bak'
+WITH DIFFERENTIAL;
+Use este tipo de backup após um backup completo para capturar alterações incrementais no banco de dados.
+Backup de Log de Transações (Transaction Log Backup):
+
+Faz backup do log de transações, o que permite recuperar o banco de dados até o ponto exato de uma transação (útil para recuperação em tempo real).
+Sintaxe:
+sql
+Copiar
+BACKUP LOG nome_do_banco
+TO DISK = 'C:\caminho\para\backup_log.trn';
+O backup de log é necessário quando o banco de dados está em modo de recuperação completo ou modo de recuperação bulk-logged.
+Backup de Arquivos ou Filegroup:
+
+Faz backup de um arquivo ou grupo de arquivos específicos do banco de dados. Útil para bancos de dados grandes com várias partes.
+Sintaxe:
+sql
+Copiar
+BACKUP DATABASE nome_do_banco
+FILE = 'nome_do_arquivo'
+TO DISK = 'C:\caminho\para\backup_arquivo.bak';
+Exemplo de Backup Completo:
+sql
+Copiar
+BACKUP DATABASE MinhaLoja
+TO DISK = 'C:\Backups\MinhaLoja_Backup.bak';
+Backup de Log de Transações:
+sql
+Copiar
+BACKUP LOG MinhaLoja
+TO DISK = 'C:\Backups\MinhaLoja_Log.trn';
+2. Restauração de Banco de Dados
+A restauração é o processo de recuperar um banco de dados a partir de um backup. Existem diferentes opções para restaurar um banco de dados, dependendo do tipo de backup realizado.
+
+Tipos de Restauração
+Restaurar Backup Completo:
+
+Este é o processo básico de restauração do banco de dados a partir de um backup completo.
+Sintaxe:
+sql
+Copiar
+RESTORE DATABASE nome_do_banco
+FROM DISK = 'C:\caminho\para\backup.bak';
+Restaurar Backup Diferencial:
+
+Se você fez um backup completo e, depois, um backup diferencial, primeiro restaure o backup completo e, em seguida, o backup diferencial.
+Sintaxe:
+sql
+Copiar
+-- Restaurar Backup Completo
+RESTORE DATABASE nome_do_banco
+FROM DISK = 'C:\caminho\para\backup_completo.bak';
+
+-- Restaurar Backup Diferencial
+RESTORE DATABASE nome_do_banco
+FROM DISK = 'C:\caminho\para\backup_diferencial.bak'
+WITH NORECOVERY;
+Restaurar Log de Transações:
+
+Para restaurar um banco de dados até um ponto no tempo, você pode restaurar os backups de log de transações.
+Sintaxe:
+sql
+Copiar
+RESTORE DATABASE nome_do_banco
+FROM DISK = 'C:\caminho\para\backup_completo.bak';
+
+RESTORE LOG nome_do_banco
+FROM DISK = 'C:\caminho\para\backup_log.trn'
+WITH STOPAT = '2025-02-20 10:00:00';
+Exemplo Completo de Restauração:
+Para restaurar completamente um banco de dados com um backup completo, seguido de um diferencial e logs de transações:
+
+sql
+Copiar
+-- Passo 1: Restaurar o Backup Completo
+RESTORE DATABASE MinhaLoja
+FROM DISK = 'C:\Backups\MinhaLoja_Backup.bak';
+
+-- Passo 2: Restaurar o Backup Diferencial (se houver)
+RESTORE DATABASE MinhaLoja
+FROM DISK = 'C:\Backups\MinhaLoja_Diferencial.bak'
+WITH NORECOVERY;
+
+-- Passo 3: Restaurar o Log de Transações (se houver)
+RESTORE LOG MinhaLoja
+FROM DISK = 'C:\Backups\MinhaLoja_Log.trn'
+WITH RECOVERY;
+3. Opções de Recuperação
+WITH RECOVERY: Finaliza a restauração e torna o banco de dados acessível.
+WITH NORECOVERY: Permite continuar a restauração com outros backups (útil em restaurações em cadeia, como backup completo + diferencial + log).
+WITH STANDBY: Usado quando se quer restaurar o banco e deixá-lo disponível para leitura enquanto ele ainda está sendo restaurado.
+4. Considerações Importantes
+Backup Completo é a base para qualquer recuperação. Para garantir a integridade dos dados, é recomendado fazer backups completos regularmente.
+Backups Diferenciais e Log de Transações ajudam a reduzir o tempo de recuperação, pois capturam apenas as mudanças ocorridas após o último backup completo.
+O Modo de Recuperação do banco de dados (Simples, Completo, ou Bulk-Logged) afeta os tipos de backup disponíveis e as opções de restauração.
+Esses processos são essenciais para garantir a continuidade do serviço e a proteção contra perda de dados no SQL Server!
 
 
  	
