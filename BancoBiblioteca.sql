@@ -789,7 +789,7 @@ GO
 */
 
 BACKUP DATABASE Biblioteca
-TO DISK = 'C:\SQL\Biblioteca.bak'; 
+TO DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Backups\Biblioteca.bak'; 
 GO
 
 
