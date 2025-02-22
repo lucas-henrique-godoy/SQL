@@ -493,9 +493,303 @@ END
 
 SELECT * FROM Teste;
 
---LIMPAR A TABELA
+--LIMPAR A TABELA E RESETAR O IDENTITY
 TRUNCATE TABLE Teste;
 
 --VERIFICAR O VALOR ATUAL DE IDENTITY
 SELECT IDENT_CURRENT('Teste');
+--_________________________________________________________________________________________________________________________
+
+-- ATUALIZAR REGISTROS: CLÁUSULA UPDATE
+/* SINTAXE
+UPDATE tabela
+SET coluna = novo_valor
+WHERE coluna = filtro;
+*/
+
+-- Exemplo 1: Seleciona dados da tabela Livro
+SELECT IdLivro, NomeLivro, PreçoLivro, NumeroPaginas 
+FROM Livro;  -- Seleciona as colunas IdLivro, NomeLivro, PreçoLivro e NumeroPaginas da tabela Livro
+
+
+-- Exemplo 2: Atualiza o nome de um livro com IdLivro igual a 116
+UPDATE Livro
+SET NomeLivro = 'Eu, Robô'  -- Altera o nome do livro para 'Eu, Robô'
+WHERE IdLivro = 116;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 116 seja atualizado
+
+
+-- Exemplo 3: Atualiza o preço de um livro com IdLivro igual a 105
+UPDATE Livro
+SET PreçoLivro = 60.00  -- Altera o preço do livro para 60.00
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 4: Aumenta o preço de um livro com IdLivro igual a 105 em 10%
+UPDATE Livro
+SET PreçoLivro = PreçoLivro * 1.1  -- O preço do livro será multiplicado por 1.1 (aumentando em 10%)
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 5: Reduz o preço de um livro com IdLivro igual a 105 em 20%
+UPDATE Livro
+SET PreçoLivro = PreçoLivro * 0.8  -- O preço do livro será multiplicado por 0.8 (diminuindo em 20%)
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+
+
+-- Exemplo 6: Atualiza o preço e o número de páginas de um livro com IdLivro igual a 105
+UPDATE Livro
+SET PreçoLivro = 60.00,  -- Altera o preço do livro para 60.00
+    NumeroPaginas = 320  -- Altera o número de páginas do livro para 320
+WHERE IdLivro = 105;  -- A condição WHERE garante que apenas o livro com IdLivro igual a 105 seja atualizado
+--_________________________________________________________________________________________________________________________
+
+-- NOMES ALTERNATIVOS: AS (ALIAS) 
+/* SINTAXE
+SELECT coluna1 [AS] nome_alternativo1
+FROM tabela [AS] nome_alternativo_tabela
+*/
+/*
+a palavra as é opcional, mas é recomendada pelo professor a ser usada
+OBS elas dentro dos colchetes somente para mostrar a sua opcionalidade,
+mas na sintaxe os colchetes não são usados.
+*/
+
+-- Seleciona o campo "NomeLivro" da tabela "Livro" e o renomeia como "Livros"
+SELECT NomeLivro AS Livros 
+FROM Livro;
+
+-- Seleciona o campo "NomeLivro" da tabela "Livro" e o renomeia como "Livros", sem usar a palavra-chave "AS"
+SELECT NomeLivro  Livros 
+FROM Livro;
+
+-- Seleciona "NomeAutor" e "SobreNomeAutor" da tabela "Autor", renomeando para "Nome" e "Sobrenome" respectivamente
+SELECT NomeAutor AS Nome, A.SobreNomeAutor AS Sobrenome 
+FROM Autor AS A;
+
+-- Seleciona os 3 livros mais caros e seus preços, ordenando pelo preço de forma decrescente
+SELECT TOP(3) NomeLivro AS 'Livros mais caros', PreçoLivro AS 'Preço do Livro' 
+FROM Livro AS L 
+ORDER BY 'Preço do Livro' DESC;
+
+--___________________________________________________________________________________________________________________
+
+-- FILTROS COMBINADOS: OPERADORES LÓGICOS AND, OR, NOT
+/* AND
+OR
+NOT
+*/
+
+-- Seleciona todos os livros com IdLivro entre 102 e 108 (excluindo 102 e 108)
+SELECT * FROM Livro
+WHERE IdLivro > 102 AND IdLivro < 108;
+
+-- Seleciona todos os livros onde IdLivro é maior que 110 ou IdEditora é menor que 4
+SELECT * FROM Livro
+WHERE IdLivro > 110 OR IdEditora < 4;
+
+-- Seleciona todos os livros onde IdLivro é maior que 110 ou IdEditora não é menor que 4 (ou seja, IdEditora é 4 ou maior)
+SELECT * FROM Livro
+WHERE IdLivro > 110 OR NOT IdEditora < 4;
+
+
+
+-- BETWEEN: SELEÇÃO DE INTERVALOS
+/*
+SINTAXE:
+SELECT colunas
+FROM tabela
+WHERE coluna BETWEEN valor1 AND valor2;
+*/
+
+-- Seleciona todos os livros publicados entre 7 de maio de 2004 e 7 de maio de 2014
+SELECT * FROM Livro
+WHERE DataPub BETWEEN '20040507' AND '20140507';
+
+-- Seleciona os livros com preço entre 50.00 e 100.00, renomeando as colunas para 'Livro' e 'Preço'
+SELECT NomeLivro AS Livro, PreçoLivro AS Preço
+FROM Livro
+WHERE PreçoLivro BETWEEN 50.00 AND 100.00;
+
+-- Seleciona os livros com preço maior ou igual a 20.00, e publicados entre 20 de junho de 2005 e 20 de junho de 2010,
+-- ou publicados entre 1º de janeiro de 2016 e 1º de janeiro de 2020, ordenados por DataPub em ordem decrescente
+SELECT NomeLivro, DataPub, PreçoLivro
+FROM Livro
+WHERE PreçoLivro >= 20.00 
+AND DataPub BETWEEN '20050620' AND '20100620'
+OR DataPub BETWEEN '20160101' AND '20200101'
+ORDER BY DataPub DESC;
+--______________________________________________________________________________________________________________________
+
+/*
+COMBINAR CONSULTAS COM OPERADOR UNION
+
+SINTAXE:
+
+SELECT colunas FROM tabela1
+UNION
+SELECT colunas FROM tabela2...
+*/
+
+--EXEMPLO 01
+SELECT NomeAutor Nome, 'Autor' AS Tipo FROM Autor
+UNION 
+SELECT NomeEditora Nome, 'Editora' AS Tipo FROM Editora;
+
+
+-- EXEMPLO 02
+SELECT NomeLivro AS Nome, 'Livro' AS  Tipo FROM Livro
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto;
+
+--EXEMPLO 03
+SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor
+UNION
+SELECT NomeEditora AS Nome, 'Editora' AS Tipo From Editora
+UNION
+SELECT NomeAssunto AS Nome, 'Assunto' AS Tipo FROM Assunto
+UNION
+SELECT NomeLivro AS Nome, 'Livro' AS Tipo FROM Livro;
+--____________________________________________________________________________________________________________
+
+-- FUNÇÕES DE AGREGAÇÃO
+/*
+MIN, AX, AVG, SUM, COUNT
+*/
+
+SELECT COUNT(*) Total 
+FROM Autor;
+
+SELECT MAX(PreçoLivro) 'Mais Caro'
+FROM Livro;
+
+SELECT MIN(NumeroPaginas)
+FROM Livro;
+
+SELECT AVG(PreçoLivro) 'Preço Médio'
+FROM Livro;
+
+SELECT SUM(PreçoLivro) 'Valor Total'
+FROM Livro;
+
+SELECT COUNT(*) Total
+FROM Livro
+WHERE IdAssunto = 1;
+
+SELECT SUM(PreçoLivro) / COUNT(*) AS 'Preço Médio'
+FROM Livro;
+
+SELECT SUM(PreçoLivro) / COUNT(*) AS 'Preço Médio'
+FROM Livro;
+
+SELECT NomeLivro,PreçoLivro
+FROM Livro
+WHERE PreçoLivro = (
+	SELECT MAX(PreçoLivro)
+	FROM Livro
+	);
+
+--___________________________________________________________________________________________________________
+
+--CLÁUSULA LIKE (e NOT LIKE):
+
+/*
+Sintaxe:
+
+SELECT colunas
+FROM tabela
+WHERE coluna LIKE padrão;
+*/
+-------------------------------------------------------------------------------------------------
+
+/*
+METACARACTERES:
+% - qualquer cadeia de 0 ou mais caracteres.
+_ - qualquer caractere único.
+[] caracteres únicos no intervalo ou conjunto especificado.
+[^] caracteres únicos NÃO no intervalo ou conjunto especificado.
+*/
+
+--EXEMPLO 01
+SELECT * FROM Livro
+WHERE NomeLivro LIKE 'F%';
+
+--EXEMPLO 02
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[FD]%';
+
+--EXEMPLO 03
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[^F^D]%';
+
+--EXEMPLO 04
+SELECT *  FROM Autor
+WHERE NomeAutor NOT LIKE 'S%';
+
+--EXEMPLO 05
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[aeiou]%';
+
+--EXEMPLO 06
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '%[aeiou]';
+
+--EXEMPLO 07
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '[0-9]%';
+
+--EXEMPLO 08
+SELECT NomeLivro FROM Livro
+WHERE NomeLivro LIKE 'A%o';
+
+
+--EXEMPLO 09
+SELECT NomeAutor, SobrenomeAutor
+FROM Autor
+WHERE NomeAutor LIKE 'R%' AND SobreNomeAutor LIKE 'B%';
+
+--EXEMPLO 10
+SELECT * FROM Livro
+WHERE NomeLivro LIKE '%[aeiou]_';
+
+--EXEMPLO 11
+SELECT NomeEditora FROM Editora
+WHERE NomeEditora LIKE '[o-t]%';
+
+--EXEMPLO 12
+SELECT NomeAutor, SobrenomeAutor
+FROM Autor
+WHERE NomeAutor LIKE 'J___';
+
+--EXEMPLO 13
+SELECT * FROM Livro
+WHERE NomeLivro NOT LIKE '[aeiou0-9]%';
+
+--___________________________________________________________________________________________________________
+
+/*
+BACKUP E RESTAURAÇÃO DE BANCOS DE DADOS:
+
+Sintaxe:
+
+*BACKUP:
+BACKUP DATABASE nome_banco
+TO DISK = 'X:\CAMINHO\nome_banco.bak'
+[WITH FORMAT]; 
+GO
+
+--------------------------------------------------------
+
+* RESTAURAÇÃO:
+RESTORE DATABASE nome_banco
+FROM DISK = 'X:\CAMINHO\nome_banco.bak'
+[WITH REPLACE]; 
+GO
+
+**OBS: Os itens dentro dos colchetes das sintaxes são opcionais
+*/
+
+BACKUP DATABASE Biblioteca
+TO DISK = 'C:\SQL\Biblioteca.bak'; 
+GO
+
 
