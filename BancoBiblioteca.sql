@@ -794,6 +794,20 @@ BACKUP DATABASE Biblioteca
 TO DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Backups\Biblioteca.bak'; 
 GO
 
+-- Saindo do banco Biblioteca, fechando todas as conexões ao banco e permitindo que apenas um único usuário se conecte a ele.
 USE master;
+GO
+ALTER DATABASE Biblioteca
+SET single_user WITH ROLLBACK immediate;
+GO
+DROP DATABASE Biblioteca;
+GO
 
+--Restaurando o Banco Biblioteca
+RESTORE DATABASE Biblioteca
+FROM DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Backups\Biblioteca.bak'; 
+GO
 
+USE Biblioteca
+GO
+SELECT * FROM Livro;
