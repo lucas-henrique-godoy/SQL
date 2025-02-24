@@ -808,6 +808,7 @@ RESTORE DATABASE Biblioteca
 FROM DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Backups\Biblioteca.bak'; 
 GO
 
+-- Testando se a restauração deu certo
 USE Biblioteca
 GO
 SELECT * FROM Livro;
