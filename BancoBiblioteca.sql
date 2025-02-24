@@ -788,8 +788,12 @@ GO
 **OBS: Os itens dentro dos colchetes das sintaxes são opcionais
 */
 
+
+--Fazendo Backup
 BACKUP DATABASE Biblioteca
 TO DISK = 'C:\Users\lucas\OneDrive\Área de Trabalho\SQL\Backups\Biblioteca.bak'; 
 GO
+
+USE master;
 
 
