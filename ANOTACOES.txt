@@ -600,14 +600,14 @@ Isso traria os 5 produtos com as maiores quantidades vendidas.
 Em outras palavras, WITH TIES permite que a consulta retorne mais registros do que o número indicado no TOP, caso haja empates na ordenação.
 
 Sintaxe com WITH TIES:
-sql
-Copiar
 SELECT TOP (n) WITH TIES coluna1, coluna2, ...
 FROM tabela
 ORDER BY colunaOrdenada;
-n: O número de registros que você deseja recuperar, mas com a possibilidade de retornar mais registros se houver empates.
-WITH TIES: Indica que você quer incluir todos os registros empatados com o valor da última linha incluída.
-colunaOrdenada: A coluna pela qual os dados serão ordenados.
+
+- n: O número de registros que você deseja recuperar, mas com a possibilidade de retornar mais registros se houver empates.
+- WITH TIES: Indica que você quer incluir todos os registros empatados com o valor da última linha incluída.
+- colunaOrdenada: A coluna pela qual os dados serão ordenados.
+
 Como funciona:
 Sem o WITH TIES, se você solicitar, por exemplo, os 10 primeiros registros ordenados por uma coluna (como preço ou data), e houver empates na 10ª posição, o SQL Server retornará somente 10 registros, excluindo os empatados.
 
@@ -617,51 +617,47 @@ Exemplos de uso do WITH TIES:
 Retornando os 5 livros mais baratos, incluindo empates:
 
 Suponha que você queira pegar os 5 livros mais baratos da tabela Livro, mas se o preço do 5º livro for igual a outros, você também quer que esses livros empatados apareçam na consulta:
-
-sql
-Copiar
 SELECT TOP 5 WITH TIES NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro ASC;
+
 Se houver mais de 5 livros com o mesmo preço que o 5º livro mais barato, todos esses livros empatados serão incluídos na consulta.
 Portanto, se houver, por exemplo, 8 livros com o mesmo preço na 5ª posição, a consulta retornará 8 livros ao invés de 5.
+
 Exemplo com empates em ordenação decrescente:
-
 Se você quiser pegar os 3 livros mais caros da tabela Livro, mas também incluir todos os livros que tenham o mesmo preço que o 3º livro mais caro:
-
-sql
-Copiar
 SELECT TOP 3 WITH TIES NomeLivro, PreçoLivro
 FROM Livro
 ORDER BY PreçoLivro DESC;
+
 Nesse caso, os livros mais caros são ordenados de forma decrescente, e caso haja empates na 3ª posição (por exemplo, vários livros com o mesmo preço), todos esses livros empatados também serão retornados.
+
 Diferença entre TOP e TOP WITH TIES:
-TOP: Limita exatamente o número de registros especificado. Exemplo: SELECT TOP 5 ... retornará exatamente 5 registros.
-TOP WITH TIES: Retorna mais registros se houver empates na última posição especificada. Exemplo: SELECT TOP 5 WITH TIES ... pode retornar mais de 5 registros se houver empates na 5ª posição.
+- TOP: Limita exatamente o número de registros especificado. Exemplo: SELECT TOP 5 ... retornará exatamente 5 registros.
+- TOP WITH TIES: Retorna mais registros se houver empates na última posição especificada. Exemplo: SELECT TOP 5 WITH TIES ... pode retornar mais de 5 registros se houver empates na 5ª posição.
+
 Exemplos de uso prático:
 Suponha que você tenha a tabela Vendas com as colunas Produto e QuantidadeVendida e deseja listar os 10 produtos mais vendidos, incluindo os produtos que tenham o mesmo número de vendas que o 10º mais vendido.
 
 Usando TOP sem WITH TIES:
-
-sql
-Copiar
 SELECT TOP 10 Produto, QuantidadeVendida
 FROM Vendas
 ORDER BY QuantidadeVendida DESC;
+
 Esse código retornará apenas 10 produtos, com as maiores quantidades vendidas. Se houver mais produtos com a mesma quantidade de vendas que o 10º, eles não serão retornados.
 
 Usando TOP WITH TIES:
-
-sql
-Copiar
 SELECT TOP 10 WITH TIES Produto, QuantidadeVendida
 FROM Vendas
 ORDER BY QuantidadeVendida DESC;
+
 Nesse caso, o código retornará todos os produtos com as maiores quantidades vendidas, incluindo aqueles que tiverem a mesma quantidade de vendas que o 10º produto, possivelmente resultando em mais de 10 registros.
 
 Observações importantes:
 O uso de WITH TIES é especialmente útil quando você precisa garantir que todos os registros com valores empatados sejam incluídos, como em relatórios de rankings, vendas ou qualquer situação em que empates sejam relevantes.
+
 WITH TIES deve ser acompanhado de uma cláusula ORDER BY, pois o emparelhamento e ordenação dos registros depende da ordenação.
+
 Resumo:
 SELECT TOP n: Limita a consulta aos n primeiros registros.
 WITH TIES: Inclui todos os registros que tenham o mesmo valor da última linha retornada (quando houver empates), mesmo que isso faça o número total de registros ser maior que o especificado.
@@ -670,22 +666,23 @@ ________________________________________________________________________________
 * CONSULTAS: FILTROS- CLÁUSULA WHERE: A cláusula WHERE é usada em consultas SQL para filtrar registros que atendem a uma condição específica. Ela permite que você selecione apenas as linhas que atendem a um critério determinado, ajudando a refinar os resultados da consulta.
 
 Sintaxe básica da cláusula WHERE:
-sql
-Copiar
+
 SELECT coluna1, coluna2, ...
 FROM tabela
 WHERE condição;
+
 Componentes principais:
-coluna1, coluna2, ...: São as colunas que você deseja selecionar.
-tabela: A tabela de onde os dados serão extraídos.
-condição: A condição que deve ser atendida pelos registros para que sejam retornados na consulta.
+- coluna1, coluna2, ...: São as colunas que você deseja selecionar.
+- tabela: A tabela de onde os dados serão extraídos.
+- condição: A condição que deve ser atendida pelos registros para que sejam retornados na consulta.
+
 Exemplo básico:
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro > 100.00;
+
 Neste exemplo, estamos selecionando NomeLivro e PreçoLivro da tabela Livro, mas apenas os livros cujo preço é maior que 100.00.
+
 Como funciona a cláusula WHERE:
 A WHERE permite especificar condições de filtragem com base em operadores e valores. As condições podem ser simples ou complexas, utilizando uma variedade de operadores.
 
@@ -698,134 +695,106 @@ Operadores de comparação:
 < (menor que)
 >= (maior ou igual a)
 <= (menor ou igual a)
-Exemplo:
 
-sql
-Copiar
+Exemplo:
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro >= 50.00;
+
 Operadores lógicos:
+- AND: Usado para combinar várias condições. Todos os critérios precisam ser verdadeiros.
+- OR: Usado para combinar várias condições. Pelo menos uma das condições precisa ser verdadeira.
+- NOT: Negação de uma condição.
 
-AND: Usado para combinar várias condições. Todos os critérios precisam ser verdadeiros.
-OR: Usado para combinar várias condições. Pelo menos uma das condições precisa ser verdadeira.
-NOT: Negação de uma condição.
 Exemplo:
-
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro > 50.00 AND PreçoLivro < 100.00;
-Ou:
 
-sql
-Copiar
+Ou:
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro < 50.00 OR PreçoLivro > 200.00;
-Operadores de correspondência:
 
+Operadores de correspondência:
 LIKE: Usado para comparar strings, permitindo o uso de wildcards (caracteres curinga). O % representa qualquer sequência de caracteres, e o _ representa um único caractere.
 
 Exemplo:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE NomeLivro LIKE 'A%';
+
 Isso retornará todos os livros cujo nome começa com a letra "A".
 
 BETWEEN: Usado para filtrar valores dentro de um intervalo especificado.
-
 Exemplo:
-
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro BETWEEN 50.00 AND 100.00;
+
 IN: Usado para especificar uma lista de valores possíveis.
-
 Exemplo:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE IdAssunto IN (1, 2, 3);
-Operadores de valor nulo:
 
+Operadores de valor nulo:
 IS NULL: Usado para verificar se um campo tem valor nulo.
 
 IS NOT NULL: Usado para verificar se um campo não é nulo.
 
 Exemplo:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE PreçoLivro IS NOT NULL;
+
 Exemplos adicionais:
 Filtrando por um valor específico:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE IdLivro = 1;
 Retorna o livro cujo IdLivro é igual a 1.
 
 Filtrando por valor maior que:
-
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro > 200.00;
+
 Retorna os livros cujo PreçoLivro é maior que 200.00.
 
 Filtrando por múltiplas condições com AND:
-
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro > 100.00 AND IdAssunto = 2;
+
 Retorna os livros que custam mais de 100.00 e têm o IdAssunto igual a 2.
 
 Filtrando por valores dentro de um intervalo com BETWEEN:
-
-sql
-Copiar
 SELECT NomeLivro, PreçoLivro
 FROM Livro
 WHERE PreçoLivro BETWEEN 50.00 AND 150.00;
+
 Retorna livros cujo preço está entre 50.00 e 150.00.
 
 Filtrando por padrão de string com LIKE:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE NomeLivro LIKE '%Python%';
+
 Retorna livros cujo nome contém a palavra "Python".
 
 Filtrando por valores específicos com IN:
-
-sql
-Copiar
 SELECT NomeLivro
 FROM Livro
 WHERE IdAssunto IN (1, 3, 5);
+
 Retorna livros cujos IdAssunto são 1, 3 ou 5.
 
 Considerações importantes sobre a cláusula WHERE:
-Case Sensitivity: Em algumas bases de dados, as comparações podem ser case-sensitive (sensíveis a maiúsculas e minúsculas). Isso depende da configuração do banco de dados. No SQL Server, por exemplo, comparações de strings podem ser sensíveis a maiúsculas/minúsculas, dependendo da collation do banco.
-Nulos: Ao trabalhar com valores nulos, lembre-se de usar IS NULL ou IS NOT NULL, porque comparações como = NULL não funcionam corretamente.
+
+- Case Sensitivity: Em algumas bases de dados, as comparações podem ser case-sensitive (sensíveis a maiúsculas e minúsculas). Isso depende da configuração do banco de dados. No SQL Server, por exemplo, comparações de strings podem ser sensíveis a maiúsculas/minúsculas, dependendo da collation do banco.
+- Nulos: Ao trabalhar com valores nulos, lembre-se de usar IS NULL ou IS NOT NULL, porque comparações como = NULL não funcionam corretamente.
+
 Resumo:
 A cláusula WHERE é uma das partes mais importantes em consultas SQL. Ela permite filtrar registros com base em condições específicas, utilizando operadores de comparação, lógicos, correspondência, e valor nulo. Ela é essencial para refinar a seleção de dados e retornar apenas os registros relevantes para a consulta.
 _______________________________________________________________________________________________________________________________________________________________________
@@ -1041,26 +1010,25 @@ Exemplo simples de uso do UNION:
 Imagina que você tem duas tabelas, uma com autores e outra com editoras, e deseja juntar as duas em um único resultado, com uma coluna para os nomes e outra para identificar se é autor ou editora.
 
 Tabela Autor (com caracteres de teclado):
-diff
-Copiar
+
 +-------------+
 | NomeAutor   |
 +-------------+
 | João Silva  |
 | Maria Lima  |
 +-------------+
+
 Tabela Editora (com caracteres de teclado):
-diff
-Copiar
+
 +-------------+
 | NomeEditora |
 +-------------+
 | Editora A   |
 | Editora B   |
 +-------------+
+
 Consulta com UNION:
-sql
-Copiar
+
 SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor
 UNION 
 SELECT NomeEditora AS Nome, 'Editora' AS Tipo FROM Editora;
@@ -1070,8 +1038,7 @@ A primeira consulta seleciona os autores, atribuindo o valor 'Autor' à coluna T
 A segunda consulta seleciona as editoras, atribuindo o valor 'Editora' à coluna Tipo.
 O UNION junta os resultados dessas duas consultas, e o SQL automaticamente remove duplicatas.
 Resultado:
-diff
-Copiar
+
 +------------+---------+
 | Nome       | Tipo    |
 +------------+---------+
@@ -1080,45 +1047,41 @@ Copiar
 | Editora A  | Editora |
 | Editora B  | Editora |
 +------------+---------+
+
 2. Uso do AS para apelido de colunas
 O AS serve para dar um apelido para as colunas ou tabelas. Quando você utiliza AS, o SQL cria um nome temporário para a coluna que você está selecionando.
 
 Exemplo de uso do AS para dar apelido a uma coluna:
-sql
-Copiar
 SELECT NomeAutor AS Nome FROM Autor;
 Explicação:
 
 A coluna NomeAutor da tabela Autor está sendo renomeada para Nome no resultado da consulta. Esse nome Nome é um apelido temporário para a coluna NomeAutor.
 Resultado:
-diff
-Copiar
+
 +------------+
 | Nome       |
 +------------+
 | João Silva |
 | Maria Lima |
 +------------+
+
 3. Valor fixo em uma coluna (sem vínculo com as tabelas)
 Você também pode criar uma coluna virtual com valores fixos, como fizemos no exemplo com 'Autor' AS Tipo. Nesse caso, não estamos pegando valores das tabelas, mas criando um valor fixo para ser exibido na coluna.
 
 Exemplo de valor fixo em uma coluna:
-sql
-Copiar
 SELECT NomeAutor AS Nome, 'Autor' AS Tipo FROM Autor;
-Explicação:
 
+Explicação:
 'Autor' é um valor fixo, que será atribuído a todas as linhas na coluna Tipo.
 O AS Tipo cria uma coluna chamada Tipo e todos os registros dessa coluna terão o valor 'Autor'.
 Resultado:
-diff
-Copiar
 +------------+---------+
 | Nome       | Tipo    |
 +------------+---------+
 | João Silva | Autor   |
 | Maria Lima | Autor   |
 +------------+---------+
+
 Resumo:
 Operador UNION:
 
@@ -1142,93 +1105,68 @@ ________________________________________________________________________________
 
 Aqui estão as principais funções de agregação no SQL Server:
 
-COUNT()
-
-Conta o número de linhas em um conjunto de resultados ou o número de valores não nulos em uma coluna específica.
+COUNT(): Conta o número de linhas em um conjunto de resultados ou o número de valores não nulos em uma coluna específica.
 
 Exemplo:
-
-sql
-Copiar
 SELECT COUNT(*) FROM vendas;
 Conta o número total de registros na tabela vendas.
-
-sql
-Copiar
 SELECT COUNT(preco) FROM vendas;
 Conta o número de registros na coluna preco, desconsiderando valores nulos.
 
-SUM()
-
-Retorna a soma dos valores de uma coluna numérica.
+SUM(): Retorna a soma dos valores de uma coluna numérica.
 Exemplo:
-sql
-Copiar
 SELECT SUM(preco) FROM vendas;
 Soma os valores da coluna preco de todos os registros na tabela vendas.
-AVG()
 
-Retorna a média (valor médio) dos valores de uma coluna numérica.
+AVG(): Retorna a média (valor médio) dos valores de uma coluna numérica.
 Exemplo:
-sql
-Copiar
 SELECT AVG(preco) FROM vendas;
 Calcula a média dos preços na tabela vendas.
-MIN()
 
-Retorna o valor mínimo de uma coluna.
+MIN(): Retorna o valor mínimo de uma coluna.
 Exemplo:
-sql
-Copiar
 SELECT MIN(preco) FROM vendas;
 Retorna o menor valor na coluna preco da tabela vendas.
-MAX()
 
-Retorna o valor máximo de uma coluna.
+MAX(): Retorna o valor máximo de uma coluna.
 Exemplo:
-sql
-Copiar
 SELECT MAX(preco) FROM vendas;
 Retorna o maior valor na coluna preco da tabela vendas.
-GROUP_CONCAT() (Não é nativa no SQL Server, mas em alguns casos pode ser implementada com STRING_AGG() no SQL Server 2017 ou superior)
 
+GROUP_CONCAT() (Não é nativa no SQL Server, mas em alguns casos pode ser implementada com STRING_AGG() no SQL Server 2017 ou superior)
 Concatena os valores de uma coluna em um único valor, separados por um delimitador.
+
 Exemplo (SQL Server 2017+):
-sql
-Copiar
 SELECT STRING_AGG(nome, ', ') AS nomes 
 FROM clientes;
+
 Retorna uma lista de todos os nomes na tabela clientes, separados por vírgula.
+
 Exemplos com GROUP BY
 O uso de funções de agregação é comum em conjunto com a cláusula GROUP BY, que agrupa as linhas com base em uma ou mais colunas e permite aplicar as funções de agregação a cada grupo.
 
 Exemplo de uso de GROUP BY com funções de agregação:
-
-sql
-Copiar
 SELECT categoria, COUNT(*) AS total_vendas
 FROM vendas
 GROUP BY categoria;
+
 Aqui, o SQL conta o número de vendas para cada categoria na tabela vendas.
 
 Outro exemplo, somando os preços de vendas por categoria:
-
-sql
-Copiar
 SELECT categoria, SUM(preco) AS total_vendas
 FROM vendas
 GROUP BY categoria;
+
 Considerações:
 As funções de agregação ignoram valores NULL, exceto quando explicitamente tratado, como no caso de COUNT(*), que conta todas as linhas, incluindo aquelas com valores NULL em qualquer coluna.
 O uso de funções de agregação pode ser combinado com outras cláusulas como HAVING, que filtra os resultados agregados (ao contrário da cláusula WHERE, que filtra antes da agregação).
-Exemplo de filtro após agregação:
 
-sql
-Copiar
+Exemplo de filtro após agregação:
 SELECT categoria, SUM(preco) AS total_vendas
 FROM vendas
 GROUP BY categoria
 HAVING SUM(preco) > 1000;
+
 Neste exemplo, a consulta retorna apenas as categorias com vendas totais superiores a 1000.
 
 Essas funções de agregação são essenciais para análise de dados e relatórios no SQL Server.
@@ -1237,156 +1175,141 @@ ________________________________________________________________________________
 CLÁUSULA LIKE: No SQL Server, a cláusula LIKE é utilizada para buscar um padrão específico dentro de uma coluna de texto. Ela é frequentemente utilizada em consultas que exigem pesquisa de strings que atendem a um padrão específico, e pode ser acompanhada de metacaracteres para definir como a busca será realizada.
 
 Sintaxe do LIKE
-sql
-Copiar
 SELECT coluna
 FROM tabela
 WHERE coluna LIKE 'padrão';
+
 Metacaracteres no LIKE
 % – Corresponde a qualquer sequência de caracteres (inclusive uma sequência vazia).
 
 Exemplo: LIKE 'A%' irá corresponder a qualquer valor que comece com a letra "A".
 Exemplo de consulta:
-sql
-Copiar
 SELECT nome
 FROM empregados
 WHERE nome LIKE 'A%';
+
 Isso retornaria todos os nomes que começam com "A".
 _ – Corresponde a exatamente um caractere qualquer.
 
 Exemplo: LIKE 'A__' irá corresponder a qualquer string de três caracteres que comece com "A".
 Exemplo de consulta:
-sql
-Copiar
 SELECT nome
 FROM empregados
 WHERE nome LIKE 'A__';
+
 Isso retornaria nomes com exatamente três caracteres, começando com "A".
 [] – Corresponde a um único caractere dentro de um intervalo ou conjunto especificado.
 
 Exemplo: LIKE '[A-C]%' corresponderá a qualquer valor que comece com "A", "B", ou "C".
 Exemplo de consulta:
-sql
-Copiar
 SELECT nome
 FROM empregados
 WHERE nome LIKE '[A-C]%';
+
 Isso retornaria nomes que começam com "A", "B" ou "C".
 [^] – Corresponde a qualquer caractere que não esteja dentro de um intervalo ou conjunto especificado.
 
 Exemplo: LIKE '[^A-C]%' corresponderá a qualquer valor que não comece com "A", "B" ou "C".
 Exemplo de consulta:
-sql
-Copiar
 SELECT nome
 FROM empregados
 WHERE nome LIKE '[^A-C]%';
+
 Isso retornaria nomes que não começam com "A", "B" ou "C".
+
 Exemplos práticos:
 Encontrar nomes que começam com "Jo":
-
-sql
-Copiar
 SELECT nome
 FROM empregados
 WHERE nome LIKE 'Jo%';
-Encontrar todos os empregados cujo nome tenha "ana" em qualquer parte do nome:
 
-sql
-Copiar
+Encontrar todos os empregados cujo nome tenha "ana" em qualquer parte do nome:
 SELECT nome
 FROM empregados
 WHERE nome LIKE '%ana%';
-Encontrar códigos de produto que têm exatamente 6 caracteres e começam com "P":
 
-sql
-Copiar
+Encontrar códigos de produto que têm exatamente 6 caracteres e começam com "P":
 SELECT codigo_produto
 FROM produtos
 WHERE codigo_produto LIKE 'P_____' ;
-Buscar produtos cujo código não começa com "A" ou "B":
 
-sql
-Copiar
+Buscar produtos cujo código não começa com "A" ou "B":
 SELECT nome_produto
 FROM produtos
 WHERE nome_produto LIKE '[^A-B]%';
+
 A cláusula LIKE é muito útil em consultas quando você precisa de flexibilidade para buscar padrões de texto específicos no SQL Server!
 _______________________________________________________________________________________________________________________________________________________________________
 
-* BACKUP E RESTAURAÇÃO DE BANCOS DE DADOS: No SQL Server, backup e restauração são processos essenciais para garantir a segurança e a integridade dos dados. O backup é usado para criar uma cópia de segurança de um banco de dados, enquanto a restauração é o processo de recuperar um banco de dados a partir de um backup realizado anteriormente.
+BACKUP E RESTAURAÇÃO DE BANCOS DE DADOS
+No SQL Server, backup e restauração são processos essenciais para garantir a segurança e integridade dos dados. O backup cria uma cópia de segurança de um banco de dados, enquanto a restauração recupera um banco de dados a partir de um backup.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+1. BACKUP DE BANCO DE DADOS
+O backup cria uma cópia do banco de dados em um ponto no tempo. Ele é utilizado para recuperação em caso de falha, corrupção de dados ou desastre.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+TIPOS DE BACKUP
 
-1. Backup de Banco de Dados
-O backup cria uma cópia do banco de dados em um ponto no tempo. Isso pode ser usado para recuperação em caso de falha, corrupção de dados ou outro desastre. O SQL Server oferece diferentes tipos de backup:
-
-Tipos de Backup
-Backup Completo (Full Backup):
-
-Cópia completa de todo o banco de dados, incluindo todos os dados, objetos e transações logadas até o momento do backup.
+BACKUP COMPLETO (FULL BACKUP):
+Cria uma cópia completa de todo o banco de dados, incluindo dados, objetos e transações logadas até o momento.
 Sintaxe:
-sql
-Copiar
+
 BACKUP DATABASE nome_do_banco
 TO DISK = 'C:\caminho\para\backup.bak';
-Este é o tipo de backup mais comum e é necessário para uma recuperação completa do banco de dados.
-Backup Diferencial (Differential Backup):
-
-Faz um backup apenas das páginas de dados que foram alteradas desde o último backup completo.
-Isso reduz o tamanho do backup e o tempo necessário para realizá-lo.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+BACKUP DIFERENCIAL (DIFFERENTIAL BACKUP):
+Faz backup apenas das páginas de dados alteradas desde o último backup completo.
 Sintaxe:
-sql
-Copiar
+
 BACKUP DATABASE nome_do_banco
 TO DISK = 'C:\caminho\para\backup_diferencial.bak'
 WITH DIFFERENTIAL;
-Use este tipo de backup após um backup completo para capturar alterações incrementais no banco de dados.
-Backup de Log de Transações (Transaction Log Backup):
-
-Faz backup do log de transações, o que permite recuperar o banco de dados até o ponto exato de uma transação (útil para recuperação em tempo real).
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+BACKUP DE LOG DE TRANSAÇÕES (TRANSACTION LOG BACKUP):
+Faz backup do log de transações, permitindo recuperar o banco de dados até um ponto específico.
 Sintaxe:
-sql
-Copiar
+
 BACKUP LOG nome_do_banco
 TO DISK = 'C:\caminho\para\backup_log.trn';
-O backup de log é necessário quando o banco de dados está em modo de recuperação completo ou modo de recuperação bulk-logged.
-Backup de Arquivos ou Filegroup:
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Faz backup de um arquivo ou grupo de arquivos específicos do banco de dados. Útil para bancos de dados grandes com várias partes.
+BACKUP DE ARQUIVOS OU FILEGROUP:
+Faz backup de arquivos ou grupos de arquivos específicos.
 Sintaxe:
-sql
-Copiar
+
 BACKUP DATABASE nome_do_banco
 FILE = 'nome_do_arquivo'
 TO DISK = 'C:\caminho\para\backup_arquivo.bak';
-Exemplo de Backup Completo:
-sql
-Copiar
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+EXEMPLOS DE BACKUP
+
+BACKUP COMPLETO:
+
 BACKUP DATABASE MinhaLoja
 TO DISK = 'C:\Backups\MinhaLoja_Backup.bak';
-Backup de Log de Transações:
-sql
-Copiar
+
+BACKUP DE LOG DE TRANSAÇÕES:
+
 BACKUP LOG MinhaLoja
 TO DISK = 'C:\Backups\MinhaLoja_Log.trn';
-2. Restauração de Banco de Dados
-A restauração é o processo de recuperar um banco de dados a partir de um backup. Existem diferentes opções para restaurar um banco de dados, dependendo do tipo de backup realizado.
 
-Tipos de Restauração
-Restaurar Backup Completo:
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+2. RESTAURAÇÃO DE BANCO DE DADOS
+A restauração recupera um banco de dados a partir de um backup.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+TIPOS DE RESTAURAÇÃO
 
-Este é o processo básico de restauração do banco de dados a partir de um backup completo.
+RESTAURAR BACKUP COMPLETO:
+Restaura o banco de dados a partir de um backup completo.
 Sintaxe:
-sql
-Copiar
+
 RESTORE DATABASE nome_do_banco
 FROM DISK = 'C:\caminho\para\backup.bak';
-Restaurar Backup Diferencial:
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Se você fez um backup completo e, depois, um backup diferencial, primeiro restaure o backup completo e, em seguida, o backup diferencial.
+RESTAURAR BACKUP DIFERENCIAL:
+Restaura o backup completo primeiro e depois o backup diferencial.
 Sintaxe:
-sql
-Copiar
+
 -- Restaurar Backup Completo
 RESTORE DATABASE nome_do_banco
 FROM DISK = 'C:\caminho\para\backup_completo.bak';
@@ -1395,10 +1318,12 @@ FROM DISK = 'C:\caminho\para\backup_completo.bak';
 RESTORE DATABASE nome_do_banco
 FROM DISK = 'C:\caminho\para\backup_diferencial.bak'
 WITH NORECOVERY;
-Restaurar Log de Transações:
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Para restaurar um banco de dados até um ponto no tempo, você pode restaurar os backups de log de transações.
+RESTAURAR LOG DE TRANSAÇÕES:
+Restaura o banco de dados até um ponto no tempo usando o backup de log de transações.
 Sintaxe:
+
 sql
 Copiar
 RESTORE DATABASE nome_do_banco
@@ -1407,74 +1332,74 @@ FROM DISK = 'C:\caminho\para\backup_completo.bak';
 RESTORE LOG nome_do_banco
 FROM DISK = 'C:\caminho\para\backup_log.trn'
 WITH STOPAT = '2025-02-20 10:00:00';
-Exemplo Completo de Restauração:
-Para restaurar completamente um banco de dados com um backup completo, seguido de um diferencial e logs de transações:
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-sql
-Copiar
--- Passo 1: Restaurar o Backup Completo
+EXEMPLO COMPLETO DE RESTAURAÇÃO
+
+Passo 1: Restaurar o Backup Completo
+
 RESTORE DATABASE MinhaLoja
 FROM DISK = 'C:\Backups\MinhaLoja_Backup.bak';
 
--- Passo 2: Restaurar o Backup Diferencial (se houver)
+Passo 2: Restaurar o Backup Diferencial (se houver)
+
 RESTORE DATABASE MinhaLoja
 FROM DISK = 'C:\Backups\MinhaLoja_Diferencial.bak'
 WITH NORECOVERY;
 
--- Passo 3: Restaurar o Log de Transações (se houver)
+Passo 3: Restaurar o Log de Transações (se houver)
+
 RESTORE LOG MinhaLoja
 FROM DISK = 'C:\Backups\MinhaLoja_Log.trn'
 WITH RECOVERY;
-3. Opções de Recuperação
-WITH RECOVERY: Finaliza a restauração e torna o banco de dados acessível.
-WITH NORECOVERY: Permite continuar a restauração com outros backups (útil em restaurações em cadeia, como backup completo + diferencial + log).
-WITH STANDBY: Usado quando se quer restaurar o banco e deixá-lo disponível para leitura enquanto ele ainda está sendo restaurado.
-4. Considerações Importantes
-Backup Completo é a base para qualquer recuperação. Para garantir a integridade dos dados, é recomendado fazer backups completos regularmente.
-Backups Diferenciais e Log de Transações ajudam a reduzir o tempo de recuperação, pois capturam apenas as mudanças ocorridas após o último backup completo.
-O Modo de Recuperação do banco de dados (Simples, Completo, ou Bulk-Logged) afeta os tipos de backup disponíveis e as opções de restauração.
-Esses processos são essenciais para garantir a continuidade do serviço e a proteção contra perda de dados no SQL Server!
------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-* BACKUP BANCO DE DADOS PELA IDE DO SSMS:
+3. OPÇÕES DE RECUPERAÇÃO
+WITH RECOVERY: Finaliza a restauração e torna o banco acessível.
+WITH NORECOVERY: Permite continuar com outros backups, útil para restaurações em cadeia.
+WITH STANDBY: Torna o banco de dados disponível para leitura enquanto ainda está sendo restaurado.
 
-1. Backup de Banco de Dados no SSMS
-O processo de backup de um banco de dados no SSMS pode ser feito através da interface gráfica, sem a necessidade de comandos SQL.
+4. CONSIDERAÇÕES IMPORTANTES
+O Backup Completo é essencial para qualquer recuperação.
+Backups Diferenciais e Log de Transações ajudam a reduzir o tempo de recuperação.
+O Modo de Recuperação (Simples, Completo ou Bulk-Logged) afeta os tipos de backup e restauração disponíveis.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Passos para fazer o backup:
-Abrir o SSMS e conectar-se ao servidor SQL onde o banco de dados está localizado.
-No Object Explorer (Explorador de Objetos), expandir o servidor e depois expandir a pasta Databases.
-Localizar o banco de dados de onde deseja fazer o backup.
-Clique com o botão direito sobre o banco de dados desejado e selecione Tasks > Back Up....
-Na janela Back Up Database, você verá várias opções:
-Database: O nome do banco de dados que está sendo feito o backup.
-Backup Type: Escolha o tipo de backup (geralmente Full para um backup completo).
-Destination: Onde o backup será armazenado. Por padrão, o SSMS cria o backup na pasta padrão, mas você pode adicionar um caminho personalizado de arquivo.
-Clique em Add para selecionar o local onde o arquivo de backup (.bak) será salvo.
-Clique em OK para iniciar o processo de backup.
-O SSMS começará o processo de backup e, ao concluir, você verá uma mensagem informando que o backup foi concluído com sucesso.
+BACKUP E RESTAURAÇÃO PELO SSMS (SQL SERVER MANAGEMENT STUDIO)
+O SSMS permite realizar backups e restaurações através de sua interface gráfica, simplificando o processo.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-2. Restauração de Banco de Dados no SSMS
-A restauração de um banco de dados no SSMS também pode ser feita por meio de uma interface gráfica simples.
+1. BACKUP DE BANCO DE DADOS NO SSMS
+Passos para realizar um backup no SSMS:
 
-Passos para restaurar um banco de dados:
-Abrir o SSMS e conectar-se ao servidor SQL onde o banco de dados será restaurado.
-No Object Explorer, clique com o botão direito na pasta Databases e selecione Restore Database....
-Na janela Restore Database, em Source, selecione Device e clique no botão de três pontos (…) ao lado.
-Clique em Add para localizar o arquivo de backup (.bak) que você deseja restaurar. Selecione o arquivo e clique em OK.
-O nome do banco de dados de backup será exibido automaticamente na caixa Destination. Se você quiser restaurar em um banco de dados novo, digite um nome para o banco de dados na caixa Database.
-Em Restore Plan, você pode ajustar opções como:
-Restore the database files over existing files: Usado quando você deseja substituir um banco de dados existente com a restauração.
-Recovery state: Se você deseja que o banco de dados fique disponível para acesso (em RESTORE WITH RECOVERY) ou continue no modo de recuperação para aplicar logs adicionais (em RESTORE WITH NORECOVERY).
-Clique em OK para iniciar a restauração.
-Quando o processo de restauração for concluído, você verá uma mensagem informando que a restauração foi bem-sucedida.
+1- Abra o SSMS e conecte-se ao servidor SQL.
+2- No Object Explorer, expanda o servidor e depois a pasta Databases.
+3- Clique com o botão direito no banco de dados desejado e selecione Tasks > Back Up....
+4- Na janela Back Up Database, configure as opções:
+  - Database: Nome do banco de dados.
+  - Backup Type: Escolha o tipo de backup (geralmente Full).
+  - Destination: Escolha o local do arquivo de backup.
+5- Clique em Add para selecionar o caminho do arquivo de backup.
+6- Clique em OK para iniciar o backup.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Dicas:
-Backup Regular: É recomendável fazer backups regulares, especialmente de bancos de dados críticos, para evitar perdas de dados.
-Verificação de Backup: Após a realização de backups, sempre verifique se o arquivo gerado pode ser restaurado corretamente.
-Backup de Logs: Se você precisar de uma recuperação mais granular (como ponto no tempo), você pode fazer backup de logs de transação também.
-Esses passos fazem o processo de backup e restauração simples através da interface gráfica do SSMS.
+2. RESTAURAÇÃO DE BANCO DE DADOS NO SSMS
+Passos para restaurar um banco de dados no SSMS:
 
+1- Abra o SSMS e conecte-se ao servidor SQL.
+2- No Object Explorer, clique com o botão direito na pasta Databases e selecione Restore Database....
+3- Na janela Restore Database, selecione Device em Source e clique em Add.
+4- Selecione o arquivo de backup (.bak) e clique em OK.
+5- Ajuste as opções em Restore Plan:
+  - Restore the database files over existing files: Substitui um banco de dados existente.
+  - Recovery state: Escolha WITH RECOVERY (para tornar o banco acessível) ou WITH NORECOVERY (para continuar restaurando logs).
+6- Clique em OK para iniciar a restauração.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+DICAS IMPORTANTES:
+
+- Backup Regular: Realize backups regulares, especialmente de bancos críticos.
+- Verificação de Backup: Sempre verifique se o arquivo de backup pode ser restaurado.
+- Backup de Logs: Para uma recuperação mais granular, faça backups dos logs de transação.
 
  	
 
